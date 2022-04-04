@@ -30,4 +30,7 @@ Pour accéder au site:
 * [X] Structure SQL
 * [X] Base du site (tuto)
 * [ ] Refaire le site pour nous
+-> en cours...
+* [ ] Lier la base de donnée à flask
+* [ ] commencer à lier flask à char.js par la base de donnée pour les schémas
 * [ ] ...
