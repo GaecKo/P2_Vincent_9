@@ -1,0 +1,120 @@
+@import url(https://necolas.github.io/normalize.css/8.0.1/normalize.css);
+@import url(https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap);
+
+body
+{
+    color: #333;
+    opacity: 1;
+    font-family: "Montserrat", sans-serif;
+    background-image: url("/Users/drusmac/Desktop/site\ école/background.png");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+} 
+
+a
+{
+    text-decoration: none;
+    color: white;
+}
+
+a:hover
+{
+    color:#4e4ece;
+    text-decoration: underline;
+    margin-left: 5px;
+    transition: all 1s;
+}
+
+*
+{
+    margin: 0;
+    padding: 0; 
+    box-sizing: border-box;
+}
+
+img
+{
+    width: 75px;
+    height: 75px;
+    vertical-align: auto;
+}
+
+/* nav
+{
+    width: 1500px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+}
+*/
+
+/*footer
+{
+    background-color: #f2f2f2;
+    height: 10px;
+    padding: 40px 0;
+    min-height: 50px;
+}*/
+
+.footer .footer-content
+{
+    height: 0px;
+    display: flex;
+}
+
+.footer .footer-content .footer-section
+{
+    flex: 1;
+    padding: 25px;
+}
+
+.footer
+{
+    background-color: #303036;
+    color: #d3d3d3;
+    height: 260px;
+    position: relative;
+    left: 0px;
+    top: 600px;
+    
+}
+
+.footer::before
+{
+    content: "";
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    top: -150px;
+    height: 150px;
+    background: linear-gradient(to bottom, transparent, #303036);
+    z-index: 1000;
+}
+
+.footer .footer-content .links ul a
+{
+    display: block;
+    margin-bottom: 10px;
+    font-size: 1.2em;
+    color: white;
+    left: 30px;
+    transition: all .3s;
+}
+
+.footer .footer-content .links ul a:hover
+{
+    color: #4e4ece;
+    margin-left: 15px;
+    transition: all 1s;
+}
+
+.footer .footer-bottom
+{
+    background-color: #303036;
+    color: #686868;
+    top: 230px;
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    vertical-align: bottom;
+}
