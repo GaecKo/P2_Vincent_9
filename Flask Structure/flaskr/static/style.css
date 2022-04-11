@@ -1,12 +1,43 @@
 @import url(https://necolas.github.io/normalize.css/8.0.1/normalize.css);
 @import url(https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap);
 
+*
+{
+    scroll-behavior: smooth;
+}
+
+
+header
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 30px 100px;
+    display: flex;
+    justify-content: space-between;
+}
+header .home
+{
+    color: #fff;
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 2em;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+header_af
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 body
 {
     color: #333;
     opacity: 1;
     font-family: "Montserrat", sans-serif;
-    background-image: url("/Users/drusmac/Desktop/site\ école/background.png");
     background-repeat: no-repeat;
     background-attachment: fixed;
 } 
