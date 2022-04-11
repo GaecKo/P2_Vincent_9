@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %} 
+La ferme des 3 chênes: Analytics 
+{% endblock %}
+
+
+{% block content %}
+    <h4>Example of a chart.js graph with random stuff in it</h4>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+    <script type="text/javascript" src="jscript/graph.js"></script>
+    <canvas id="graphique" width="200" height="100" ></canvas>
+    <script>
+        var ctx = document.getElementById('graphique').getContext('2d');
+        var myChart = new Chart(ctx, {
+        type: 'bar',   // le type du graphique
+        data: {        // les données
+            labels: ['Jean', 'Martine', 'Michel', 'Jules', 'Louise', 'Dominique'],
+            datasets: [{
+                        label: 'votes',
+                        data: [12, 19, 3, 5, 2, 3]
+                    }]
+            }
+            }
+        );
+    </script>
+
+
+{% endblock %}

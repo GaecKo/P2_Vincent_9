@@ -1,0 +1,174 @@
+ @import url(https://necolas.github.io/normalize.css/8.0.1/normalize.css);
+@import url(https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap);
+
+*
+{
+    scroll-behavior: smooth;
+}
+
+
+header
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 30px 100px;
+    display: flex;
+    justify-content: space-between;
+}
+#header
+{
+    box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.08), 0 2px 4px 0 rgba(0, 0, 0, 0.12);
+}
+header .home
+{
+    color: white;
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 2em;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+
+header af
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+header af li
+{
+    list-style: none;
+    margin-left: 20px;
+}
+
+header af li a
+{
+    text-decoration: none;
+    padding: 6px 15px;
+    color: rgb(255, 255, 255);
+    border-radius: 20px;
+}
+
+header af li a:hover,
+header af li a.active
+{
+    background: white;
+    color: rgb(87, 54, 54);
+}
+
+body
+{
+    color: rgb(255, 255, 255);
+    opacity: 1;
+    font-family: "Montserrat", sans-serif;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-color: #414145;
+} 
+
+a
+{
+    text-decoration: none;
+    color: white;
+}
+
+.titre
+{
+    text-align: center;
+    text-decoration: underline;
+    font-size: xx-large;
+}
+
+a:hover
+{
+    color:#c9c9ca;
+    text-decoration: underline;
+    margin-left: 5px;
+    transition: all 1s;
+}
+
+*
+{
+    margin: 0;
+    padding: 0; 
+    box-sizing: border-box;
+}
+
+img
+{
+    width: 75px;
+    height: 75px;
+    vertical-align: auto;
+}
+
+.footer .footer-content
+{
+    height: 0px;
+    display: flex;
+}
+
+.footer .footer-content .footer-section
+{
+    flex: 1;
+    padding: 25px;
+}
+
+.footer
+{
+    background-color: #303036;
+    color: #d3d3d3;
+    height: 260px;
+    position: relative;
+    left: 0px;
+    top: 600px;
+    
+}
+
+.footer::before
+{
+    content: "";
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    top: -150px;
+    height: 150px;
+    background: linear-gradient(to bottom, transparent, #303036);
+    z-index: 1000;
+}
+
+.footer .footer-content .links ul a
+{
+    display: block;
+    margin-bottom: 10px;
+    font-size: 1.2em;
+    color: white;
+    left: 30px;
+    transition: all .3s;
+}
+.text_to_justify
+{
+    text-align: justify;
+    text-justify: inter-words;
+}
+.footer .footer-content .links ul a:hover
+{
+    color:#c9c9ca;
+    text-decoration: underline;
+    margin-left: 5px;
+    transition: all 1s;
+}
+
+.footer .footer-bottom
+{
+    background-color: #303036;
+    color: #686868;
+    top: 230px;
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    vertical-align: bottom;
+}
