@@ -109,6 +109,7 @@ img
 {
     height: 0px;
     display: flex;
+    width: 100%
 }
 
 .footer .footer-content .footer-section
@@ -127,10 +128,12 @@ img
 {
     background-color: #303036;
     color: #d3d3d3;
-    height: 260px;
+    height: 250px;
     position: relative;
-    top: 600px;
-    display: inline-flex;
+    top: auto;
+    bottom: 0;
+    display: flex;
+    width: 100%;
     
 }
 
