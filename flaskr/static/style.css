@@ -1,4 +1,4 @@
- @import url(https://necolas.github.io/normalize.css/8.0.1/normalize.css);
+@import url(https://necolas.github.io/normalize.css/8.0.1/normalize.css);
 @import url(https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap);
 
 *
@@ -113,18 +113,24 @@ img
 
 .footer .footer-content .footer-section
 {
+    top: 0;
     flex: 1;
-    padding: 25px;
+    padding: 10px;
+    margin-left: 8%;
 }
 
+.footer .footer-content .footer-section .about
+{
+    margin-left: 100px;
+}
 .footer
 {
     background-color: #303036;
     color: #d3d3d3;
     height: 260px;
     position: relative;
-    left: 0px;
     top: 600px;
+    display: inline-flex;
     
 }
 
@@ -146,7 +152,7 @@ img
     margin-bottom: 10px;
     font-size: 1.2em;
     color: white;
-    left: 30px;
+    left: 20px;
     transition: all .3s;
 }
 .text_to_justify
