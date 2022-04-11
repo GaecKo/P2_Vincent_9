@@ -6,7 +6,22 @@ La ferme des 3 chênes: Home
 
 
 {% block content %} 
+<br>
 <div class="titre">
-    Bienvenue!
+    Bienvenue sur Oak Analytics!
 </div>
+<br><br><br><br>
+<p class="first_para">Bienvenue sur la page d'acceuil d'Oak Analytics. Ce site s'orchestre autour d'une ferme nomé "La ferme des trois chênes". Mais la ferme des trois chênes, c'est quoi exactement? </p>
+<br><br>
+
+<img src="{{ url_for('static', filename='vache.jpg') }}" alt=image_vache class="im_vache"/>
+<br>
+
+<ul class="square_point">
+    <li>Une ferme remplie de veaux, vaches, génisses de race Holstein et Jersey. Ces vaches nous donnent leurs bons laits remplies calcium pour des os solides</li>
+    <li>Point 2</li>
+    <li>Point 3</li>
+</ul>
+
+<br><br><br><br>
 {% endblock %}

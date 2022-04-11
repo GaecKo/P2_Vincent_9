@@ -91,6 +91,39 @@ a:hover
     transition: all 1s;
 }
 
+
+.first_para
+{
+    text-align: center;
+    font-size: medium;
+}
+
+
+.im_vache
+{
+    position: absolute;
+    left: 50px;
+    width: 650px;
+    padding: 2px;
+    border: 5px solid #000000;
+    border-radius: 30px 30px 30px 30px;
+    width: 225px;
+    height: 300px;
+}
+
+.square_point
+{
+    position: relative;
+    list-style-type: square;
+    left: 350px;
+    margin: auto;
+}
+.square_point li
+{
+    margin-right: 10px;
+    
+}
+
 *
 {
     margin: 0;
@@ -129,7 +162,7 @@ img
     background-color: #303036;
     color: #d3d3d3;
     height: 250px;
-    position: relative;
+    position: absolute;
     top: auto;
     bottom: 0;
     display: flex;
