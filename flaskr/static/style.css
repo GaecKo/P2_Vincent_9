@@ -57,7 +57,7 @@ header af li a:hover,
 header af li a.active
 {
     background: white;
-    color: rgb(87, 54, 54);
+    color: #333;
 }
 
 body
