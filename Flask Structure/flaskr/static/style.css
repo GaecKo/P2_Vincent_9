@@ -1,4 +1,4 @@
-@import url(https://necolas.github.io/normalize.css/8.0.1/normalize.css);
+ @import url(https://necolas.github.io/normalize.css/8.0.1/normalize.css);
 @import url(https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap);
 
 *
@@ -17,21 +17,50 @@ header
     display: flex;
     justify-content: space-between;
 }
+#header
+{
+    box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.08), 0 2px 4px 0 rgba(0, 0, 0, 0.12);
+}
 header .home
 {
-    color: #fff;
+    color: #333;
     font-weight: 700;
     text-decoration: none;
     font-size: 2em;
     text-transform: uppercase;
     letter-spacing: 2px;
 }
-header_af
+
+
+header af
 {
     display: flex;
     justify-content: center;
     align-items: center;
 }
+
+header af li
+{
+    list-style: none;
+    margin-left: 20px;
+}
+
+header af li a
+{
+    text-decoration: none;
+    padding: 6px 15px;
+    color: #333;
+    border-radius: 20px;
+}
+
+header af li a:hover,
+header af li a.active
+{
+    background: #333;
+    color: white;
+}
+
+
 
 body
 {

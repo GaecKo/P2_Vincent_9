@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html>
 <head>
   <meta charset="UTF-8">
@@ -10,18 +10,23 @@
   </title>
 </head>
 <body>
-  <header>
-    <b href="#" class = home>Home</b>
+  <header id="header">
+    <a href="http://127.0.0.1:5000/home" class = "home">Home</a>
     <af>
-      <li><b href="http://127.0.0.1:5000/analytics">Analytics</b></li>
+      <li><a href="http://127.0.0.1:5000/analytics" class="active">Analytics</a> </li>
+      <li><a href="#footer">Contacts</a> </li>
     </af>
-  </header>  
+    
+  </header> 
+  <br><br><br><br><br><br>
 
-    {% block content %} {% endblock %}
+    {% block content %}
+    
+    {% endblock %}
 
     <footer>
       <br> <br>
-    <div class="footer">
+    <div class="footer" id="footer">
         <div class="footer-content">
             <div class="footer-section about">
                 <h1 class="logo-text"><span>Website Name</span></h1><br>
