@@ -16,7 +16,7 @@ Pour lancer le site en cours de constructions:
 * [X] Base du site (tuto)
 * [X] base du site (pour nous)
 * [X] Commencer à lier flask à char.js par la base de donnée pour les schémas
-* [ ] Faire la partie CSS
+* [X] Faire la partie CSS
 * [ ] Lier la base de donnée à flask
 * [ ] Créer les graphes
 * [ ] ...
