@@ -111,17 +111,16 @@ a:hover
     height: 300px;
 }
 
-.square_point
+section .square_point
 {
     position: relative;
     list-style-type: square;
-    left: 350px;
-    margin: auto;
+    display: inline-block;
+    margin-left: 350px;
 }
-.square_point li
+section .square_point li
 {
-    margin-right: 10px;
-    
+    margin-right: 10px;    
 }
 
 *
@@ -160,13 +159,12 @@ img
 .footer
 {
     background-color: #303036;
-    color: #d3d3d3;
     height: 250px;
-    position: absolute;
-    top: auto;
-    bottom: 0;
+    color: #d3d3d3;
+    position: relative;
     display: flex;
     width: 100%;
+    top: 250px;
     
 }
 
