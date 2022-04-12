@@ -5,8 +5,19 @@ La ferme des 3 chênes: Analytics
 {% endblock %}
 
 
-{% block content %}
-    <h4>Example of a chart.js graph with random stuff in it</h4>
+{% block content %} 
+    <h4>Choix du graphique à montrer</h4>
+    <nav>
+        <ul>
+            <li class="deroulant"><a href="#">Choisir un Graphique à afficher &ensp;</a>
+                <ul class="sous">
+                    <li><a href="#" title="Graphe1">Graphique 1</a></li>
+                    <li><a href="#" title="Graphe2">Graphique 2</a></li>
+                    <li><a href="#" title="Graphe3">Graphique 3</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
     <script type="text/javascript" src="jscript/graph.js"></script>
     <canvas id="graphique" width="200" height="100" ></canvas>
@@ -18,7 +29,7 @@ La ferme des 3 chênes: Analytics
             labels: ['Jean', 'Martine', 'Michel', 'Jules', 'Louise', 'Dominique'],
             datasets: [{
                         label: 'votes',
-                        data: [12, 19, 3, 5, 2, 3]
+                        data: [12, 19, 13, 19, 20, 3]
                     }]
             }
             }
@@ -27,3 +38,4 @@ La ferme des 3 chênes: Analytics
 
 
 {% endblock %}
+
