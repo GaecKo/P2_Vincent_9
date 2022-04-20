@@ -6,14 +6,13 @@ La ferme des 3 chênes: Analytics
 
 
 {% block content %} 
-    <h4>Choix du graphique à montrer</h4>
     <nav>
         <ul>
             <li class="deroulant"><a href="#">Choisir un Graphique à afficher &ensp;</a>
                 <ul class="sous">
-                    <li><a href="#" title="Graphe1">Graphique 1</a></li>
-                    <li><a href="#" title="Graphe2">Graphique 2</a></li>
-                    <li><a href="#" title="Graphe3">Graphique 3</a></li>
+                    <li><a href="#" title="Graphe 1">Graphique 1</a></li>
+                    <li><a href="#" title="Graphe 2">Graphique 2</a></li>
+                    <li><a href="#" title="Graphe 3">Graphique 3</a></li>
                 </ul>
             </li>
         </ul>
@@ -28,7 +27,7 @@ La ferme des 3 chênes: Analytics
         data: {        // les données
             labels: [ {% for item in liste %} "{{ item }}", {% endfor %} ],
             datasets: [{
-                        label: 'votes',
+                        label: 'Votes ',
                         data: [12, 19, 13, 19, 20, 3]
                     }]
             }
