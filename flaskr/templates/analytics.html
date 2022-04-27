@@ -10,11 +10,11 @@ La ferme des 3 chênes: Analytics
         <ul>
             <li class="deroulant"><a href="#">Choisir un Graphique à afficher &ensp;</a>
                 <ul class="sous">
-                    <li><a href="#" title="Graphe 1" onclick="updateChart('rgba(200, 255, 255, 1)', 'Graphe 1', ['a', 'b', 'c', 'd'], [5, 10, 15, 20])">Graphique 1</a></li>
+                    <li><a href="#" title="Graphe 1" onclick="updateChart('rgba(200, 255, 255, 1)', 'Graphe 1', ['a', 'b', 'c', 'd'], [5, 10, 15, 20]), change()", id="para1">Graphique 1</a></li>
 
-                    <li><a href="#" title="Graphe 2"onclick="updateChart('rgba(25, 177, 176, 1)', 'Graphe 2', ['ee', 'gg', 'dd', 'eed'], [77, 39, 47, 65])">Graphique 2</a></li>
+                    <li><a href="#" title="Graphe 2"onclick="updateChart('rgba(25, 177, 176, 1)', 'Graphe 2', ['ee', 'gg', 'dd', 'eed'], [77, 39, 47, 65]), change()", id="para2">Graphique 2</a></li>
 
-                    <li><a href="#" title="Graphe 3"onclick="updateChart('rgba(160, 167, 167, 1)', 'Graphe 3', ['1', '10', '100', '1000'], [19, 29, 39, 49])">Graphique 3</a></li>
+                    <li><a href="#" title="Graphe 3"onclick="updateChart('rgba(160, 167, 167, 1)', 'Graphe 3', ['1', '10', '100', '1000'], [19, 29, 39, 49]), change()", id="para3">Graphique 3</a></li>
                 </ul>
             </li>
         </ul>
@@ -47,8 +47,15 @@ La ferme des 3 chênes: Analytics
         myChart.data.datasets[0].label = main_label;
         myChart.update();
     }
+
+    function change() // no ';' here
+    {
+        var elem = document.getElementById("para1");
+        if (elem.style.value=="none") elem.style.value = "block";
+        else elem.style.value = "none";
+    }
+    
     </script>
-
-
+    <p id="para1">para1</p>
 {% endblock %}
 

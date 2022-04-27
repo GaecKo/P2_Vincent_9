@@ -51,6 +51,7 @@ header af li a
     padding: 6px 15px;
     color: rgb(255, 255, 255);
     border-radius: 20px;
+    transition: all .5s;
 }
 
 header af li a:hover,
@@ -88,7 +89,7 @@ a:hover
     color:#c9c9ca;
     text-decoration: none;
     margin-left: 5px;
-    transition: all 1s;
+    transition: all .7s;
 }
 
 
@@ -101,10 +102,8 @@ a:hover
 
 .im_vache
 {
-    position: absolute;
-    left: 50px;
-    width: 650px;
-    padding: 2px;
+    position:absolute;
+    margin-left: 100px;
     border: 5px solid #000000;
     border-radius: 30px 30px 30px 30px;
     width: 225px;
@@ -115,12 +114,8 @@ section .square_point
 {
     position: relative;
     list-style-type: square;
-    display: inline-block;
-    margin-left: 350px;
-}
-section .square_point li
-{
-    margin-right: 10px;    
+    display: block;
+    margin-left: 450px;
 }
 
 *
@@ -308,3 +303,6 @@ nav ul .deroulant a
     color: white;
     left: auto;
 }
+
+#para{
+    display: none; }
