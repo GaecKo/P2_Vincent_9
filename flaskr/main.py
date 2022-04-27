@@ -14,6 +14,9 @@ def home():
 def analytics():
     return render_template('analytics.html')
 
+def set_graph(type_chart, color, main_label):
+    return (type_chart ,color, main_label, labels, data)
+
 
 if __name__ == "__main__":
     app.run(debug=True)
