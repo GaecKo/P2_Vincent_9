@@ -22,7 +22,7 @@ La ferme des 3 chênes: Analytics
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js" type="text/javascript"></script>
 
-    <canvas id="line" width="800" height="400" style="display: none;"></canvas>
+    <canvas id="line" width="800" height="400" style="display: none; "></canvas>
     <script>
         const ctx = document.getElementById('line').getContext('2d');
         const line = new Chart(ctx, {
@@ -53,7 +53,8 @@ La ferme des 3 chênes: Analytics
             datasets: [{
                         backgroundColor: 'rgba(255, 255, 255, 1)',
                         label: 'Votes ',
-                        data: [12, 19, 13, 19, 20, 3]
+                        data: [12, 19, 13, 19, 20, 3], 
+                        
                     }]
             },
         options: {
