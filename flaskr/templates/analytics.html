@@ -10,11 +10,11 @@ La ferme des 3 chênes: Analytics
         <ul>
             <li class="deroulant"><a href="#">Choisir un Graphique à afficher &ensp;</a>
                 <ul class="sous">
-                    <li><a href="#" title="Graphe 1" onclick="updateChart('rgba(200, 255, 255, 1)', 'Graphe 1', ['a', 'b', 'c', 'd'], [5, 10, 15, 20]), change()", id="para1">Graphique 1</a></li>
+                    <li><a href="#" title="Graphe 1" onclick="updateChart('radar', 'rgba(200, 255, 255, 1)', 'Graphe 1', ['a', 'b', 'c', 'd'], [5, 10, 15, 20]), change()", id="para1">Graphique 1</a></li>
 
-                    <li><a href="#" title="Graphe 2"onclick="updateChart('rgba(25, 177, 176, 1)', 'Graphe 2', ['ee', 'gg', 'dd', 'eed'], [77, 39, 47, 65]), change()", id="para2">Graphique 2</a></li>
+                    <li><a href="#" title="Graphe 2"onclick="updateChart('line', 'rgba(25, 177, 176, 1)', 'Graphe 2', ['ee', 'gg', 'dd', 'eed'], [77, 39, 47, 65]), change()", id="para2">Graphique 2</a></li>
 
-                    <li><a href="#" title="Graphe 3"onclick="updateChart('rgba(160, 167, 167, 1)', 'Graphe 3', ['1', '10', '100', '1000'], [19, 29, 39, 49]), change()", id="para3">Graphique 3</a></li>
+                    <li><a href="#" title="Graphe 3"onclick="updateChart('line', 'rgba(160, 167, 167, 1)', 'Graphe 3', ['1', '10', '100', '1000'], [19, 29, 39, 49]), change()", id="para3">Graphique 3</a></li>
                 </ul>
             </li>
         </ul>
@@ -40,14 +40,55 @@ La ferme des 3 chênes: Analytics
             }
         );
     
-    function updateChart(color, main_label,labels, data){
-        myChart.data.datasets[0].backgroundColor = color;
-        myChart.data.labels = labels;
-        myChart.data.datasets[0].data = data;
-        myChart.data.datasets[0].label = main_label;
-        myChart.update();
-    }
+    </script>
 
+    <canvas id ="radar" width="800" height="400"></canvas>
+
+    <script> 
+        const ctx1 = document.getElementById('radar').getContext('2d');
+        const radar = new Chart(ctx1, {
+        type: ['radar'],   // le type du graphique
+        data: {        // les données
+            labels: ["a", "b", "c", "d", "e", "f"],
+            datasets: [{
+                        backgroundColor: 'rgba(255, 255, 255, 1)',
+                        label: 'Votes ',
+                        data: [12, 19, 13, 19, 20, 3]
+                    }]
+            },
+        options: {
+            responsive: false,k
+         }
+            }
+        );     
+    </script>
+    <script>
+    
+    function updateChart(type_chart ,color, main_label,labels, data){
+        if (type_chart=='line') {
+            hideChart("radar");
+            radar.update();
+            showChart("radar")
+        }
+            if (type_chart=="radar") {
+            hideChart("line");
+            line.update();
+            showChart("radar")
+        }
+            type_chart.data.datasets[0].backgroundColor = color;
+            type_chart.data.labels = labels;
+            type_chart.data.datasets[0].data = data;
+            type_chart.data.datasets[0].label = main_label;
+            type_chart.update();
+        }
+        
+
+    function hideChart(id) {
+        document.getElementById(id).style.display="none";
+    }
+    function showChart(id) {
+        document.getElementById(id).style.display="inline";
+    }
     function change() // no ';' here
     {
         var elem = document.getElementById("para1");
