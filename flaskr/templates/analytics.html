@@ -20,9 +20,12 @@ La ferme des 3 chênes: Analytics
         </ul>
     </nav>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js" type="text/javascript"></script>
+    <!-- Pour le graphique en camembert, utlise "pie" :) -->
 
-    <canvas id="line" width="800" height="400" style="display: none;"></canvas>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js" type="text/javascript"></script>
+    <div style="text-align: center;">
+        <canvas id="line" width="800" height="400" style="display: none;"></canvas>
+    </div>
     <script>
         const ctx = document.getElementById('line').getContext('2d');
         const line = new Chart(ctx, {
@@ -42,8 +45,9 @@ La ferme des 3 chênes: Analytics
     
     </script>
 
-    <canvas id ="radar" width="800" height="400" style="display: none;"></canvas>
-
+    <div style = "text-align: center;">
+        <canvas id ="radar" width="800" height="400" style="display: none;"></canvas>
+    </div>    
     <script> 
         const ctx1 = document.getElementById('radar').getContext('2d');
         const radar = new Chart(ctx1, {
@@ -107,13 +111,17 @@ La ferme des 3 chênes: Analytics
     </script>
 
     <p id="para1" style="display: none;">
-        ceci est le premier paragraphe
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam at odio et lectus volutpat feugiat. Integer vel nisi hendrerit, accumsan mi a, scelerisque sem. Quisque venenatis pharetra tellus, vitae blandit velit tincidunt ut. Nulla euismod lorem lorem, sit amet lobortis felis molestie id. Praesent id sapien ut ante posuere tincidunt id nec turpis. Nulla venenatis fringilla dui vitae accumsan. Nullam sollicitudin sem lacus, et ornare libero egestas in. Proin eleifend sit amet orci at venenatis.
+
+    Cras finibus est vitae neque scelerisque gravida. Praesent pretium eget lorem at lacinia. Vivamus eu tempor arcu, quis imperdiet velit. Proin tristique quam a tincidunt varius. Vivamus laoreet scelerisque augue, eu fringilla metus eleifend a. Vestibulum nec semper dui, eu dignissim justo. Maecenas at eros quam. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nunc cursus tortor nibh, in efficitur eros aliquam in. Nunc id metus nec enim consequat pharetra. Sed nisl dolor, congue ac volutpat et, ornare sit amet libero. Nam varius ut urna id suscipit.
     </p>
     <p id="para2" style="display: none;">
-        le deuxièpe
+        Nunc maximus placerat tellus, ut aliquam ligula semper a. Phasellus rhoncus augue odio, vel venenatis erat viverra nec. Vivamus lectus sapien, ultricies vitae vestibulum ac, accumsan id mauris. Donec sed turpis diam. Fusce commodo, urna vitae volutpat sodales, enim justo egestas eros, in tincidunt erat massa a nisl. Duis et mauris malesuada sapien dignissim interdum. Nulla laoreet at lacus ut tempus. Proin interdum porta mauris at sagittis. Aliquam nec lectus viverra ligula semper placerat. Proin ac tincidunt urna. Sed diam sapien, vehicula ut maximus et, sagittis non ligula. Suspendisse feugiat augue sit amet lectus elementum volutpat. Pellentesque fermentum massa vel neque mollis, a hendrerit lorem posuere. Morbi sapien elit, euismod ac lobortis vitae, faucibus et velit. Sed congue porttitor faucibus. Nam sem odio, dictum a erat id, ornare consequat dolor.
     </p>
     <p id="para3" style="display: none;">
-        sappapa
+        Ut ut elit justo. Curabitur non venenatis velit. Sed tincidunt eros feugiat erat sodales tincidunt. Proin sit amet sem nec nisl suscipit lacinia. Donec a lorem rutrum felis tempus eleifend ac ac ipsum. Phasellus elementum luctus fringilla. Duis mattis, nunc nec faucibus malesuada, diam risus sagittis orci, vel convallis turpis sapien cursus diam. Maecenas et orci sed orci accumsan cursus sed nec ex. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec pellentesque blandit vehicula.
+
+    Aliquam accumsan, mi id elementum lacinia, sapien metus pretium augue, ac ultricies nisi velit congue quam. Donec mattis lobortis gravida. Proin vel ullamcorper mi. Proin porttitor sapien felis, ut fringilla leo auctor id. Vestibulum interdum diam vitae egestas pellentesque. Donec porta, diam at facilisis lobortis, mi nisl mollis mauris, non porttitor elit odio in libero. Nunc blandit arcu gravida felis facilisis, eget elementum urna rhoncus. Cras nec luctus purus, sed tempor nisl. Phasellus efficitur aliquet blandit.
     </p>
 {% endblock %}
 
