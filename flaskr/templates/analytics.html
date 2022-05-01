@@ -18,11 +18,11 @@ La ferme des 3 chênes: Analytics
     <form action="{{ url_for('graph') }}" method="POST" class="form">
         <p>
         <label for="start">Date de début de l'analyse:</label>
-        <input type="date" id="start" name="start" />
+        <input type="date" id="start" name="start" max="2020-12-31" min="1980-01-31"/>
         </p> <br>
         <p>
         <label for="end">Date de fin de l'analyse:</label>
-        <input type="date" id="end" name="end"/> 
+        <input type="date" id="end" name="end" max="2020-12-31" min="1980-01-31"/> 
         </p>
         <br>
         <p>

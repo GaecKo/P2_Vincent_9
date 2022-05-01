@@ -9,13 +9,14 @@ def get_infos(start_time, end_time, famille, graph):
     
     if graph == "naissance":
         labels, data = send_naissance(start_time, end_time, famille)
-        type_graph = "line"
+        type_graph = "bar"
         return (labels, data, type_graph)
     
     if graph == "races":
         labels, data = send_race(start_time, end_time, famille)
         type_graph = "bar"
         return (labels, data, type_graph)
+    return None, None, None
 
 def send_race(start_time, end_time, famille):
     """
@@ -23,7 +24,7 @@ def send_race(start_time, end_time, famille):
     que le pourcentage minimum de ces dernières et on affiche sur le graphe le nombre d’animaux respectant 
     ces critères par race.
     """
-    pass
+    return None, None
 
 def send_moon(start_time, end_time, famille):
     """
@@ -31,7 +32,7 @@ def send_moon(start_time, end_time, famille):
     Afficher pour une année ou un mois, les animaux nés en période de pleine lune et ceux en nés en dehors. 
     Donner l’option à l’utilisateur d’affiner sa recherche en ajouter un champ famille qui est optionnel.
     """
-    pass
+    return None, None
 
 def send_naissance(start_time, end_time, famille):
     dict = {}
@@ -39,11 +40,14 @@ def send_naissance(start_time, end_time, famille):
     data = []
 
     #Reformatage des dates récupérées sur le site:
-    if start_time != None:
+    if start_time != "":
         first_date = datetime.datetime.strptime(start_time, "%Y-%m-%d").strftime("%d/%m/%Y")
-    if end_time != None:
+    else:
+        first_date = None
+    if end_time != "":
         last_date = datetime.datetime.strptime(end_time, "%Y-%m-%d").strftime("%d/%m/%Y")
-
+    else:
+        last_date = None
     # Accès à la base de données
     conn = sql.connect('database.db')
 
@@ -53,12 +57,12 @@ def send_naissance(start_time, end_time, famille):
     for i in cursor.execute("SELECT id, date FROM velages"):
         if not (in_range(i[1], first_date, last_date)):
             continue
-        if i[1] not in labels:
+        if i[1] not in dict:
             dict[i[1]] = 1
         else:
             dict[i[1]] += 1
 
-    for key, value in dict.item():
+    for key, value in dict.items():
         labels.append(key)
         data.append(value)
     return labels, data
@@ -97,4 +101,4 @@ def in_range(date, start, end):
                     return False
     return True
 
-print(send_naissance("2010-10-10", "2010-12-12", "salut"))
+# print(send_naissance("2010-10-10", "2010-12-12", "salut"))
