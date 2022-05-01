@@ -20,19 +20,27 @@ La ferme des 3 chênes: Analytics
         </ul>
     </nav> -->
 
+    <div class="titre_analyse">
+        Informations à remplir pour l'analyse
+    </div>
+    <br><br><br>
+    <p class="para_analyse">
+        Afin d'afficher un graphe représentant les informations que vous souhaitez, merci de remplir les informations ci-dessous. 
+    </p>
+
     <br><br>
-    <form action="{{ url_for('graph') }}" method="POST">
+    <form action="{{ url_for('graph') }}" method="POST" class="form">
         <p>
-        <label for="start">Date de début:</label>
+        <label for="start">Date de début de l'analyse:</label>
         <input type="date" id="start" name="start" />
         </p> <br>
         <p>
-        <label for="end">Date de fin:</label>
+        <label for="end">Date de fin de l'analyse:</label>
         <input type="date" id="end" name="end"/> 
         </p>
-        
+        <br>
         <p>
-        <label for="familles">Choose a pet:</label>
+        <label for="familles">Famille à choisir:</label>
         <select name="familles" id="familles">
             <option value="">--Famille à sélectionner--</option>
             <option value="Famille1">Famille 1</option>
@@ -40,8 +48,18 @@ La ferme des 3 chênes: Analytics
             <option value="Famille3">Famille 3</option>
         </select>
         </p>
-
-        <input type="submit" value="Update Time">
+        <br>
+        <p>
+        <label for="graphe">Graphe à afficher</label>
+        <select name="graphe" id="graphe">
+            <option value="">--Graphe à afficher--</option>
+            <option value="moon">Pleine Lune</option>
+            <option value="naissance">Naissance</option>
+            <option value="population">Population</option>
+        </select>
+        </p>
+        <br>
+        <input type="submit" value="Afficher le Graphe">
     </form>
     
     

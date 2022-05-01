@@ -110,12 +110,32 @@ a:hover
     height: 300px;
 }
 
+.titre_analyse {
+    text-align: center;
+    text-decoration: underline;
+    font-size: x-large;
+}
+
+.para_analyse {
+    text-align: center;
+    font-size: medium;   
+}
+
+.form {
+    text-align: center;
+}
+
+
 section .square_point
 {
     position: relative;
     list-style-type: square;
     display: block;
     margin-left: 450px;
+    margin-right: 100px;
+    text-align: justify;
+    text-justify: inter-word;
+    ;
 }
 
 *
