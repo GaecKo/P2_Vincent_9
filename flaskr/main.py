@@ -1,4 +1,5 @@
 from flask import Flask, redirect, url_for, render_template, request
+from function import *
 
 app = Flask(__name__)
 
@@ -16,15 +17,9 @@ def graph():
     end_time = request.form["end"]
     famille = request.form["familles"]
     graphe_to_show = request.form["graphe"]
-    labels, data = get_labels(start_time, end_time, familles, graphe_to_show)
-    # appel de la fonction avec la db
-    # récupération des données 
-    nom = f"{start_time} | {end_time} | {famille}"
-    graph = 'line' #"le type de graphe en fonction des choix données"
-    labeles = ["a", "b", "c"] #"donnés par la fonction"
-    datas = [10, 20, 30] #"donnés par la fonction"
+    labels, data, graph = get_infos(start_time, end_time, famille, graphe_to_show)
     if request.method == "POST":
-        return render_template('graph.html', type=graph, main_label = nom, labels=str(labeles), data=datas)
+        return render_template('graph.html', type=graph, main_label = graphe_to_show, labels=labels, data=data)
 
 @app.route("/analytics", methods=['GET', 'POST'])
 def analytics():

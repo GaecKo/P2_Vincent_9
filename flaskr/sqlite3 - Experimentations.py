@@ -1,4 +1,3 @@
-
 import sqlite3
 
 # Accès à la base de données
