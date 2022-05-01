@@ -16,6 +16,7 @@ def graph():
     end_time = request.form["end"]
     famille = request.form["familles"]
     graphe_to_show = request.form["graphe"]
+    labels, data = get_labels(start_time, end_time, familles, graphe_to_show)
     # appel de la fonction avec la db
     # récupération des données 
     nom = f"{start_time} | {end_time} | {famille}"
