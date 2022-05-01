@@ -8,7 +8,7 @@ Il me faut pour chaque fonction au moins les labels (l'axe x du graphe en quelqu
 """
 
 
-def send_naissance(start_time, end_time):
+def send_naissance(start_time, end_time, famille, type_de_graphe):
     """to do!!!
     arguments à rajouter, par exemple la race, ...
     ceux-ci seront directement des choix d'utilisateur sur le site
@@ -19,4 +19,4 @@ def send_naissance(start_time, end_time):
     -> 
     Pour cela, ça doit faire appel à du sql
     """
-    return "goodluck"
+    return labels, data
