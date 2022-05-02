@@ -47,6 +47,7 @@ def send_moon(start_time, end_time, famille):
     """
     Cette fonction doit retourner les labels, data correspondant à:
     Afficher pour une année ou un mois, les animaux nés en période de pleine lune et ceux en nés en dehors. 
+<<<<<<< HEAD
     Donner l’option à l’utilisateur d’affiner sa recherche en ajouter un champ famille qui est optionnel.
     :pre: start_time est la période de début
           end_time est la période de fin
@@ -54,6 +55,9 @@ def send_moon(start_time, end_time, famille):
 
     :post: labels : les modalités du graph (axe des x) -> liste
            datas : le data associé à chaque modalité -> liste
+=======
+    Donner l'option à l'utilisateur d'affiner sa recherche en ajouter un champ famille qui est optionnel.
+>>>>>>> 39f520f3760d860589a4b241a554e72b1952e3ac
     """
     labels = ["Pleine Lune", "Autres Lunes"] # les deux labels
     data = [0, 0] # les deux datas
