@@ -7,7 +7,6 @@ Analytics Graph
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js" type="text/javascript" > </script> 
 
 
-
 <div style="text-align: center;"> <!-- Premier Canvas: graphe en style line -->
     <canvas id="line" width="800" height="400" style="display: none;"></canvas> 
 </div>
@@ -16,7 +15,7 @@ Analytics Graph
     <canvas id="bar" width="800" height="400" style="display: none;"></canvas>
 </div>
 
-<div style = "text-align: center;"> <!-- Premier Canvas: graphe en style pie -->
+<div style = "text-align: center;"> <!-- Troisième Canvas: graphe en style pie -->
     <canvas id ="pie" width="800" height="400" style="display: none;"></canvas>
 </div>    
 
@@ -50,7 +49,7 @@ Analytics Graph
             }
         );
 
-    const ctx2 = document.getElementById('bar').getContext('2d');
+    const ctx2 = document.getElementById('bar').getContext('2d'); /* Deuxième Graphe: bar */
     const bar = new Chart(ctx2, {
         type: ['bar'],   // le type du graphique
         data: {        // les données
@@ -75,7 +74,7 @@ Analytics Graph
             }
         );
 
-    const ctx1 = document.getElementById('pie').getContext('2d');
+    const ctx1 = document.getElementById('pie').getContext('2d'); /* Troisième Graphe: pie */
     const pie = new Chart(ctx1, {
         type: ['pie'],   // le type du graphique
         data: {        // les données
@@ -95,7 +94,7 @@ Analytics Graph
     updateChart('{{ type }}', '{{ main_label }}', {{ labels | safe }} , {{ data }});
 
 
-    function updateChart(type_chart, main_label,labels, data){
+    function updateChart(type_chart, main_label,labels, data){ // cette fonction permet d'afficher un des trois graphes et d'afficher le parapgraphe correspondant.
         if (type_chart=='line') {
             show_para('para2');
             hide_para('para1', 'para3');
@@ -103,7 +102,7 @@ Analytics Graph
             hideChart("bar");
             showChart("line");
             line.data.labels = labels;
-            line.data.datasets[0].data = data;
+            line.data.datasets[0].data = data; // met à jour les données des graphes
             line.data.datasets[0].label = main_label;
             line.update();
 
@@ -115,7 +114,7 @@ Analytics Graph
             hideChart("bar");
             showChart("pie");
             pie.data.labels = labels;
-            pie.data.datasets[0].data = data;
+            pie.data.datasets[0].data = data; // met à jour les données des graphes
             pie.data.datasets[0].label = main_label;
             pie.update();
         }
@@ -127,41 +126,27 @@ Analytics Graph
             pie.update();
             showChart("bar");
             bar.data.labels = labels;
-            bar.data.datasets[0].data = data;
+            bar.data.datasets[0].data = data; // met à jour les données des graphes
             bar.data.datasets[0].label = main_label;
             bar.update();
         }
 
     }
-          
-    function repareLabels(labels) {
-        for (var i = 0; i < labels.length; i++) {
-            console.log(labels[i])
-            labels[i] = String(labels[i])
-        }
-        console.log(labels)
-        return labels
-    }
 
-    function hideChart(id) {
+    function hideChart(id) { // fonction pour cacher un graphe
         document.getElementById(id).style.display="none";
     }
-    function showChart(id) {
+    function showChart(id) { // fonction pour montrer un graphe
         document.getElementById(id).style.display="";
     }
-    function show_para(id) {
+    function show_para(id) { // fonction pour montrer un graphe
         document.getElementById(id).style.display="";
 
     }
-    function hide_para(id_one, id_two) {
+    function hide_para(id_one, id_two) { // fonction pour cacher des paragraphes
         document.getElementById(id_one).style.display="none";
         document.getElementById(id_two).style.display="none";
     }
-
-    function myFunc(vars) {
-    return vars
-    }
-
 
 </script>
 

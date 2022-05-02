@@ -116,7 +116,7 @@ a:hover
     font-size: x-large;
 }
 
-.para_analyse {
+h4 .para_analyse {
     text-align: center;
     font-size: medium;   
 }
@@ -329,26 +329,30 @@ nav ul .deroulant a
     padding: 10%;
 }
 
-#show_graph {
-    font-size: 120%;
-    transition: all .3s;
+.show_graph{
+    padding: 14px 40px;
+    border-radius: 10px;
+    transition: all .4s;
 }
 
-#show_graph:hover {
-    font-size: 125%;
+.show_graph:hover {
+    font-size: 15px;
     color: white;
     background-color: #008109;
     border-radius: 10px;
     cursor: pointer;
-    transition: all .5s;
+    
+    transition: all .7s;
 }
 
 #select2-familles-results {
     color: black;
     cursor: pointer;
+    text-align: center;
 }
 
 #select2-graphe-results {
     cursor: pointer;
     color: black;
+    text-align: center;
 }
