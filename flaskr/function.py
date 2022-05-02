@@ -53,7 +53,7 @@ def send_moon(start_time, end_time, famille):
             data[0] += 1
         else:
             data[1] += 1
-    
+    conn.close()
     return labels, data
 
     
@@ -89,6 +89,7 @@ def send_naissance(start_time, end_time, famille):
     for key, value in dict.items():
         labels.append(key)
         data.append(value)
+    conn.close()
     return labels, data
 
 
