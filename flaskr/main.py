@@ -18,8 +18,11 @@ def graph():
     famille = request.form["familles"]
     graphe_to_show = request.form["graphe"]
     labels, data, graph = get_infos(start_time, end_time, famille, graphe_to_show)
+    somme = sum(data)
+    maximum = max(data)
+    print(maximum)
     if request.method == "POST":
-        return render_template('graph.html', type=graph, main_label = graphe_to_show, labels=labels, data=data)
+        return render_template('graph.html', type=graph, main_label = graphe_to_show, labels=labels, data=data, somme=somme, max=maximum)
 
 @app.route("/analytics", methods=['GET', 'POST'])
 def analytics():

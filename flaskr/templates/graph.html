@@ -20,10 +20,8 @@ Analytics Graph
     <canvas id ="pie" width="800" height="400" style="display: none;"></canvas>
 </div>    
 
-<p id="para1" style="display: none;">
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam at odio et lectus volutpat feugiat. Integer vel nisi hendrerit, accumsan mi a, scelerisque sem. Quisque venenatis pharetra tellus, vitae blandit velit tincidunt ut. Nulla euismod lorem lorem, sit amet lobortis felis molestie id. Praesent id sapien ut ante posuere tincidunt id nec turpis. Nulla venenatis fringilla dui vitae accumsan. Nullam sollicitudin sem lacus, et ornare libero egestas in. Proin eleifend sit amet orci at venenatis.
-
-    Cras finibus est vitae neque scelerisque gravida. Praesent pretium eget lorem at lacinia. Vivamus eu tempor arcu, quis imperdiet velit. Proin tristique quam a tincidunt varius. Vivamus laoreet scelerisque augue, eu fringilla metus eleifend a. Vestibulum nec semper dui, eu dignissim justo. Maecenas at eros quam. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nunc cursus tortor nibh, in efficitur eros aliquam in. Nunc id metus nec enim consequat pharetra. Sed nisl dolor, congue ac volutpat et, ornare sit amet libero. Nam varius ut urna id suscipit.
+ <p id="para1" style="display: none;"> <!-- graphe montrant la pie -->
+    Ce graphe représente les vêlages occurants en pleine lune ou non. En effet, il peut être interessant de savoir si la pleine lune influence les naissances. Certaines périodes peuvent n'avoir aucune pleine lune, il est donc possible que le graph affiche à 100% des naissances en "Autre lunes". Dans ce cas, nous avons {{ data[0] }} naissances en pleine lune et {{ data[1] }} naissances en Autres Lunes. Vous pouvez vous référer au code couleur pour vous rendre compte des naissances.  
 </p>
 
 <p id="para2" style="display: none;">
@@ -31,9 +29,7 @@ Analytics Graph
 </p>
 
 <p id="para3" style="display: none;">
-    Ut ut elit justo. Curabitur non venenatis velit. Sed tincidunt eros feugiat erat sodales tincidunt. Proin sit amet sem nec nisl suscipit lacinia. Donec a lorem rutrum felis tempus eleifend ac ac ipsum. Phasellus elementum luctus fringilla. Duis mattis, nunc nec faucibus malesuada, diam risus sagittis orci, vel convallis turpis sapien cursus diam. Maecenas et orci sed orci accumsan cursus sed nec ex. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec pellentesque blandit vehicula.
-
-    Aliquam accumsan, mi id elementum lacinia, sapien metus pretium augue, ac ultricies nisi velit congue quam. Donec mattis lobortis gravida. Proin vel ullamcorper mi. Proin porttitor sapien felis, ut fringilla leo auctor id. Vestibulum interdum diam vitae egestas pellentesque. Donec porta, diam at facilisis lobortis, mi nisl mollis mauris, non porttitor elit odio in libero. Nunc blandit arcu gravida felis facilisis, eget elementum urna rhoncus. Cras nec luctus purus, sed tempor nisl. Phasellus efficitur aliquet blandit.
+    Ce graphe représente le nombre de naissance sur une certaine période de temps. Dans ce cas-ci, cela se passe entre le {{ labels[0] }} et le {{ labels[-1] }}. Durant cette période, nous avons un total de {{ somme }} naissances . Il est interessant de voir que certains jours ont un plus grand nombre de naissances que d'autres. En effet, certains jours ne sont mêmes pas affichés alors que certains dans ce cas ci affiche jusqu'à {{ max }} naissances.  
 </p>
 
 
