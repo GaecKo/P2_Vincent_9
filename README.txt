@@ -42,3 +42,29 @@ Ce qui ne marche pas:
 - - - - - - - - - - -
 - Le reste, nous avons malheureusement eu quelques soucis dans la répartitions des taches causant des délais dans le rendu final... L'html fonctionne correctement et le javascript aussi, le css est aussi bon. Il ne reste plus qu'à récupérer certaines informations et les envoyer et le projet sera pratiquement complet.   
 - Nous devons encore mettre à jour les paragraphes en dessous de chaques graphes, mais cela n'est pas trop long.
+
+FONCTIONNEMENT GÉNÉRAL:
+-----------------------
+|
+| ~flaskr
+-- |
+   | ~static
+   -- |
+      | - style.css (pour le style)
+      | - favicon.ico (icone du site)
+      | - vache.jpg (image pour la page home)
+   |
+   | ~templates
+   -- |
+      | - base.html (squelette du site pour l'héritage)
+      | - home.html (page d'acceuil)
+      | - analytics (page de choix des options de graphe et les "envoie" à flask)
+      | - graph.html (page avec le javascript qui récupère les infos de flask)
+   |
+   | - database.db (data du site contenant toutes les infos)
+   | - schema.sql (schema de la base de donnée)
+   | - function.py (fonction de la création des paramètres d'affichage de graphes)
+   | - main.py (lanceur du site et récupérateur des infos données par les utilisateurs, les envoies ensuite à function.py qui retourne les données ensuite injectées dans graph.html)
+ 
+      
+      
