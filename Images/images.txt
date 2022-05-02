@@ -1,0 +1,9 @@
+Voici les quelques images du projet.
+
+Analytics et analytics_moon montre les différents paramêtres dans lesquels on a pu choisir.
+
+Home est la page d'acceuil
+
+moon.png est un graphe représetant les pleines lunes et les naissances, tout cela est expliqué dans le paragraphe présent sur l'image
+
+de même pour naissancegraph.png qui contient un graphe expliquant les informations affichées. 
