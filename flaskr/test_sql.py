@@ -11,16 +11,16 @@ class DataBase:
 
         mycursor = conn.cursor()
 
-        mycursor.execute("SELECT nom FROM familles")
+        mycursor.execute("SELECT id, nom FROM familles")
 
         myresult = mycursor.fetchall()
         
-        self.liste = []
+        self.liste = {}
         
         for line in myresult:
             #Id = line[0]
            # Nom = line[1]
-            self.liste.append(line[0])
+            self.liste[line[0]] = line[1]
 
         return self.liste
 
@@ -38,8 +38,8 @@ class DataBase:
     def Nom_famille(self):
         id = []
         nom = ""
-        for i in self.famille():
-            nom += "<option value="+i+">"+i+"</option>\n"
+        for key, value in self.famille().items():
+            nom += "<option value="+str(key)+">"+value+"</option>\n"
         return nom
 
 DataBase('database.db').famille()
