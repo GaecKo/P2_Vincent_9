@@ -13,46 +13,56 @@ def get_infos(start_time, end_time, famille, graph):
            data: le data associé à chaque modalité -> liste
            type_graph: le type de graph pour ce genre de donnée ('bar', 'pie', 'line')
     """
-    if graph == "moon":
-        labels, data = send_moon(start_time, end_time, famille)
-        type_graph = "pie"
+    if graph == "moon": # si le graph choisi est le moon
+        labels, data = send_moon(start_time, end_time, famille) # envoyer les infos à la fonction send_moon avec les paramètres entrés ici
+        type_graph = "pie" # le type de graphe est un graphique circulaire
         return  (labels, data, type_graph)
     
-    if graph == "naissance":
-        labels, data = send_naissance(start_time, end_time, famille)
-        type_graph = "bar"
+    if graph == "naissance": # si le graphe choisi est naissance 
+        labels, data = send_naissance(start_time, end_time, famille) # envoyer les infos à la fonction send_naissance avec les paramètres entrés ici
+        type_graph = "bar" # le type de graphe est un diagramme à barres
         return (labels, data, type_graph)
     
-    if graph == "races":
-        labels, data = send_race(start_time, end_time, famille)
-        type_graph = "bar"
+    if graph == "races": # si le graphe choisi est races
+        labels, data = send_race(start_time, end_time, famille) # envoyer les infos à la fonction send_race avec les paramètres entrés ici
+        type_graph = "bar" # le type de graphe est un diagramme à barres
         return (labels, data, type_graph)
-    return None, None, None
+    return None, None, None # si aucun de ces 3 choix-là, ne rien return
 
 def send_race(start_time, end_time, famille):
     """
     Afficher la distribution des races dans la base de données. On demande en entrée plusieurs races ainsi 
     que le pourcentage minimum de ces dernières et on affiche sur le graphe le nombre d’animaux respectant 
     ces critères par race.
+    :pre:
+
+    :post:
 
     TO DO!
     """
     return None, None
+
 
 def send_moon(start_time, end_time, famille):
     """
     Cette fonction doit retourner les labels, data correspondant à:
     Afficher pour une année ou un mois, les animaux nés en période de pleine lune et ceux en nés en dehors. 
     Donner l’option à l’utilisateur d’affiner sa recherche en ajouter un champ famille qui est optionnel.
+    :pre: start_time est la période de début
+          end_time est la période de fin
+          famille est la famille de vaches qu'il faut regarder
+
+    :post: labels : les modalités du graph (axe des x) -> liste
+           datas : le data associé à chaque modalité -> liste
     """
     labels = ["Pleine Lune", "Autres Lunes"] # les deux labels
     data = [0, 0] # les deux datas
     # au cas où les dates ne seraient pas définies, cela ne pose pas de probème. On reformate les dates
-    if start_time != "":
+    if start_time != "": #Si la date de départ n'est pas vide
         first_date = datetime.datetime.strptime(start_time, "%Y-%m-%d").strftime("%d/%m/%Y")
     else:
         first_date = None
-    if end_time != "":
+    if end_time != "": #Si la date de fin n'est pas vide
         last_date = datetime.datetime.strptime(end_time, "%Y-%m-%d").strftime("%d/%m/%Y")
     else:
         last_date = None
@@ -61,7 +71,7 @@ def send_moon(start_time, end_time, famille):
     conn = sql.connect('database.db')
     # Le curseur permettra l'envoi des commandes SQL
     cursor = conn.cursor()
-    for i in cursor.execute("SELECT id, date FROM velages"):
+    for i in cursor.execute("SELECT id, date FROM animaux_types"):
         if not (in_range(i[1], first_date, last_date)): # au cas où la date récupérée ne serait pas dans la range du start et end
             continue
         if is_full_moon(i[1]) : # si c'est un jour de pleine lune
@@ -75,9 +85,15 @@ def send_moon(start_time, end_time, famille):
 
 def send_naissance(start_time, end_time, famille):
     """
-    Permet de récuperer les naissances dans une période temps
+    Fonction permettant de récuperer les naissances dans une période temps
+    :pre:  start_time est la période de début 
+           end_time est la période de fin
+           famille est la famille de vaches qu'il faut regarder
+    
+    :post: labels : les modalités du graph (axe des x) -> liste
+           datas : le data associé à chaque modalité -> liste
     """
-    dict = {}
+    dict = {} #On créée un dictionnaire vide, ainsi qu'une liste labels et data vide 
     labels = []
     data = []
 
@@ -112,37 +128,45 @@ def send_naissance(start_time, end_time, famille):
 
 
 def in_range(date, start, end): # fonction déterminant si une date est entre deux autres
-    given_year = int(date.split("/")[2])
-    given_month = int(date.split("/")[1])
-    given_day = int(date.split("/")[0])
-    if start != None:
+    """
+    Fonction déterminant si une date est entre deux autres ou non
+    :pre:  date qui est la date qui va être analysée et voir si elle se situe bien entre start et end
+           start qui est la première borne des dates
+           end qui est la seconde borne des dates
+    :post: retourne True si une date est bien située entre start & end
+           retourne False si la date n'est pas entre les deux autres
+    """
+    given_year = int(date.split("/")[2]) #On reprend l'année, le mois et le jour en utilisant la méthode split
+    given_month = int(date.split("/")[1]) 
+    given_day = int(date.split("/")[0]) 
+    if start != None: #Si start est valide
         start_year = int(start.split("/")[2])
         start_month = int(start.split("/")[1])
         start_day = int(start.split("/")[0])
-    if end != None:
+    if end != None: #Si end est valide
         end_year = int(end.split("/")[2])
         end_month = int(end.split("/")[1])
         end_day = int(end.split("/")[0])
 
-    if start !=None:
-        if start_year > given_year:
+    if start !=None: #Si start est valide
+        if start_year > given_year: #Si l'année de départ est plus grande que l'année de date, alors on retourne False
             return False
-        if start_year == given_year:
-            if start_month > given_month:
-                return False
-            if start_month == given_month:
-                if start_day > given_day:
+        if start_year == given_year: #Si même année
+            if start_month > given_month: #Si le mois de départ est plus élevé que le mois de date, alors False
+                return False 
+            if start_month == given_month: #Si encore même année + même mois, on vérifie les dates
+                if start_day > given_day: #Si le jour de départ est plus grand que le jour de date, on retourne False
                     return False
-    if end != None:  
-        if end_year < given_year:
+    if end != None: #Si end est valide
+        if end_year < given_year: #Si année de fin est plus petit que l'année de date, False
             return False             
-        if end_year == given_year:
-            if end_month < given_month:
+        if end_year == given_year: #Si même année, on regarde le mois
+            if end_month < given_month: #Si mois de end est plus petit que le mois de date, False
                 return False
-            if end_month == given_month:
-                if end_day < given_day:
+            if end_month == given_month: #Si même mois
+                if end_day < given_day: #Si date de end est plus petite que la date de date, False
                     return False
-    return True
+    return True #Si tout les cas au-dessus sont passés, c'est que date est bien situé entre start et end, on retourne True
 
 def is_full_moon(date):
     """
