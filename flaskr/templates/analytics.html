@@ -19,19 +19,36 @@ La ferme des 3 chênes: Analytics
    
 
     <br><br>
-    <form action="{{ url_for('graph') }}" method="POST" class="form">
-        <p>
+<form action="{{ url_for('graph') }}" method="POST" class="form">
+    <p>
+        <label for="graphe">Graphe à afficher: </label>
+        <select name="graphe" class="select2" id="graphe" onchange="changeFunc();" required>
+            <option value="">Sélectionner</option>
+            <option value="moon"> Pleine Lune </option>
+            <option value="naissance">Vêlages</option>
+            <option value="races">Races </option> <!-- to do -->
+        </select>
+    </p>
+    
+    <br>
+
+    <p id="start_of_search" style="display: none;">
         <label for="start">Date de début de l'analyse:</label>
         <input type="date" id="start" name="start" max="2020-12-31" min="1980-01-31"/>
-        </p> <br>
-        <p>
+    </p> 
+    
+    <br>
+
+    <p id="end_of_search" style="display: none;">
         <label for="end">Date de fin de l'analyse:</label>
         <input type="date" id="end" name="end" max="2020-12-31" min="1980-01-31"/> 
-        </p>
-        <br>
-        <p>
+    </p>
+
+    <br>
+
+    <p id="select_family" style="display: none;">
         <label for="familles">Famille à choisir: </label> 
-        <select name="familles" class="select2" id="familles" style="width: 10%;">
+        <select name="familles" class="select2" id="familles" style="width: 10%;"  multiple>
             <option value="">Sélectionner</option>
             <option value=134>Margueritte</option>
             <option value=45>Jonquille</option>
@@ -199,22 +216,69 @@ La ferme des 3 chênes: Analytics
             <option value=89>Mélasse</option>
             <option value=500>Unknown</option>
         </select>
-        </p>
-        <br>
-        <p>
-        <label for="graphe">Graphe à afficher: </label>
-        <select name="graphe" class="select2" id="graphe" required>
-            <option value="">Sélectionner</option>
-            <option value="moon">Pleine Lune</option>
-            <option value="naissance">Vêlages</option>
-            <option value="races">Distribution des races</option> <!-- to do -->
+    </p>
+        
+    <p id="select_race" style="display: none;">
+        <label for="race"> Race à choisir:</label>
+        <select name="races" class="races" id="races" style="width: 10%;" multiple>
+            <option value="race_1">Race_1</option>
+            <option value="race_2">Race_2</option>
+            <option value="race_3">Race_3</option>
         </select>
-        </p>
-        <br> <br>
-        <button type="submit" class="show_graph" title="Afficher le Graphe">
+    </p>
+
+    <br> <br>
+        
+    <button type="submit" class="show_graph" title="Afficher le Graphe" id="show_graph" style="display: none;">
             <h2><i class="fas fa-chart-line"></i>
             Afficher le Graphe</h2>
-        </button>
-    </form>
-    
+    </button>
+</form>
+
+
+<script type="text/javascript">
+    function velageSelected() {
+        hide("select_race");
+        show("select_family")
+        show("start_of_search");
+        show("end_of_search");
+        show("show_graph");
+    }
+    function moonSelected() {
+        hide("select_race");
+        show("select_family")
+        show("start_of_search");
+        show("end_of_search");
+        show("show_graph");
+    }
+    function racesSelected() {
+        hide("select_family");
+        show("select_race")
+        show("start_of_search");
+        show("end_of_search");
+        show("show_graph");
+    }
+    function hide(id) {
+        document.getElementById(id).style.display = "none";
+    }
+    function show(id) {
+        document.getElementById(id).style.display = "";
+    }
+
+    function changeFunc() { // code réutilisé et modifié de: https://stackoverflow.com/a/3487274
+    var selectBox = document.getElementById("graphe");
+    var selectedValue = selectBox.options[selectBox.selectedIndex].value;
+
+    if (selectedValue == "moon") {
+        moonSelected()
+    }
+    if (selectedValue=="naissance") {
+        velageSelected()
+    }
+    if (selectedValue=="races") {
+        racesSelected()
+    }
+   }
+
+</script>
 {% endblock %}

@@ -15,7 +15,12 @@ def home():
 def graph():
     start_time = request.form["start"]
     end_time = request.form["end"]
-    famille = request.form["familles"] # récupération des informations
+    try:
+        famille = request.form.getlist("familles") # récupération des informations
+        print(famille)
+    except:
+        pass
+    
     graphe_to_show = request.form["graphe"]
     labels, data, graph = get_infos(start_time, end_time, famille, graphe_to_show) # envoit des infos vers des fonctions annexes qui s'en chargent
     somme = sum(data)
