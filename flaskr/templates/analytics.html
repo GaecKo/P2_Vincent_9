@@ -7,12 +7,16 @@ La ferme des 3 chênes: Analytics
 {% block content %} 
     
     <div class="titre_analyse">
-        Informations à remplir pour l'analyse
+        <h3><strong>Informations à remplir pour l'analyse</strong></h3>
+        
     </div>
     <br><br><br>
-    <p class="para_analyse">
-        Afin d'afficher un graphe représentant les informations que vous souhaitez, merci de remplir les informations ci-dessous. 
-    </p>
+    <h4> 
+        <p class="para_analyse">
+        Afin d'afficher un graphe représentant les informations que vous souhaitez, merci de remplir les informations ci-dessous.
+        </p>
+    </h4>
+   
 
     <br><br>
     <form action="{{ url_for('graph') }}" method="POST" class="form">
@@ -27,8 +31,8 @@ La ferme des 3 chênes: Analytics
         <br>
         <p>
         <label for="familles">Famille à choisir: </label> 
-        <select name="familles" class="select2" id="familles">
-            <option value="">--Famille à sélectionner--</option>
+        <select name="familles" class="select2" id="familles" style="width: 10%;">
+            <option value="">Sélectionner</option>
             <option value=Margueritte>Margueritte</option>
             <option value=Jonquille>Jonquille</option>
             <option value=Lila>Lila</option>
@@ -199,15 +203,18 @@ La ferme des 3 chênes: Analytics
         <br>
         <p>
         <label for="graphe">Graphe à afficher: </label>
-        <select name="graphe" class="select2" id="graphe">
-            <option value="">--Graphe à afficher--</option>
+        <select name="graphe" class="select2" id="graphe" required>
+            <option value="">Sélectionner</option>
             <option value="moon">Pleine Lune</option>
             <option value="naissance">Vêlages</option>
             <option value="races">Distribution des races</option>
         </select>
         </p>
-        <br>
-        <input type="submit" value="Afficher le Graphe" id="show_graph" title="Afficher le Graphe"/>
+        <br> <br>
+        <button type="submit" class="show_graph" title="Afficher le Graphe">
+            <h2><i class="fas fa-chart-line"></i>
+            Afficher le Graphe</h2>
+        </button>
     </form>
     
 {% endblock %}
