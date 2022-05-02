@@ -3,7 +3,7 @@ import sqlite3 as sql
 class DataBase:
     def __init__(self, database):
         self.database = database
-        self.liste = []
+        
 
     def famille(self):
         
@@ -11,14 +11,16 @@ class DataBase:
 
         mycursor = conn.cursor()
 
-        mycursor.execute("SELECT * FROM familles")
+        mycursor.execute("SELECT nom FROM familles")
 
         myresult = mycursor.fetchall()
-
+        
+        self.liste = []
+        
         for line in myresult:
-            Id = line[0]
-            Nom = line[1]
-            self.liste.append((Id, Nom))
+            #Id = line[0]
+           # Nom = line[1]
+            self.liste.append(line[0])
 
         return self.liste
 
@@ -27,17 +29,19 @@ class DataBase:
 
     et pour prendre le nom de la famille il faut faire x[1]'''
 
-    def Id_famille(self):
+    '''def Id_famille(self):
         id = []
         for i in self.liste:
             id.append(i[0])
-        return id
+        return id'''
 
     def Nom_famille(self):
         id = []
-        for i in self.liste:
-            id.append(i[1])
-        return id
+        nom = ""
+        for i in self.famille():
+            nom += "<option value="+i+">"+i+"</option>\n"
+        return nom
 
-test = DataBase('database.db').famille()
+DataBase('database.db').famille()
+test = DataBase('database.db').Nom_famille()
 print(test)

@@ -320,7 +320,7 @@ nav
 
 nav ul .deroulant a
 {
-    color: white;
+    color: rgb(255, 255, 255);
     left: auto;
 }
 
@@ -343,10 +343,12 @@ nav ul .deroulant a
     transition: all .5s;
 }
 
-#familles{
+#select2-familles-results {
+    color: black;
     cursor: pointer;
 }
 
-#graphe{
+#select2-graphe-results {
     cursor: pointer;
+    color: black;
 }
