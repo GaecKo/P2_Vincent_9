@@ -154,7 +154,6 @@ def is_full_moon(date):
     first_moon = datetime.date(1990, 1, 11)
     to_check = datetime.date(year_date, month_date, day_date)
     diff = to_check - first_moon
-    print(diff.days % 29.53 < 1)
     return diff.days % 29.53 < 1
 
 

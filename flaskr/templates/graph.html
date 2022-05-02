@@ -7,7 +7,6 @@ Analytics Graph
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js" type="text/javascript" > </script> 
 
 
-
 <div style="text-align: center;"> <!-- Premier Canvas: graphe en style line -->
     <canvas id="line" width="800" height="400" style="display: none;"></canvas> 
 </div>
@@ -34,7 +33,7 @@ Analytics Graph
 
 
 <script>
-    const ctx = document.getElementById('line').getContext('2d'); /* Premier Graphe: ligne */
+    const ctx = document.getElementById('line').getContext('2d');
     const line = new Chart(ctx, {
         type: ['line'],   // le type du graphique
         data: {        // les données
