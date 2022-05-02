@@ -32,7 +32,31 @@ def send_moon(start_time, end_time, famille):
     Afficher pour une année ou un mois, les animaux nés en période de pleine lune et ceux en nés en dehors. 
     Donner l’option à l’utilisateur d’affiner sa recherche en ajouter un champ famille qui est optionnel.
     """
-    return None, None
+    labels = ["Pleine Lune", "Autres Lunes"]
+    data = [0, 0]
+    if start_time != "":
+        first_date = datetime.datetime.strptime(start_time, "%Y-%m-%d").strftime("%d/%m/%Y")
+    else:
+        first_date = None
+    if end_time != "":
+        last_date = datetime.datetime.strptime(end_time, "%Y-%m-%d").strftime("%d/%m/%Y")
+    else:
+        last_date = None
+
+    conn = sql.connect('database.db')
+    # Le curseur permettra l'envoi des commandes SQL
+    cursor = conn.cursor()
+    for i in cursor.execute("SELECT id, date FROM velages"):
+        if not (in_range(i[1], first_date, last_date)):
+            continue
+        if is_full_moon(i[1]) :
+            data[0] += 1
+        else:
+            data[1] += 1
+    
+    return labels, data
+
+    
 
 def send_naissance(start_time, end_time, famille):
     dict = {}
@@ -101,4 +125,16 @@ def in_range(date, start, end):
                     return False
     return True
 
-# print(send_naissance("2010-10-10", "2010-12-12", "salut"))
+def is_full_moon(date):
+    """
+    date sous forme jour/mois/annee
+    
+    """
+    year_date, month_date, day_date = int(date.split("/")[2]), int(date.split("/")[1]), int(date.split("/")[0])
+    first_moon = datetime.date(1990, 1, 11)
+    to_check = datetime.date(year_date, month_date, day_date)
+    diff = to_check - first_moon
+    print(diff.days % 29.53 < 1)
+    return diff.days % 29.53 < 1
+
+
