@@ -43,7 +43,7 @@ def send_moon(start_time, end_time, famille):
     """
     Cette fonction doit retourner les labels, data correspondant à:
     Afficher pour une année ou un mois, les animaux nés en période de pleine lune et ceux en nés en dehors. 
-    Donner l’option à l’utilisateur d’affiner sa recherche en ajouter un champ famille qui est optionnel.
+    Donner l'option à l'utilisateur d'affiner sa recherche en ajouter un champ famille qui est optionnel.
     """
     labels = ["Pleine Lune", "Autres Lunes"] # les deux labels
     data = [0, 0] # les deux datas
