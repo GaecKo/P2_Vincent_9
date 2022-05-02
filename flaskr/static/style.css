@@ -328,3 +328,25 @@ nav ul .deroulant a
     text-align: justify;
     padding: 10%;
 }
+
+#show_graph {
+    font-size: 120%;
+    transition: all .3s;
+}
+
+#show_graph:hover {
+    font-size: 125%;
+    color: white;
+    background-color: #008109;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all .5s;
+}
+
+#familles{
+    cursor: pointer;
+}
+
+#graphe{
+    cursor: pointer;
+}
