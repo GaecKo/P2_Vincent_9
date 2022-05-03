@@ -77,7 +77,7 @@ def send_moon(start_time, end_time, famille):
     # Le curseur permettra l'envoi des commandes SQL
     cursor = conn.cursor()
     for i in cursor.execute("SELECT id, date FROM velages"):
-        if famille != [] and id[0] not in famille:
+        if famille != [] and i[0] not in famille:
             continue
         if not (in_range(i[1], first_date, last_date)): # au cas où la date récupérée ne serait pas dans la range du start et end
             continue
@@ -121,7 +121,7 @@ def send_naissance(start_time, end_time, famille):
     
 
 
-    color_familly = [color_gen() for i in range(len(famille))]
+    color_familly = [color_gen() for _ in range(len(famille))]
     colors = []
 
 

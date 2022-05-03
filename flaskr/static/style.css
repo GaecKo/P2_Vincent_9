@@ -356,3 +356,9 @@ nav ul .deroulant a
     color: black;
     text-align: center;
 }
+
+#select2-races-results {
+    cursor: pointer;
+    color: black;
+    text-align: center;
+}

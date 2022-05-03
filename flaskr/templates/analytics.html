@@ -49,7 +49,7 @@ La ferme des 3 chênes: Analytics
     <p id="select_family" style="display: none;">
         <label for="familles">Famille à choisir: </label> 
         <select name="familles" class="select2" id="familles" style="width: 10%;"  multiple>
-            <option value="">Sélectionner</option>
+            <!-- <option value="">Sélectionner</option> -->
             <option value=134>Margueritte</option>
             <option value=45>Jonquille</option>
             <option value=157>Lila</option>
@@ -220,7 +220,7 @@ La ferme des 3 chênes: Analytics
         
     <p id="select_race" style="display: none;">
         <label for="race"> Race à choisir:</label>
-        <select name="races" class="races" id="races" style="width: 10%;" multiple>
+        <select name="races" class="select2" id="races" style="width: 10%;" multiple>
             <option value="race_1">Race_1</option>
             <option value="race_2">Race_2</option>
             <option value="race_3">Race_3</option>
@@ -237,6 +237,13 @@ La ferme des 3 chênes: Analytics
 
 
 <script type="text/javascript">
+    function nothingSelected() {
+        hide("select_race");
+        hide("select_family")
+        hide("start_of_search");
+        hide("end_of_search");
+        hide("show_graph");
+    }
     function velageSelected() {
         hide("select_race");
         show("select_family")
@@ -277,6 +284,9 @@ La ferme des 3 chênes: Analytics
     }
     if (selectedValue=="races") {
         racesSelected()
+    }
+    if (selectedValue == "") {
+        nothingSelected()
     }
    }
 
