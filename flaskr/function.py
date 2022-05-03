@@ -1,7 +1,12 @@
 import sqlite3 as sql
 import datetime
+from random import randint
 
-def get_infos(start_time, end_time, famille, graph):
+def color_gen():
+    return f"({randint(1, 250)}, {randint(1, 250)}, {randint(1, 250)}, 1)"
+
+
+def get_infos(start_time, end_time, famille, graph, races):
     """
     Cette fonction récupère les infos et les rediriges vers les fonctions qui récupèrent les données.
     :pre: start_time la date de commencement sous forme year-month-day
@@ -16,20 +21,20 @@ def get_infos(start_time, end_time, famille, graph):
     if graph == "moon": # si le graph choisi est le moon
         labels, data = send_moon(start_time, end_time, famille) # envoyer les infos à la fonction send_moon avec les paramètres entrés ici
         type_graph = "pie" # le type de graphe est un graphique circulaire
-        return  (labels, data, type_graph)
+        return  (labels, data, type_graph, None)
     
     if graph == "naissance": # si le graphe choisi est naissance 
-        labels, data = send_naissance(start_time, end_time, famille) # envoyer les infos à la fonction send_naissance avec les paramètres entrés ici
+        labels, data, colors = send_naissance(start_time, end_time, famille) # envoyer les infos à la fonction send_naissance avec les paramètres entrés ici
         type_graph = "bar" # le type de graphe est un diagramme à barres
-        return (labels, data, type_graph)
+        return (labels, data, type_graph, colors)
     
     if graph == "races": # si le graphe choisi est races
-        labels, data = send_race(start_time, end_time, famille) # envoyer les infos à la fonction send_race avec les paramètres entrés ici
+        labels, data = send_race(start_time, end_time, races) # envoyer les infos à la fonction send_race avec les paramètres entrés ici
         type_graph = "bar" # le type de graphe est un diagramme à barres
-        return (labels, data, type_graph)
+        return (labels, data, type_graph, None)
     return None, None, None # si aucun de ces 3 choix-là, ne rien return
 
-def send_race(start_time, end_time, famille):
+def send_race(start_time, end_time, races):
     """
     Afficher la distribution des races dans la base de données. On demande en entrée plusieurs races ainsi 
     que le pourcentage minimum de ces dernières et on affiche sur le graphe le nombre d’animaux respectant 
@@ -71,7 +76,9 @@ def send_moon(start_time, end_time, famille):
     conn = sql.connect('database.db')
     # Le curseur permettra l'envoi des commandes SQL
     cursor = conn.cursor()
-    for i in cursor.execute("SELECT id, date FROM animaux_types"):
+    for i in cursor.execute("SELECT id, date FROM velages"):
+        if famille != [] and id[0] not in famille:
+            continue
         if not (in_range(i[1], first_date, last_date)): # au cas où la date récupérée ne serait pas dans la range du start et end
             continue
         if is_full_moon(i[1]) : # si c'est un jour de pleine lune
@@ -112,9 +119,18 @@ def send_naissance(start_time, end_time, famille):
     # Le curseur permettra l'envoi des commandes SQL
     cursor = conn.cursor()
     
+
+
+    color_familly = [color_gen() for i in range(len(famille))]
+    colors = []
+
+
     for i in cursor.execute("SELECT id, date FROM velages"):
+        if famille != [] and i[0] not in famille:
+            continue
         if not (in_range(i[1], first_date, last_date)): # si ce n'est pas dans la range du start et end
             continue
+        colors.append(color_familly[color_familly.index(i[0])])
         if i[1] not in dict: # ajoute une nouvelle date en cas de naissance à un nouveau jour
             dict[i[1]] = 1
         else: # sinon ajoute une nouvelle naissance à la date
@@ -124,7 +140,7 @@ def send_naissance(start_time, end_time, famille):
         labels.append(key) 
         data.append(value)
     conn.close()
-    return labels, data
+    return labels, data, colors
 
 
 def in_range(date, start, end): # fonction déterminant si une date est entre deux autres

@@ -17,17 +17,20 @@ def graph():
     end_time = request.form["end"]
     try:
         famille = request.form.getlist("familles") # récupération des informations
-        print(famille)
     except:
-        pass
+        famille = []
+    try:
+        races = request.form.getlist("races")
+    except:
+        races = []
     
     graphe_to_show = request.form["graphe"]
-    labels, data, graph = get_infos(start_time, end_time, famille, graphe_to_show) # envoit des infos vers des fonctions annexes qui s'en chargent
+    labels, data, graph, background = get_infos(start_time, end_time, famille, graphe_to_show, races) # envoit des infos vers des fonctions annexes qui s'en chargent
     somme = sum(data)
     maximum = max(data) # quelques stats des données récupérées pour afficher dans les paragraphes
     print(maximum)
     if request.method == "POST":
-        return render_template('graph.html', type=graph, main_label = graphe_to_show, labels=labels, data=data, somme=somme, max=maximum) # page de graphe
+        return render_template('graph.html', type=graph, main_label = graphe_to_show, labels=labels, data=data, somme=somme, max=maximum, background=background) # page de graphe
 
 @app.route("/analytics", methods=['GET', 'POST']) # page de form pour récupérer les infos
 def analytics():

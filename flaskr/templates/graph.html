@@ -94,7 +94,7 @@ Analytics Graph
     updateChart('{{ type }}', '{{ main_label }}', {{ labels | safe }} , {{ data }});
 
 
-    function updateChart(type_chart, main_label,labels, data){ // cette fonction permet d'afficher un des trois graphes et d'afficher le parapgraphe correspondant.
+    function updateChart(type_chart, main_label, labels, data){ // cette fonction permet d'afficher un des trois graphes et d'afficher le parapgraphe correspondant.
         if (type_chart=='line') {
             show_para('para2');
             hide_para('para1', 'para3');
@@ -125,6 +125,7 @@ Analytics Graph
             line.update(); 
             pie.update();
             showChart("bar");
+            bar.data.datasets.backgroundColor = {{ background }}
             bar.data.labels = labels;
             bar.data.datasets[0].data = data; // met à jour les données des graphes
             bar.data.datasets[0].label = main_label;
@@ -148,6 +149,9 @@ Analytics Graph
         document.getElementById(id_two).style.display="none";
     }
 
+    function randomNum(min, max) { // fonction reprise d'ici: https://www.codegrepper.com/code-examples/javascript/randint+js   
+	return Math.floor(Math.random() * (max - min)) + min; // You can remove the Math.floor if you don't want it to be an integer
+}
 </script>
 
 {% endblock %}
