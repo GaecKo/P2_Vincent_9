@@ -126,11 +126,11 @@ def send_naissance(start_time, end_time, famille):
 
 
     for i in cursor.execute("SELECT id, date FROM velages"):
-        if famille != [] and i[0] not in famille:
-            continue
+        # if famille != [] and i[0] not in famille:
+        #     continue
         if not (in_range(i[1], first_date, last_date)): # si ce n'est pas dans la range du start et end
             continue
-        colors.append(color_familly[color_familly.index(i[0])])
+        # colors.append(color_familly[color_familly.index(i[0])])
         if i[1] not in dict: # ajoute une nouvelle date en cas de naissance à un nouveau jour
             dict[i[1]] = 1
         else: # sinon ajoute une nouvelle naissance à la date
