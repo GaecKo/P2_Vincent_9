@@ -126,6 +126,10 @@ def send_naissance(start_time, end_time, famille):
     for i in cursor.execute("SELECT id, date FROM velages"):
         # if famille != [] and i[0] not in famille:
         #     continue
+        # print(first_date)
+        # print(i[1])
+        # print(last_date)
+        # print("__________")
         if not (in_range(i[1], first_date, last_date)): # si ce n'est pas dans la range du start et end
             continue
         # colors.append(color_familly[color_familly.index(i[0])])

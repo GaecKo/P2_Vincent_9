@@ -15,6 +15,8 @@ def home():
 def graph():
     start_time = request.form["start"]
     end_time = request.form["end"]
+    print(start_time)
+    print(end_time)
     try:
         famille = request.form.getlist("familles") # récupération des informations
     except:

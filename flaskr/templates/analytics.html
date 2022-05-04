@@ -34,22 +34,23 @@ La ferme des 3 chênes: Analytics
 
     <p id="start_of_search" style="display: none;">
         <label for="start">Date de début de l'analyse:</label>
-        <input type="date" id="start" name="start" max="2020-12-31" min="1980-01-31"/>
+        <input type="date" id="start" name="start" max="2020-12-31" min="1980-01-31"/> *
     </p> 
     
     <br>
 
     <p id="end_of_search" style="display: none;">
         <label for="end">Date de fin de l'analyse:</label>
-        <input type="date" id="end" name="end" max="2020-12-31" min="1980-01-31"/> 
+        <input type="date" id="end" name="end" max="2020-12-31" min="1980-01-31"/> *
     </p>
 
     <br>
 
-    <p id="select_family" style="display: none;">
+    <p id="select_family" class="select2" style="display: none;">
         <label for="familles">Famille à choisir: </label> 
         <select name="familles" class="select2" id="familles" style="width: 10%;"  multiple>
-            <!-- <option value="">Sélectionner</option> -->
+            </optgroup>
+            <optgroup style="font-size: x-small;" label="--Optionnel--" >
             <option value=134>Margueritte</option>
             <option value=45>Jonquille</option>
             <option value=157>Lila</option>
@@ -220,7 +221,7 @@ La ferme des 3 chênes: Analytics
         
     <p id="select_race" style="display: none;">
         <label for="race"> Race à choisir:</label>
-        <select name="races" class="select2" id="races" style="width: 10%;" required multiple>
+        <select name="races" class="select2" id="races" style="width: 10%;"  multiple>
             <option value="blanc_bleu_belge">Blanc Bleu Belge</option>
             <option value="Holstein">Holstein</option>
             <option value="Jersey">Jersey</option>
@@ -232,7 +233,7 @@ La ferme des 3 chênes: Analytics
     <p id="select_pourcentage" style="display: none;">
         <label for="pourcentage"> Pourcentage à choisir:</label>
         
-        <input type="number" name="percentage" accuracy="5" required="True" class="percentage" id="percentage" style="width: 10%;" min="1" max="100">
+        <input type="number" name="percentage" accuracy="5" class="percentage" id="percentage" style="width: 10%;" min="1" max="100" required>
         <span id="percentage">%</span>
             
         </select>
@@ -242,7 +243,11 @@ La ferme des 3 chênes: Analytics
     <button type="submit" class="show_graph" title="Afficher le Graphe" id="show_graph" style="display: none;">
             <h2><i class="fas fa-chart-line"></i>
             Afficher le Graphe</h2>
+            
     </button>
+    <br><br>
+    <h6 id="footnote" style="display: none;"><i>* Format: mm / dd / yyyy, si rien n'est saisi: 1990 → 2020</i></h6>
+    
 </form>
 
 
@@ -251,8 +256,9 @@ La ferme des 3 chênes: Analytics
         hide("select_pourcentage");
         hide("select_race");
         hide("select_family");
-        document.getElementById("select_pourcentage").setAttribute("required", "False");
-        document.getElementById("select_race").setAttribute("required", "False");
+        hide("footnote")
+        document.getElementById("percentage").removeAttribute("required");
+        document.getElementById("races").removeAttribute("required");
         hide("start_of_search");
         hide("end_of_search");
         hide("show_graph");
@@ -260,8 +266,9 @@ La ferme des 3 chênes: Analytics
     function velageSelected() {
         hide("select_pourcentage")
         hide("select_race");
-        document.getElementById("select_pourcentage").setAttribute("required", "False");
-        document.getElementById("select_race").setAttribute("required", "False");
+        document.getElementById("percentage").removeAttribute("required");
+        document.getElementById("races").removeAttribute("required");
+        show("footnote")
         show("select_family");
         show("start_of_search");
         show("end_of_search");
@@ -270,8 +277,9 @@ La ferme des 3 chênes: Analytics
     function moonSelected() {
         hide("select_race");
         hide("select_pourcentage");
-        document.getElementById("select_pourcentage").setAttribute("required", "False");
-        document.getElementById("select_race").setAttribute("required", "False");
+        document.getElementById("percentage").removeAttribute("required");
+        document.getElementById("races").removeAttribute("required");
+        show("footnote")
         show("select_family");
         show("start_of_search");
         show("end_of_search");
@@ -280,8 +288,9 @@ La ferme des 3 chênes: Analytics
     function racesSelected() {
         hide("select_family");
         show("select_race");
-        document.getElementById("select_pourcentage").setAttribute("required", "True");
-        document.getElementById("select_race").setAttribute("required", "True");
+        document.getElementById("percentage").setAttribute("required", "");
+        document.getElementById("races").setAttribute("required", "");
+        show("footnote")
         show("start_of_search");
         show("end_of_search");
         show("select_pourcentage");
@@ -295,21 +304,21 @@ La ferme des 3 chênes: Analytics
     }
 
     function changeFunc() { // code réutilisé et modifié de: https://stackoverflow.com/a/3487274
-    var selectBox = document.getElementById("graphe");
-    var selectedValue = selectBox.options[selectBox.selectedIndex].value;
+        var selectBox = document.getElementById("graphe");
+        var selectedValue = selectBox.options[selectBox.selectedIndex].value;
 
-    if (selectedValue == "moon") {
-        moonSelected()
-    }
-    if (selectedValue=="naissance") {
-        velageSelected()
-    }
-    if (selectedValue=="races") {
-        racesSelected()
-    }
-    if (selectedValue == "") {
-        nothingSelected()
-    }
+        if (selectedValue == "moon") {
+            moonSelected()
+        }
+        if (selectedValue=="naissance") {
+            velageSelected()
+        }
+        if (selectedValue=="races") {
+            racesSelected()
+        }
+        if (selectedValue == "") {
+            nothingSelected()
+        }
    }
 
 </script>
