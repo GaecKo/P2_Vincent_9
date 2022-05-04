@@ -6,7 +6,7 @@ def color_gen():
     return f"({randint(1, 250)}, {randint(1, 250)}, {randint(1, 250)}, 1)"
 
 
-def get_infos(start_time, end_time, famille, graph, races):
+def get_infos(start_time, end_time, famille, graph, races, pourcentage):
     """
     Cette fonction récupère les infos et les rediriges vers les fonctions qui récupèrent les données.
     :pre: start_time la date de commencement sous forme year-month-day
@@ -29,17 +29,17 @@ def get_infos(start_time, end_time, famille, graph, races):
         return (labels, data, type_graph, colors)
     
     if graph == "races": # si le graphe choisi est races
-        labels, data = send_race(start_time, end_time, races) # envoyer les infos à la fonction send_race avec les paramètres entrés ici
+        labels, data = send_race(start_time, end_time, races, pourcentage) # envoyer les infos à la fonction send_race avec les paramètres entrés ici
         type_graph = "bar" # le type de graphe est un diagramme à barres
         return (labels, data, type_graph, None)
     return None, None, None # si aucun de ces 3 choix-là, ne rien return
 
-def send_race(start_time, end_time, races):
+def send_race(start_time, end_time, races, pourcentage):
     """
     Afficher la distribution des races dans la base de données. On demande en entrée plusieurs races ainsi 
     que le pourcentage minimum de ces dernières et on affiche sur le graphe le nombre d’animaux respectant 
     ces critères par race.
-    :pre:
+    :pre: start-time sous forme day-month-year
 
     :post:
 
@@ -55,7 +55,7 @@ def send_moon(start_time, end_time, famille):
     Donner l’option à l’utilisateur d’affiner sa recherche en ajouter un champ famille qui est optionnel.
     :pre: start_time est la période de début
           end_time est la période de fin
-          famille est la famille de vaches qu'il faut regarder
+          famille est la famille de vaches qu'il faut regarder = liste
 
     :post: labels : les modalités du graph (axe des x) -> liste
            datas : le data associé à chaque modalité -> liste
@@ -77,8 +77,8 @@ def send_moon(start_time, end_time, famille):
     # Le curseur permettra l'envoi des commandes SQL
     cursor = conn.cursor()
     for i in cursor.execute("SELECT id, date FROM velages"):
-        if famille != [] and i[0] not in famille:
-            continue
+        # if famille != [] and i[0] not in famille:
+        #     continue
         if not (in_range(i[1], first_date, last_date)): # au cas où la date récupérée ne serait pas dans la range du start et end
             continue
         if is_full_moon(i[1]) : # si c'est un jour de pleine lune
@@ -87,8 +87,6 @@ def send_moon(start_time, end_time, famille):
             data[1] += 1 # si ça ne l'est pas 
     conn.close()
     return labels, data
-
-    
 
 def send_naissance(start_time, end_time, famille):
     """

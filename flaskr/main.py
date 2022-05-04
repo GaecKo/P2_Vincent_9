@@ -21,11 +21,12 @@ def graph():
         famille = []
     try:
         races = request.form.getlist("races")
+        pourcentage = request.form["percentage"]
     except:
         races = []
     
     graphe_to_show = request.form["graphe"]
-    labels, data, graph, background = get_infos(start_time, end_time, famille, graphe_to_show, races) # envoit des infos vers des fonctions annexes qui s'en chargent
+    labels, data, graph, background = get_infos(start_time, end_time, famille, graphe_to_show, races, pourcentage) # envoit des infos vers des fonctions annexes qui s'en chargent
     somme = sum(data)
     maximum = max(data) # quelques stats des données récupérées pour afficher dans les paragraphes
     print(maximum)

@@ -220,15 +220,25 @@ La ferme des 3 chênes: Analytics
         
     <p id="select_race" style="display: none;">
         <label for="race"> Race à choisir:</label>
-        <select name="races" class="select2" id="races" style="width: 10%;" multiple>
-            <option value="race_1">Race_1</option>
-            <option value="race_2">Race_2</option>
-            <option value="race_3">Race_3</option>
+        <select name="races" class="select2" id="races" style="width: 10%;" required multiple>
+            <option value="blanc_bleu_belge">Blanc Bleu Belge</option>
+            <option value="Holstein">Holstein</option>
+            <option value="Jersey">Jersey</option>
+        </select>
+    </p>
+
+    <br>
+
+    <p id="select_pourcentage" style="display: none;">
+        <label for="pourcentage"> Pourcentage à choisir:</label>
+        
+        <input type="number" name="percentage" accuracy="5" required="True" class="percentage" id="percentage" style="width: 10%;" min="1" max="100">
+        <span id="percentage">%</span>
+            
         </select>
     </p>
 
     <br> <br>
-        
     <button type="submit" class="show_graph" title="Afficher le Graphe" id="show_graph" style="display: none;">
             <h2><i class="fas fa-chart-line"></i>
             Afficher le Graphe</h2>
@@ -238,31 +248,43 @@ La ferme des 3 chênes: Analytics
 
 <script type="text/javascript">
     function nothingSelected() {
+        hide("select_pourcentage");
         hide("select_race");
-        hide("select_family")
+        hide("select_family");
+        document.getElementById("select_pourcentage").setAttribute("required", "False");
+        document.getElementById("select_race").setAttribute("required", "False");
         hide("start_of_search");
         hide("end_of_search");
         hide("show_graph");
     }
     function velageSelected() {
+        hide("select_pourcentage")
         hide("select_race");
-        show("select_family")
+        document.getElementById("select_pourcentage").setAttribute("required", "False");
+        document.getElementById("select_race").setAttribute("required", "False");
+        show("select_family");
         show("start_of_search");
         show("end_of_search");
         show("show_graph");
     }
     function moonSelected() {
         hide("select_race");
-        show("select_family")
+        hide("select_pourcentage");
+        document.getElementById("select_pourcentage").setAttribute("required", "False");
+        document.getElementById("select_race").setAttribute("required", "False");
+        show("select_family");
         show("start_of_search");
         show("end_of_search");
         show("show_graph");
     }
     function racesSelected() {
         hide("select_family");
-        show("select_race")
+        show("select_race");
+        document.getElementById("select_pourcentage").setAttribute("required", "True");
+        document.getElementById("select_race").setAttribute("required", "True");
         show("start_of_search");
         show("end_of_search");
+        show("select_pourcentage");
         show("show_graph");
     }
     function hide(id) {
