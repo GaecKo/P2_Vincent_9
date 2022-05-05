@@ -199,4 +199,44 @@ def is_full_moon(date):
         return True
     return False
 
+def send_population(start_time,end_time):
+    """
+    Fonction permettant de retourner les labels, data correspondant à:
+    la population totale de la ferme
+    :pre:  start_time est la période de début 
+           end_time est la période de fin
+           famille est la famille de vaches qu'il faut regarder 
+    """
+    nbre_males = 0 #On initialise le nombre de mâles à 0
+    nbre_femelles = 0 #On initialise le nombre de femelles à 0
+    labels = ["Femelles vivantes","Mâles vivant"] #Les 2 labels
+    data = [] #La data va être une liste composée des 2 variables déclarées au dessus
 
+    #Reformatage des dates récupérées sur le site:
+    if start_time != "":
+        first_date = datetime.datetime.strptime(start_time, "%Y-%m-%d").strftime("%d/%m/%Y")
+    else:
+        first_date = None
+    if end_time != "":
+        last_date = datetime.datetime.strptime(end_time, "%Y-%m-%d").strftime("%d/%m/%Y")
+    else:
+        last_date = None
+    
+    # Accès à la base de données
+    conn = sql.connect('database.db')
+
+    # Le curseur permettra l'envoi des commandes SQL
+    cursor = conn.cursor()
+
+    for i in cursor.execute("SELECT sexe FROM animaux"): #On parcourt tout les éléments sexe de la table animaux
+        if not (in_range(i[1], first_date, last_date)): # si ce n'est pas dans la range du start et end
+            continue
+        if i == "M": #Si i vaut une lettre M, cela veut dire que l'élément itéré est un mâle
+            nbre_males += 1
+        elif i == "F": #Si i vaut une lettre F, cela veut dire que l'élément itéré est une femelle
+            nbre_femelles += 1
+        else:
+            continue
+    data.append(nbre_femelles,nbre_males) #On ajoute à data les valeurs de nbre_femelles et nbre_males
+    conn.close()
+    return labels, data
