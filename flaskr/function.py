@@ -1,6 +1,7 @@
 import sqlite3 as sql
 import datetime
 from random import randint
+from astral.moon import phase
 
 def color_gen():
     return f"({randint(1, 250)}, {randint(1, 250)}, {randint(1, 250)}, 1)"
@@ -188,14 +189,14 @@ def in_range(date, start, end): # fonction déterminant si une date est entre de
 
 def is_full_moon(date):
     """
-    Fonction regardant si un jour est en full moon, True si oui False sinon
-    -> Fonction dédicacé à Lucas Marzullo qui m'a aidé à comprendre comment faire. 
-    
+    :pre: date sous forme "jour/mois/année"
+    :post: retourne True si à cette date c'était une pleine Lune, False sinon
     """
     year_date, month_date, day_date = int(date.split("/")[2]), int(date.split("/")[1]), int(date.split("/")[0])
-    first_moon = datetime.date(1990, 1, 11)
-    to_check = datetime.date(year_date, month_date, day_date)
-    diff = to_check - first_moon
-    return diff.days % 29.53 < 1
+    date = datetime.date(year_date, month_date, day_date)
+    moon = phase(date)
+    if moon <= 14 and moon > 21:
+        return True
+    return False
 
 
