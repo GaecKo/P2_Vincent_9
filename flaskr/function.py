@@ -195,7 +195,7 @@ def is_full_moon(date):
     year_date, month_date, day_date = int(date.split("/")[2]), int(date.split("/")[1]), int(date.split("/")[0])
     date = datetime.date(year_date, month_date, day_date)
     moon = phase(date)
-    if moon <= 14 and moon > 21:
+    if moon >= 14 and moon < 21:
         return True
     return False
 
