@@ -15,8 +15,6 @@ def home():
 def graph():
     start_time = request.form["start"]
     end_time = request.form["end"]
-    print(start_time)
-    print(end_time)
     try:
         famille = request.form.getlist("familles") # récupération des informations
     except:
@@ -31,9 +29,8 @@ def graph():
     labels, data, graph, background = get_infos(start_time, end_time, famille, graphe_to_show, races, pourcentage) # envoit des infos vers des fonctions annexes qui s'en chargent
     somme = sum(data)
     maximum = max(data) # quelques stats des données récupérées pour afficher dans les paragraphes
-    print(maximum)
     if request.method == "POST":
-        return render_template('graph.html', type=graph, main_label = graphe_to_show, labels=labels, data=data, somme=somme, max=maximum, background=background) # page de graphe
+        return render_template('graph.html', type=graph, main_label=graphe_to_show, labels=labels, data=data, somme=somme, max=maximum, background=background) # page de graphe
 
 @app.route("/analytics", methods=['GET', 'POST']) # page de form pour récupérer les infos
 def analytics():
