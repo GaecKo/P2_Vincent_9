@@ -32,6 +32,7 @@ def graph():
     if request.method == "POST":
         return render_template('graph.html', type=graph, main_label=graphe_to_show, labels=labels, data=data, somme=somme, max=maximum, background=background) # page de graphe
 
+
 @app.route("/analytics", methods=['GET', 'POST']) # page de form pour récupérer les infos
 def analytics():
     return render_template('analytics.html')

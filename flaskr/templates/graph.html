@@ -17,7 +17,11 @@ Analytics Graph
 
 <div style = "text-align: center;"> <!-- Troisième Canvas: graphe en style pie -->
     <canvas id ="pie" width="800" height="400" style="display: none;"></canvas>
-</div>    
+</div>   
+
+<div style = "text-align: center;"> <!-- Quatrième Canvas: graphe en style polarArea -->
+    <canvas id ="polarArea" width="800" height="400" style="display: none;"></canvas>
+</div>  
 
  <p id="para1" style="display: none;"> <!-- graphe montrant la pie -->
     Ce graphe représente les vêlages occurents en pleine lune ou non. En effet, il peut être intéressant de savoir si la pleine lune influence les naissances. Certaines périodes peuvent n'avoir aucune pleine lune, il est donc possible que le graph affiche à 100% des naissances en "Autres lunes". Dans ce cas, nous avons {{ data[0] }} naissances en pleine lune et {{ data[1] }} naissances en Autres Lunes. Vous pouvez vous référer au code couleur pour vous rendre compte des naissances.  
@@ -29,6 +33,10 @@ Analytics Graph
 
 <p id="para3" style="display: none;">
     Ce graphe représente le nombre de naissances sur une certaine période de temps. Dans ce cas-ci, cela se passe entre le {{ labels[0] }} et le {{ labels[-1] }}. Durant cette période, nous avons un total de {{ somme }} naissances . Il est interessant de voir que certains jours ont un plus grand nombre de naissances que d'autres. En effet, certains jours ne sont mêmes pas affichés alors que d'autres dans ce cas ci affichent jusqu'à {{ max }} naissances.  
+</p>
+
+<p id="para4" style="display: none;">
+    Ce graphe représente le nombre de femelles et de males dans la ferme depuis la création de celle-ci. Ce simple graphe permet facilement de se faire une idée de la répartition des sexes qu'il y a / qu'il y a eu dans la ferme. Dans ce cas-ci, nous avons {{ somme }} animaux évalués, contenant {{ data[0] }} femelles et {{ data[1] }} mâles. 
 </p>
 
 
@@ -91,27 +99,59 @@ Analytics Graph
             }
         );    
 
+    const ctx3 = document.getElementById('polarArea').getContext('2d');
+    const polarArea = new Chart(ctx3, {
+        type: ['polarArea'],   // le type du graphique
+        data: {        // les données
+            labels: [],
+            datasets: [{
+                        backgroundColor: ['rgb(255, 99, 132)', 'rgb(54, 162, 235)', 'rgb(255, 205, 86)', 'rgb(35, 46, 46)', 'rgb(114, 145, 190)', 'rgb(90, 189, 45)', 'rgb(240, 200, 133)'],
+                        borderColor: 'rgba(160, 167, 167, 1)',
+                        label: 'PolarArea Graphics ',
+                        data: []
+                    }]
+            },
+        options: {
+            responsive: false }
+            }
+        );
+
     updateChart('{{ type }}', '{{ main_label }}', {{ labels | safe }} , {{ data }});
 
 
     function updateChart(type_chart, main_label, labels, data){ // cette fonction permet d'afficher un des trois graphes et d'afficher le parapgraphe correspondant.
         if (type_chart=='line') {
             show_para('para2');
-            hide_para('para1', 'para3');
+            hide_para('para1', 'para3', 'para4');
             hideChart("pie");
             hideChart("bar");
+            hideChart("polarArea");
             showChart("line");
             line.data.labels = labels;
             line.data.datasets[0].data = data; // met à jour les données des graphes
             line.data.datasets[0].label = main_label;
             line.update();
-
         }
+
+        if (type_chart=="polarArea") {
+            show_para('para4');
+            hide_para('para1', 'para3', 'para2');
+            hideChart("pie");
+            hideChart("bar");
+            hideChart("line");
+            showChart("polarArea");
+            polarArea.data.labels = labels;
+            polarArea.data.datasets[0].data = data; // met à jour les données des graphes
+            polarArea.data.datasets[0].label = main_label;
+            polarArea.update();
+        }
+
         if (type_chart=="pie") {
             show_para('para1');
-            hide_para('para2', 'para3');
+            hide_para('para2', 'para3', 'para4');
             hideChart("line");
             hideChart("bar");
+            hideChart("polarArea");
             showChart("pie");
             pie.data.labels = labels;
             pie.data.datasets[0].data = data; // met à jour les données des graphes
@@ -121,9 +161,10 @@ Analytics Graph
         
         if (type_chart=="bar") {
             show_para('para3'); 
-            hide_para('para2', 'para1');
-            line.update(); 
-            pie.update();
+            hide_para('para2', 'para1', 'para4');
+            hideChart("polarArea");
+            hideChart("pie");
+            hideChart("line");
             showChart("bar");
             bar.data.datasets.backgroundColor = {{ background }}
             bar.data.labels = labels;
@@ -142,16 +183,16 @@ Analytics Graph
     }
     function show_para(id) { // fonction pour montrer un graphe
         document.getElementById(id).style.display="";
-
     }
-    function hide_para(id_one, id_two) { // fonction pour cacher des paragraphes
+    function hide_para(id_one, id_two, id_three) { // fonction pour cacher des paragraphes
         document.getElementById(id_one).style.display="none";
         document.getElementById(id_two).style.display="none";
+        document.getElementById(id_three).style.display="none";
     }
 
     function randomNum(min, max) { // fonction reprise d'ici: https://www.codegrepper.com/code-examples/javascript/randint+js   
-	return Math.floor(Math.random() * (max - min)) + min; // You can remove the Math.floor if you don't want it to be an integer
-}
+	    return Math.floor(Math.random() * (max - min)) + min; 
+    }
 </script>
 
 {% endblock %}

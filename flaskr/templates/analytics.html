@@ -26,7 +26,8 @@ La ferme des 3 chênes: Analytics
             <option value="">Sélectionner</option>
             <option value="moon"> Pleine Lune </option>
             <option value="naissance">Vêlages</option>
-            <option value="races">Races </option> <!-- to do -->
+            <option value="races">Races</option> <!-- to do -->
+            <option value="repartition">Répartition</option> 
         </select>
     </p>
     
@@ -251,16 +252,16 @@ La ferme des 3 chênes: Analytics
 
 <script type="text/javascript">
     function nothingSelected() {
-        hide("select_pourcentage");
-        hide("select_race");
         hide("select_family");
-        hide("footnote")
+        hide("select_race");
         document.getElementById("percentage").removeAttribute("required");
         document.getElementById("races").removeAttribute("required");
         hide("start_of_search");
         hide("end_of_search");
+        hide("select_pourcentage");
         hide("show_graph");
     }
+
     function velageSelected() {
         hide("select_pourcentage")
         hide("select_race");
@@ -291,6 +292,18 @@ La ferme des 3 chênes: Analytics
         show("select_pourcentage");
         show("show_graph");
     }
+    function repartitionSelected() {
+        hide("select_family");
+        hide("select_race");
+        document.getElementById("percentage").removeAttribute("required");
+        document.getElementById("races").removeAttribute("required");
+        hide("start_of_search");
+        hide("end_of_search");
+        hide("select_pourcentage");
+        show("show_graph");
+    }
+
+
     function hide(id) {
         document.getElementById(id).style.display = "none";
     }
@@ -311,9 +324,13 @@ La ferme des 3 chênes: Analytics
         if (selectedValue=="races") {
             racesSelected()
         }
+        if (selectedValue == "repartition") {
+            repartitionSelected()
+        }
         if (selectedValue == "") {
             nothingSelected()
         }
+        
    }
 
 </script>
