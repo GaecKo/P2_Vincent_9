@@ -3,9 +3,6 @@ import datetime
 from random import randint
 from astral.moon import phase
 
-def color_gen():
-    return f"({randint(1, 250)}, {randint(1, 250)}, {randint(1, 250)}, 1)"
-
 def get_infos(start_time, end_time, famille, graph, races, pourcentage):
     """
     Cette fonction récupère les infos et les rediriges vers les fonctions qui récupèrent les données.
@@ -67,15 +64,12 @@ def send_moon(start_time, end_time, famille):
     """
     labels = ["Pleine Lune", "Autres Lunes"] # les deux labels
     data = [0, 0] # les deux datas
-    # au cas où les dates ne seraient pas définies, cela ne pose pas de probème. On reformate les dates
-    if start_time != "": #Si la date de départ n'est pas vide
-        first_date = datetime.datetime.strptime(start_time, "%Y-%m-%d").strftime("%d/%m/%Y")
-    else:
-        first_date = None
-    if end_time != "": #Si la date de fin n'est pas vide
-        last_date = datetime.datetime.strptime(end_time, "%Y-%m-%d").strftime("%d/%m/%Y")
-    else:
-        last_date = None
+
+    # au cas où les dates ne seraient pas définies, cela ne pose pas de probème. On vérifie tout ça ici
+    if start_time == "":
+        start_time = "1990-01-01"
+    if end_time == "":
+        end_time = "2020-12-31"
 
     # connexion
     conn = sql.connect('database.db')
@@ -86,9 +80,7 @@ def send_moon(start_time, end_time, famille):
                                 FROM
                                     velages
                                 WHERE
-                                    date BETWEEN ? AND ? ''',(first_date, last_date)):
-        # if famille != [] and i[0] not in famille:
-        #     continue
+                                    date BETWEEN ? AND ? ''',(start_time, end_time)):
         if is_full_moon(i[1]) : # si c'est un jour de pleine lune
             data[0] += 1
         else:
@@ -110,15 +102,11 @@ def send_naissance(start_time, end_time, famille):
     labels = []
     data = []
 
-    #Reformatage des dates récupérées sur le site:
-    if start_time != "":
-        first_date = datetime.datetime.strptime(start_time, "%Y-%m-%d").strftime("%d/%m/%Y")
-    else:
-        first_date = None
-    if end_time != "":
-        last_date = datetime.datetime.strptime(end_time, "%Y-%m-%d").strftime("%d/%m/%Y")
-    else:
-        last_date = None
+    # au cas où les dates ne seraient pas définies, cela ne pose pas de probème. On vérifie tout ça ici
+    if start_time == "":
+        start_time = "1990-01-01"
+    if end_time == "":
+        end_time = "2020-12-31"
     # Accès à la base de données
     conn = sql.connect('database.db')
 
@@ -126,17 +114,17 @@ def send_naissance(start_time, end_time, famille):
     cursor = conn.cursor()
     
 
-
-    color_familly = [color_gen() for _ in range(len(famille))]
+    # code à utiliser pour quand les familles auront un intêret 
+    # color_familly = [color_gen() for _ in range(len(famille))]
     colors = []
 
-
+    
     for i in cursor.execute('''SELECT
                                     id, date
                                 FROM
                                     velages
                                 WHERE
-                                    date BETWEEN ? AND ? ''',(first_date, last_date)):
+                                    date BETWEEN ? AND ? ''',(start_time, end_time)):
 
         # colors.append(color_familly[color_familly.index(i[0])])
         if i[1] not in dict: # ajoute une nouvelle date en cas de naissance à un nouveau jour
@@ -148,27 +136,16 @@ def send_naissance(start_time, end_time, famille):
         labels.append(key) 
         data.append(value)
     conn.close()
-    return labels, data, colors
 
-def is_full_moon(date):
-    """
-    :pre: date sous forme "jour/mois/année"
-    :post: retourne True si à cette date c'était une pleine Lune, False sinon
-    """
-    year_date, month_date, day_date = int(date.split("/")[2]), int(date.split("/")[1]), int(date.split("/")[0])
-    date = datetime.date(year_date, month_date, day_date)
-    moon = phase(date)
-    if moon >= 14 and moon < 21:
-        return True
-    return False
+    return labels, data, colors
 
 def send_population():
     """
     Fonction permettant de retourner les labels, data correspondant à:
     la population totale de la ferme
-    :pre:  start_time est la période de début 
-           end_time est la période de fin
-           famille est la famille de vaches qu'il faut regarder 
+    :pre:  None
+    :post: Retourne labels étant Males / femelle
+                    data étant le nombre total d'animaux chaque sexe
     """
     labels = ["Femelles","Mâles"] #Les 2 labels
     data = [0, 0] #La data va être une liste composée des valeurs pour chaque sexe
@@ -185,3 +162,18 @@ def send_population():
     conn.close()
 
     return labels, data
+
+def is_full_moon(date):
+    """
+    :pre: date sous forme "jour/mois/année"
+    :post: retourne True si à cette date c'était une pleine Lune, False sinon
+    """
+    year_date, month_date, day_date = int(date.split("-")[0]), int(date.split("-")[1]), int(date.split("-")[2])
+    date = datetime.date(year_date, month_date, day_date)
+    moon = phase(date)
+    if moon >= 14 and moon < 21:
+        return True
+    return False
+
+def color_gen():
+    return f"({randint(1, 250)}, {randint(1, 250)}, {randint(1, 250)}, 1)"

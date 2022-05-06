@@ -13,10 +13,13 @@ def home():
 
 @app.route("/graph", methods=['POST'])
 def graph():
-    start_time = request.form["start"]
+    start_time = request.form["start"] # récup des dates (start et end)
     end_time = request.form["end"]
+    graphe_to_show = request.form["graphe"]
+
+# paramêtres facultatifs
     try:
-        famille = request.form.getlist("familles") # récupération des informations
+        famille = request.form.getlist("familles") # récupération des familles
     except:
         famille = []
     try:
@@ -24,13 +27,18 @@ def graph():
         pourcentage = request.form["percentage"]
     except:
         races = []
-    
-    graphe_to_show = request.form["graphe"]
+
+# autres informations / créations d'informations depuis SQL
+
     labels, data, graph, background = get_infos(start_time, end_time, famille, graphe_to_show, races, pourcentage) # envoit des infos vers des fonctions annexes qui s'en chargent
     somme = sum(data)
     maximum = max(data) # quelques stats des données récupérées pour afficher dans les paragraphes
+
+    start_time = start_time.split("-")[2] + "/" + start_time.split("-")[1] + "/" + start_time.split("-")[0]
+    end_time = end_time.split("-")[2] + "/" + end_time.split("-")[1] + "/" + end_time.split("-")[0]
+
     if request.method == "POST":
-        return render_template('graph.html', type=graph, main_label=graphe_to_show, labels=labels, data=data, somme=somme, max=maximum, background=background) # page de graphe
+        return render_template('graph.html', type=graph, main_label=graphe_to_show, labels=labels, data=data, somme=somme, max=maximum, background=background, start_time=start_time, end_time=end_time) # page de graphe
 
 
 @app.route("/analytics", methods=['GET', 'POST']) # page de form pour récupérer les infos
