@@ -81,11 +81,14 @@ def send_moon(start_time, end_time, famille):
     conn = sql.connect('database.db')
     # Le curseur permettra l'envoi des commandes SQL
     cursor = conn.cursor()
-    for i in cursor.execute("SELECT id, date FROM velages"):
+    for i in cursor.execute('''SELECT
+                                    id, date
+                                FROM
+                                    velages
+                                WHERE
+                                    date BETWEEN ? AND ? ''',(first_date, last_date)):
         # if famille != [] and i[0] not in famille:
         #     continue
-        if not (in_range(i[1], first_date, last_date)): # au cas où la date récupérée ne serait pas dans la range du start et end
-            continue
         if is_full_moon(i[1]) : # si c'est un jour de pleine lune
             data[0] += 1
         else:
@@ -128,15 +131,13 @@ def send_naissance(start_time, end_time, famille):
     colors = []
 
 
-    for i in cursor.execute("SELECT id, date FROM velages"):
-        # if famille != [] and i[0] not in famille:
-        #     continue
-        # print(first_date)
-        # print(i[1])
-        # print(last_date)
-        # print("__________")
-        if not (in_range(i[1], first_date, last_date)): # si ce n'est pas dans la range du start et end
-            continue
+    for i in cursor.execute('''SELECT
+                                    id, date
+                                FROM
+                                    velages
+                                WHERE
+                                    date BETWEEN ? AND ? ''',(first_date, last_date)):
+
         # colors.append(color_familly[color_familly.index(i[0])])
         if i[1] not in dict: # ajoute une nouvelle date en cas de naissance à un nouveau jour
             dict[i[1]] = 1
@@ -148,47 +149,6 @@ def send_naissance(start_time, end_time, famille):
         data.append(value)
     conn.close()
     return labels, data, colors
-
-def in_range(date, start, end): # fonction déterminant si une date est entre deux autres
-    """
-    Fonction déterminant si une date est entre deux autres ou non
-    :pre:  date qui est la date qui va être analysée et voir si elle se situe bien entre start et end
-           start qui est la première borne des dates
-           end qui est la seconde borne des dates
-    :post: retourne True si une date est bien située entre start & end
-           retourne False si la date n'est pas entre les deux autres
-    """
-    given_year = int(date.split("/")[2]) #On reprend l'année, le mois et le jour en utilisant la méthode split
-    given_month = int(date.split("/")[1]) 
-    given_day = int(date.split("/")[0]) 
-    if start != None: #Si start est valide
-        start_year = int(start.split("/")[2])
-        start_month = int(start.split("/")[1])
-        start_day = int(start.split("/")[0])
-    if end != None: #Si end est valide
-        end_year = int(end.split("/")[2])
-        end_month = int(end.split("/")[1])
-        end_day = int(end.split("/")[0])
-
-    if start !=None: #Si start est valide
-        if start_year > given_year: #Si l'année de départ est plus grande que l'année de date, alors on retourne False
-            return False
-        if start_year == given_year: #Si même année
-            if start_month > given_month: #Si le mois de départ est plus élevé que le mois de date, alors False
-                return False 
-            if start_month == given_month: #Si encore même année + même mois, on vérifie les dates
-                if start_day > given_day: #Si le jour de départ est plus grand que le jour de date, on retourne False
-                    return False
-    if end != None: #Si end est valide
-        if end_year < given_year: #Si année de fin est plus petit que l'année de date, False
-            return False             
-        if end_year == given_year: #Si même année, on regarde le mois
-            if end_month < given_month: #Si mois de end est plus petit que le mois de date, False
-                return False
-            if end_month == given_month: #Si même mois
-                if end_day < given_day: #Si date de end est plus petite que la date de date, False
-                    return False
-    return True #Si tout les cas au-dessus sont passés, c'est que date est bien situé entre start et end, on retourne True
 
 def is_full_moon(date):
     """
