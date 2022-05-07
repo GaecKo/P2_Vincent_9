@@ -37,18 +37,22 @@ def get_infos(start_time, end_time, famille, graph, races, pourcentage):
 
     return None, None, None # si aucun de ces 4 choix-là, ne rien return
 
-def send_race(start_time, end_time, races, pourcentage):
+def send_races(start_time, end_time, races, pourcentage): 
     """
     Afficher la distribution des races dans la base de données. On demande en entrée plusieurs races ainsi 
     que le pourcentage minimum de ces dernières et on affiche sur le graphe le nombre d’animaux respectant 
     ces critères par race.
-    :pre: start-time sous forme day-month-year
 
-    :post:
-
-    TO DO!
+    :pre: start_time date de début (yyyy-mm-dd)
+        end_time date de fin (yyyy-mm-dd)
+        races: liste contenant les races choisies ([Holstein, ..., Blanc-bleu-belge) (3 possibilités de races donc liste de taille 3 max)
+        pourcentage: Le pourcentage minimum que le vache doit contenir de cette/ces races pour être affichés sur le graphe
+        
+    :post: labels = modalités (axe des x)
+           data = valeurs de ces modalités 
+           colors = les couleurs au cas où ça pourrait être utile / judicieux d'en mettre pour chaque modalité.   
     """
-    return None, None
+    # return labels, data, colors # (colors je m'en charge)
 
 def send_moon(start_time, end_time, famille):
     """
