@@ -13,9 +13,9 @@ ok = ""
 # Si on a fait des modifications à la base de données ATTENTION
 
 # Toujours fermer la connexion quand elle n'est plus utile
-start_time = '1996-04-10'
-end_time = '1997-04-11'
-
+start_time = '1980-04-10'
+end_time = '2020-04-11'
+leng = []
 
 #Change le format de la date de YYY-MM-DD vers DD/MM/YYYY pour être compatible avec la base de donnée.
 #first_date = datetime.datetime.strptime(start_time, "%Y-%m-%d").strftime("%d/%m/%Y")
@@ -30,6 +30,8 @@ for f in cursor.execute('''SELECT
                                     date BETWEEN ? AND ? ''',(start_time, end_time)):
 
     print(f)
+    leng.append(f)
+print(len(leng))
  
  
  
