@@ -29,10 +29,17 @@ for f in cursor.execute('''SELECT
                                 WHERE
                                     date BETWEEN ? AND ? ''',(start_time, end_time)):
 
-    print(f)
+ #   print(f)
     leng.append(f)
-print(len(leng))
- 
+#print(len(leng))
+
+lol = '000'
+
+lol[1] = 1
+
+lol = str(lol)
+print(lol)
+lol[1] = 1
  
  
 ''' 
