@@ -69,15 +69,35 @@
             </div>
         </div>
         <div class="footer-bottom">
-            &copy;Oak Analytics • Designed and Coded by Alexandru, Arthur D., Arthur L. and Noah 
+            &copy; Oak Analytics • Designed and Coded by Alexandru, Arthur D., Arthur L. and Noah 
         </div>
     </div>
   </footer>
   <script>
     $(document).ready(function () {
-    //change selectboxes to selectize mode to be searchable
+    //input défilant des familles
       $("select").select2();
 });
+
+    //Partie Sticky Header
+
+    // Quand l'utilisateur scroll la page, la fonction s'active
+    window.onscroll = function() {myFunction()};
+
+    // Prend le header
+    var header = document.getElementById("header");
+
+    var sticky = header.offsetTop;
+
+    // Ajoute la class Sticky lorsque le header n'est plus à sa place. 
+    // Par après, la fonction "ignore" les attributs de sticky lorsqu'on ne scroll plus
+    function myFunction() {
+      if (window.pageYOffset > sticky) {
+        header.classList.add("sticky");
+      } else {
+        header.classList.remove("sticky");
+      }
+    }
     </script> 
 </body>
 

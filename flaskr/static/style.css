@@ -1,11 +1,66 @@
 @import url(https://necolas.github.io/normalize.css/8.0.1/normalize.css);
 @import url(https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap);
 
+@keyframes fadeIn {
+    0% {
+      opacity:0;
+      margin-top: 10px;
+    }
+    100% {
+      opacity:1;
+    }
+}
+  
+@-moz-keyframes fadeIn {
+    0% {
+      opacity:0;
+      margin-top: 10px;
+    }
+    100% {
+      opacity:1;
+    }
+}
+  
+@-webkit-keyframes fadeIn {
+    0% {
+      opacity:0;
+      margin-top: 10px;
+    }
+    100% {
+      opacity:1;
+    }
+}
+  
+@-o-keyframes fadeIn {
+    0% {
+      opacity:0;
+      margin-top: 10px;
+    }
+    100% {
+      opacity:1;
+    }
+}
+  
+@-ms-keyframes fadeIn {
+    0% {
+      opacity:0;
+      margin-top: 10px;
+    }
+    100% {
+      opacity:1;
+    }
+}
+
 *
 {
     scroll-behavior: smooth;
 }
 
+.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%
+}
 
 header
 {
@@ -16,9 +71,13 @@ header
     padding: 30px 100px;
     display: flex;
     justify-content: space-between;
+    background-color: #414145;
+    z-index: 1;
 }
+
 #header
 {
+    background-color: #414145;
     box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.08), 0 2px 4px 0 rgba(0, 0, 0, 0.12);
 }
 header .home
@@ -29,8 +88,8 @@ header .home
     font-size: 2em;
     text-transform: uppercase;
     letter-spacing: 2px;
+    transition: all .5s;
 }
-
 
 header af
 {
@@ -69,12 +128,19 @@ body
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-color: #414145;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;
 } 
+
+body::-webkit-scrollbar {
+    display: none;
+}
 
 a
 {
     text-decoration: none;
     color: white;
+    transition: all .5s;
 }
 
 .titre
@@ -82,6 +148,12 @@ a
     text-align: center;
     text-decoration: underline;
     font-size: xx-large;
+    animation: fadeIn ease 1.5s;
+    -webkit-animation: fadeIn ease 1.5s;
+    -moz-animation: fadeIn ease 1.5s;
+    -o-animation: fadeIn ease 1.5s;
+    -ms-animation: fadeIn ease 1.5s;
+    
 }
 
 a:hover
@@ -96,18 +168,45 @@ a:hover
 .first_para
 {
     text-align: center;
+    margin-left: 20%;
+    margin-right:20%;
     font-size: medium;
+    animation: fadeIn ease 2s;
+    -webkit-animation: fadeIn ease 2s;
+    -moz-animation: fadeIn ease 2s;
+    -o-animation: fadeIn ease 2s;
+    -ms-animation: fadeIn ease 2s;
+    background-color:rgba(0, 0, 0, 0.08);
+    border-radius: 50px;
+    padding: 20px;
+    box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.384);
+    transition: all .5s;
 }
 
+.first_para:hover
+{
+    cursor: pointer;
+    background-color:rgba(115, 255, 0, 0.219);
+    border-radius: 25px;
+    padding: 15px;
+    text-align: center;
+    transition:all .7s;
 
+}
 .im_vache
 {
     position:absolute;
     margin-left: 100px;
     border: 5px solid #000000;
-    border-radius: 30px 30px 30px 30px;
+    border-radius: 30px 50px 30px 50px;
     width: 225px;
     height: 300px;
+    animation: fadeIn ease 5s;
+    -webkit-animation: fadeIn ease 5s;
+    -moz-animation: fadeIn ease 5s;
+    -o-animation: fadeIn ease 5s;
+    -ms-animation: fadeIn ease 5s;
+    box-shadow: 0px 10px 10px 0px rgba(0, 0, 0, 0.384);
 }
 
 .titre_analyse {
@@ -125,17 +224,82 @@ h4 .para_analyse {
     text-align: center;
 }
 
-
 section .square_point
 {
     position: relative;
     list-style-type: square;
     display: block;
-    margin-left: 450px;
-    margin-right: 100px;
+    margin-left: 500px;
+    margin-right: 200px;
     text-align: justify;
     text-justify: inter-word;
-    ;
+    background-color:rgba(0, 0, 0, 0.08);
+    border-radius: 50px;
+    padding: 50px;
+    box-shadow: 0px 10px 10px 0px rgba(0, 0, 0, 0.384);
+}
+
+section .square_point .p1
+{
+    animation: fadeIn ease 3s;
+    -webkit-animation: fadeIn ease 3s;
+    -moz-animation: fadeIn ease 3s;
+    -o-animation: fadeIn ease 3s;
+    -ms-animation: fadeIn ease 3s;
+    list-style: none;
+    cursor: pointer;
+    transition: all .5s;
+}
+
+section .square_point .p1:hover 
+{
+    background-color:rgba(255, 115, 0, 0.329);
+    border-radius: 10px;
+    padding: 10px;
+    text-align: justify;
+    transition:all .7s;
+}
+
+section .square_point .p2
+{
+    animation: fadeIn ease 4s;
+    -webkit-animation: fadeIn ease 4s;
+    -moz-animation: fadeIn ease 4s;
+    -o-animation: fadeIn ease 4s;
+    -ms-animation: fadeIn ease 4s;
+    list-style: none;
+    cursor: pointer;
+    transition: all .5s;
+}
+
+section .square_point .p2:hover 
+{
+    background-color:rgba(255, 17, 0, 0.329);
+    border-radius: 10px;
+    padding: 10px;
+    text-align: justify;
+    transition:all .7s;
+}
+
+section .square_point .p3
+{
+    animation: fadeIn ease 5s;
+    -webkit-animation: fadeIn ease 5s;
+    -moz-animation: fadeIn ease 5s;
+    -o-animation: fadeIn ease 5s;
+    -ms-animation: fadeIn ease 5s;
+    list-style: none;
+    cursor: pointer;
+    transition: all .5s;
+}
+
+section .square_point .p3:hover 
+{
+    background-color:rgba(179, 255, 0, 0.329);
+    border-radius: 10px;
+    padding: 10px;
+    text-align: justify;
+    transition:all .7s;
 }
 
 *
