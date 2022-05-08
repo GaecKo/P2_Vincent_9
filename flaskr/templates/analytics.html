@@ -35,14 +35,14 @@ La ferme des 3 chênes: Analytics
 
     <p id="start_of_search" style="display: none;">
         <label for="start">Date de début de l'analyse:</label>
-        <input type="date" id="start" name="start" max="2020-12-31" min="1980-01-31"/> *
+        <input type="date" id="start" name="start" max="2020-12-31" min="1980-01-31"/> 
     </p> 
     
     <br>
 
     <p id="end_of_search" style="display: none;">
         <label for="end">Date de fin de l'analyse:</label>
-        <input type="date" id="end" name="end" max="2020-12-31" min="1980-01-31"/> *
+        <input type="date" id="end" name="end" max="2020-12-31" min="1980-01-31"/> 
     </p>
 
     <br>
@@ -249,6 +249,9 @@ La ferme des 3 chênes: Analytics
     <br><br>
 </form>
 
+{% if no_graph == True %}
+    <h5 style="color: red;"><i>Il n'y a pas de résultat pour ce graphe, essayez avec d'autres paramêtres!</i></h5>
+{% endif %}
 
 <script type="text/javascript">
     function nothingSelected() {

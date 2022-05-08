@@ -141,9 +141,12 @@ def send_naissance(start_time, end_time, famille):
             if famille == [] or str(f[0]) in famille:
                 if id_date[a][1] not in dict: # ajoute une nouvelle date en cas de naissance à un nouveau jour
                     dict[id_date[a][1]] = [[f[1]]]
+    
                 else: # sinon ajoute une nouvelle naissance à la date
                     dict[id_date[a][1]].append([f[1]])
-
+                if famille != []:    
+                    index = famille.index(str(f[0]))
+                    colors.append(color_familly[index])
 
     for key, value in dict.items(): # pour remettre tout dans la liste labels et data
         labels.append(key) 
@@ -189,4 +192,4 @@ def is_full_moon(date):
     return False
 
 def color_gen():
-    return f"({randint(1, 250)}, {randint(1, 250)}, {randint(1, 250)}, 1)"
+    return f"rgba({randint(1, 250)}, {randint(1, 250)}, {randint(1, 250)}, 1)"
