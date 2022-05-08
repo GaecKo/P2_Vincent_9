@@ -5,7 +5,8 @@ La ferme des 3 chênes: Analytics
 
 
 {% block content %} 
-    
+    <br><br><br><br><br><br>
+<section id="section2">
     <div class="titre_analyse">
         <h3><strong>Informations à remplir pour l'analyse</strong></h3>
         
@@ -19,238 +20,238 @@ La ferme des 3 chênes: Analytics
    
 
     <br><br>
-<form action="{{ url_for('graph') }}" method="POST" class="form">
-    <p>
-        <label for="graphe">Graphe à afficher: </label>
-        <select name="graphe" class="select2" id="graphe" onchange="changeFunc();" required>
-            <option value="">Sélectionner</option>
-            <option value="moon"> Pleine Lune </option>
-            <option value="naissance">Vêlages</option>
-            <option value="races">Races</option> <!-- to do -->
-            <option value="repartition">Répartition</option> 
-        </select>
-    </p>
-    
-    <br>
-
-    <p id="start_of_search" style="display: none;">
-        <label for="start">Date de début de l'analyse:</label>
-        <input type="date" id="start" name="start" max="2020-12-31" min="1980-01-31"/> 
-    </p> 
-    
-    <br>
-
-    <p id="end_of_search" style="display: none;">
-        <label for="end">Date de fin de l'analyse:</label>
-        <input type="date" id="end" name="end" max="2020-12-31" min="1980-01-31"/> 
-    </p>
-
-    <br>
-
-    <p id="select_family" class="select2" style="display: none;">
-        <label for="familles">Famille à choisir: </label> 
-        <select name="familles" class="select2" id="familles" style="width: 10%;"  multiple>
-            </optgroup>
-            <optgroup style="font-size: x-small;" label="--Optionnel--" >
-            <option value=134>Margueritte</option>
-            <option value=45>Jonquille</option>
-            <option value=157>Lila</option>
-            <option value=99>Paquerette</option>
-            <option value=65>Agapanthe</option>
-            <option value=149>Bleuet</option>
-            <option value=61>Ciboulette</option>
-            <option value=141>Iris</option>
-            <option value=161>Lavande</option>
-            <option value=117>Lotus</option>
-            <option value=164>Hélène</option>
-            <option value=123>Milka</option>
-            <option value=16>Côte d'Or</option>
-            <option value=77>Lindt</option>
-            <option value=139>Toblerone</option>
-            <option value=1>Galak</option>
-            <option value=92>KitKat</option>
-            <option value=116>Kinder</option>
-            <option value=30>Narcisse</option>
-            <option value=120>Orchidée</option>
-            <option value=47>Pissenlit</option>
-            <option value=96>Tournesol</option>
-            <option value=4>Vincent</option>
-            <option value=79>Trompette</option>
-            <option value=29>Minnie</option>
-            <option value=140>Rosette</option>
-            <option value=85>Blondie</option>
-            <option value=104>Caprice</option>
-            <option value=82>Betty</option>
-            <option value=97>Noisette</option>
-            <option value=10>Margot</option>
-            <option value=2>Réglisse</option>
-            <option value=15>Ruby</option>
-            <option value=126>Rustique</option>
-            <option value=144>Raymonde</option>
-            <option value=152>Sky</option>
-            <option value=110>Snow</option>
-            <option value=146>Sauterelle</option>
-            <option value=111>Star</option>
-            <option value=147>Sidonie</option>
-            <option value=50>Saturne</option>
-            <option value=17>Sorbet</option>
-            <option value=115>Sonette</option>
-            <option value=94>Summer</option>
-            <option value=63>Plume</option>
-            <option value=35>Peluche</option>
-            <option value=84>Pamela</option>
-            <option value=5>Panade</option>
-            <option value=69>Perle</option>
-            <option value=136>Papaye</option>
-            <option value=26>Renaud</option>
-            <option value=39>Papyrus</option>
-            <option value=22>Potache</option>
-            <option value=74>Pomme</option>
-            <option value=25>Pascaline</option>
-            <option value=48>Pink</option>
-            <option value=67>Provence</option>
-            <option value=148>Prune</option>
-            <option value=33>Paula</option>
-            <option value=18>Paupiette</option>
-            <option value=83>Pupuce</option>
-            <option value=21>Oasis</option>
-            <option value=80>Ocarina</option>
-            <option value=12>Orange</option>
-            <option value=91>Orage</option>
-            <option value=32>Origami</option>
-            <option value=20>Odile</option>
-            <option value=108>Ollande</option>
-            <option value=13>Olympe</option>
-            <option value=81>Oméga</option>
-            <option value=145>Otaria</option>
-            <option value=121>Okaly</option>
-            <option value=38>Onyx</option>
-            <option value=73>Olive</option>
-            <option value=106>Origan</option>
-            <option value=54>Ovalie</option>
-            <option value=75>Ophélie</option>
-            <option value=98>Ophia</option>
-            <option value=102>Ninette</option>
-            <option value=28>Ayham</option>
-            <option value=88>Ninon</option>
-            <option value=162>Naya</option>
-            <option value=138>Naza</option>
-            <option value=118>Nadine</option>
-            <option value=66>Nitendo</option>
-            <option value=154>Neda</option>
-            <option value=150>Noire</option>
-            <option value=129>Blanche</option>
-            <option value=142>Nairobi</option>
-            <option value=90>Nolvenn</option>
-            <option value=124>Nela</option>
-            <option value=70>Nora</option>
-            <option value=127>Fraise</option>
-            <option value=100>Banane</option>
-            <option value=72>Poire</option>
-            <option value=46>Citron</option>
-            <option value=119>Benoît</option>
-            <option value=128>Normande</option>
-            <option value=76>Norma</option>
-            <option value=135>Neptune</option>
-            <option value=27>Neslie</option>
-            <option value=40>Nancy</option>
-            <option value=8>Nostalgie</option>
-            <option value=156>Nouille</option>
-            <option value=109>Naomi</option>
-            <option value=11>Nourrice</option>
-            <option value=19>Nounou</option>
-            <option value=95>Nice</option>
-            <option value=9>Nubia</option>
-            <option value=23>Nash</option>
-            <option value=112>Numerobis</option>
-            <option value=114>Nuggets</option>
-            <option value=42>Nassma</option>
-            <option value=87>Nya</option>
-            <option value=163>Nilla</option>
-            <option value=159>Nathalia</option>
-            <option value=158>Nina</option>
-            <option value=36>Nima</option>
-            <option value=6>Rubarbe</option>
-            <option value=31>Maserati</option>
-            <option value=78>Mercedes</option>
-            <option value=43>Ferraris</option>
-            <option value=14>Ford</option>
-            <option value=86>Citroenne</option>
-            <option value=155>Jeep</option>
-            <option value=151>Magma</option>
-            <option value=137>Maite</option>
-            <option value=51>Madi</option>
-            <option value=62>Motorola</option>
-            <option value=24>Mirabelle</option>
-            <option value=59>Mazda</option>
-            <option value=153>Fiesta</option>
-            <option value=122>Malaisie</option>
-            <option value=34>Mamamia</option>
-            <option value=49>Météorite</option>
-            <option value=130>Moutarde</option>
-            <option value=113>Mosaic</option>
-            <option value=132>Moselle</option>
-            <option value=133>Mandala</option>
-            <option value=53>Meringue</option>
-            <option value=58>Micheline</option>
-            <option value=101>Midas</option>
-            <option value=107>Mimosa</option>
-            <option value=3>Myrtille</option>
-            <option value=103>Mystic</option>
-            <option value=41>Mushroom</option>
-            <option value=93>Moussaka</option>
-            <option value=52>Moon</option>
-            <option value=60>Mastar</option>
-            <option value=68>Céline</option>
-            <option value=143>Mina</option>
-            <option value=131>Macaroni</option>
-            <option value=44>Madona</option>
-            <option value=56>Majestic</option>
-            <option value=57>Bessie</option>
-            <option value=37>Clarabelle</option>
-            <option value=125>Penny</option>
-            <option value=105>Dottie</option>
-            <option value=160>Tonnerre</option>
-            <option value=55>Oreo</option>
-            <option value=64>Panda</option>
-            <option value=7>Bimbo</option>
-            <option value=71>Moka</option>
-            <option value=89>Mélasse</option>
-            <option value=500>Unknown</option>
-        </select>
-    </p>
+    <form action="{{ url_for('graph') }}" method="POST" class="form">
+        <p>
+            <label for="graphe">Graphe à afficher: </label>
+            <select name="graphe" class="select2" id="graphe" onchange="changeFunc();" required>
+                <option value="">Sélectionner</option>
+                <option value="moon"> Pleine Lune </option>
+                <option value="naissance">Vêlages</option>
+                <option value="races">Races</option> <!-- to do -->
+                <option value="repartition">Répartition</option> 
+            </select>
+        </p>
         
-    <p id="select_race" style="display: none;">
-        <label for="race"> Race à choisir:</label>
-        <select name="races" class="select2" id="races" style="width: 10%;"  multiple>
-            <option value="blanc_bleu_belge">Blanc Bleu Belge</option>
-            <option value="Holstein">Holstein</option>
-            <option value="Jersey">Jersey</option>
-        </select>
-    </p>
+        <br>
 
-    <br>
-
-    <p id="select_pourcentage" style="display: none;">
-        <label for="pourcentage"> Pourcentage à choisir:</label>
+        <p id="start_of_search" style="display: none;">
+            <label for="start">Date de début de l'analyse:</label>
+            <input type="date" id="start" name="start" max="2020-12-31" min="1980-01-31"/> 
+        </p> 
         
-        <input type="number" name="percentage" accuracy="5" class="percentage" id="percentage" style="width: 10%;" min="1" max="100" required>
-        <span id="percentage">%</span>
-            
-        </select>
-    </p>
+        <br>
 
-    <br> <br>
-    <button type="submit" class="show_graph" title="Afficher le Graphe" id="show_graph" style="display: none;">
-            <h2><i class="fas fa-chart-line"></i>
-            Afficher le Graphe</h2>
-            
-    </button>
-    <br><br>
-</form>
+        <p id="end_of_search" style="display: none;">
+            <label for="end">Date de fin de l'analyse:</label>
+            <input type="date" id="end" name="end" max="2020-12-31" min="1980-01-31"/> 
+        </p>
 
+        <br>
+
+        <p id="select_family" class="select2" style="display: none;">
+            <label for="familles">Famille à choisir: </label> 
+            <select name="familles" class="select2" id="familles" style="width: 170px;"  multiple>
+                </optgroup>
+                <optgroup style="font-size: x-small;" label="--Optionnel--" >
+                <option value=134>Margueritte</option>
+                <option value=45>Jonquille</option>
+                <option value=157>Lila</option>
+                <option value=99>Paquerette</option>
+                <option value=65>Agapanthe</option>
+                <option value=149>Bleuet</option>
+                <option value=61>Ciboulette</option>
+                <option value=141>Iris</option>
+                <option value=161>Lavande</option>
+                <option value=117>Lotus</option>
+                <option value=164>Hélène</option>
+                <option value=123>Milka</option>
+                <option value=16>Côte d'Or</option>
+                <option value=77>Lindt</option>
+                <option value=139>Toblerone</option>
+                <option value=1>Galak</option>
+                <option value=92>KitKat</option>
+                <option value=116>Kinder</option>
+                <option value=30>Narcisse</option>
+                <option value=120>Orchidée</option>
+                <option value=47>Pissenlit</option>
+                <option value=96>Tournesol</option>
+                <option value=4>Vincent</option>
+                <option value=79>Trompette</option>
+                <option value=29>Minnie</option>
+                <option value=140>Rosette</option>
+                <option value=85>Blondie</option>
+                <option value=104>Caprice</option>
+                <option value=82>Betty</option>
+                <option value=97>Noisette</option>
+                <option value=10>Margot</option>
+                <option value=2>Réglisse</option>
+                <option value=15>Ruby</option>
+                <option value=126>Rustique</option>
+                <option value=144>Raymonde</option>
+                <option value=152>Sky</option>
+                <option value=110>Snow</option>
+                <option value=146>Sauterelle</option>
+                <option value=111>Star</option>
+                <option value=147>Sidonie</option>
+                <option value=50>Saturne</option>
+                <option value=17>Sorbet</option>
+                <option value=115>Sonette</option>
+                <option value=94>Summer</option>
+                <option value=63>Plume</option>
+                <option value=35>Peluche</option>
+                <option value=84>Pamela</option>
+                <option value=5>Panade</option>
+                <option value=69>Perle</option>
+                <option value=136>Papaye</option>
+                <option value=26>Renaud</option>
+                <option value=39>Papyrus</option>
+                <option value=22>Potache</option>
+                <option value=74>Pomme</option>
+                <option value=25>Pascaline</option>
+                <option value=48>Pink</option>
+                <option value=67>Provence</option>
+                <option value=148>Prune</option>
+                <option value=33>Paula</option>
+                <option value=18>Paupiette</option>
+                <option value=83>Pupuce</option>
+                <option value=21>Oasis</option>
+                <option value=80>Ocarina</option>
+                <option value=12>Orange</option>
+                <option value=91>Orage</option>
+                <option value=32>Origami</option>
+                <option value=20>Odile</option>
+                <option value=108>Ollande</option>
+                <option value=13>Olympe</option>
+                <option value=81>Oméga</option>
+                <option value=145>Otaria</option>
+                <option value=121>Okaly</option>
+                <option value=38>Onyx</option>
+                <option value=73>Olive</option>
+                <option value=106>Origan</option>
+                <option value=54>Ovalie</option>
+                <option value=75>Ophélie</option>
+                <option value=98>Ophia</option>
+                <option value=102>Ninette</option>
+                <option value=28>Ayham</option>
+                <option value=88>Ninon</option>
+                <option value=162>Naya</option>
+                <option value=138>Naza</option>
+                <option value=118>Nadine</option>
+                <option value=66>Nitendo</option>
+                <option value=154>Neda</option>
+                <option value=150>Noire</option>
+                <option value=129>Blanche</option>
+                <option value=142>Nairobi</option>
+                <option value=90>Nolvenn</option>
+                <option value=124>Nela</option>
+                <option value=70>Nora</option>
+                <option value=127>Fraise</option>
+                <option value=100>Banane</option>
+                <option value=72>Poire</option>
+                <option value=46>Citron</option>
+                <option value=119>Benoît</option>
+                <option value=128>Normande</option>
+                <option value=76>Norma</option>
+                <option value=135>Neptune</option>
+                <option value=27>Neslie</option>
+                <option value=40>Nancy</option>
+                <option value=8>Nostalgie</option>
+                <option value=156>Nouille</option>
+                <option value=109>Naomi</option>
+                <option value=11>Nourrice</option>
+                <option value=19>Nounou</option>
+                <option value=95>Nice</option>
+                <option value=9>Nubia</option>
+                <option value=23>Nash</option>
+                <option value=112>Numerobis</option>
+                <option value=114>Nuggets</option>
+                <option value=42>Nassma</option>
+                <option value=87>Nya</option>
+                <option value=163>Nilla</option>
+                <option value=159>Nathalia</option>
+                <option value=158>Nina</option>
+                <option value=36>Nima</option>
+                <option value=6>Rubarbe</option>
+                <option value=31>Maserati</option>
+                <option value=78>Mercedes</option>
+                <option value=43>Ferraris</option>
+                <option value=14>Ford</option>
+                <option value=86>Citroenne</option>
+                <option value=155>Jeep</option>
+                <option value=151>Magma</option>
+                <option value=137>Maite</option>
+                <option value=51>Madi</option>
+                <option value=62>Motorola</option>
+                <option value=24>Mirabelle</option>
+                <option value=59>Mazda</option>
+                <option value=153>Fiesta</option>
+                <option value=122>Malaisie</option>
+                <option value=34>Mamamia</option>
+                <option value=49>Météorite</option>
+                <option value=130>Moutarde</option>
+                <option value=113>Mosaic</option>
+                <option value=132>Moselle</option>
+                <option value=133>Mandala</option>
+                <option value=53>Meringue</option>
+                <option value=58>Micheline</option>
+                <option value=101>Midas</option>
+                <option value=107>Mimosa</option>
+                <option value=3>Myrtille</option>
+                <option value=103>Mystic</option>
+                <option value=41>Mushroom</option>
+                <option value=93>Moussaka</option>
+                <option value=52>Moon</option>
+                <option value=60>Mastar</option>
+                <option value=68>Céline</option>
+                <option value=143>Mina</option>
+                <option value=131>Macaroni</option>
+                <option value=44>Madona</option>
+                <option value=56>Majestic</option>
+                <option value=57>Bessie</option>
+                <option value=37>Clarabelle</option>
+                <option value=125>Penny</option>
+                <option value=105>Dottie</option>
+                <option value=160>Tonnerre</option>
+                <option value=55>Oreo</option>
+                <option value=64>Panda</option>
+                <option value=7>Bimbo</option>
+                <option value=71>Moka</option>
+                <option value=89>Mélasse</option>
+                <option value=500>Unknown</option>
+            </select>
+        </p>
+            
+        <p id="select_race" style="display: none;">
+            <label for="race"> Race à choisir:</label>
+            <select name="races" class="select2" id="races" style="width: 180px;"  multiple>
+                <option value="blanc_bleu_belge">Blanc Bleu Belge</option>
+                <option value="Holstein">Holstein</option>
+                <option value="Jersey">Jersey</option>
+            </select>
+        </p>
+
+        <br>
+
+        <p id="select_pourcentage" style="display: none;">
+            <label for="pourcentage"> Pourcentage à choisir:</label>
+            
+            <input type="number" name="percentage" accuracy="5" class="percentage" id="percentage" style="width: 60px;" min="1" max="100" maxlength="3" required>
+            <span id="percentage">%</span>
+                
+            </select>
+        </p>
+
+        <br> <br>
+        <button type="submit" class="show_graph" title="Afficher le Graphe" id="show_graph" style="display: none;">
+                <h2><i class="fas fa-chart-line"></i>
+                Afficher le Graphe</h2>
+                
+        </button>
+        <br><br>
+    </form>
+</section>
 {% if no_graph == True %}
-    <h5 style="color: red; text-align: center;"><i>Il n'y a pas de résultat pour ce graphe, essayez avec d'autres paramêtres!</i></h5>
+    <h5 style="color: red; text-align: center;" id="error_msg"><i>Il n'y a pas de résultat pour ce graphe, essayez avec d'autres paramêtres!</i></h5>
 {% endif %}
 
 <script type="text/javascript">

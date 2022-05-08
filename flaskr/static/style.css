@@ -213,20 +213,65 @@ a:hover
     text-align: center;
     text-decoration: underline;
     font-size: x-large;
+    animation: fadeIn ease 2s;
+    -webkit-animation: fadeIn ease 2s;
+    -moz-animation: fadeIn ease 2s;
+    -o-animation: fadeIn ease 2s;
+    -ms-animation: fadeIn ease 2s;
 }
 
 h4 .para_analyse {
     text-align: center;
     font-size: medium;   
+    animation: fadeIn ease 3s;
+    -webkit-animation: fadeIn ease 3s;
+    -moz-animation: fadeIn ease 3s;
+    -o-animation: fadeIn ease 3s;
+    -ms-animation: fadeIn ease 3s;
+    margin-left: 17%;
+    margin-right: 17%;
+    background-color:rgba(0, 0, 0, 0.08);
+    border-radius: 50px;
+    padding: 20px;
+    box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.384);
+    transition: all .5s;
+}
+
+h4 .para_analyse:hover {
+    background-color:rgba(255, 0, 0, 0.08);
+    border-radius: 50px;
+    padding: 20px;
+    margin-left: 20%;
+    margin-right: 20%;
+    box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.384);
+    cursor: pointer;
+    transition: all .7s;
 }
 
 .form {
     text-align: center;
+    animation: fadeIn ease 4s;
+    -webkit-animation: fadeIn ease 4s;
+    -moz-animation: fadeIn ease 4s;
+    -o-animation: fadeIn ease 4s;
+    -ms-animation: fadeIn ease 4s;
+    background-color:rgba(0, 0, 0, 0.08);
+    border-radius: 50px;
+    padding: 20px;
+    box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.384);
+    margin-left: 20%;
+    margin-right: 20%;
+    transition: all .5s;
 }
 
 section .square_point
 {
     position: relative;
+    animation: fadeIn ease 3s;
+    -webkit-animation: fadeIn ease 3s;
+    -moz-animation: fadeIn ease 3s;
+    -o-animation: fadeIn ease 3s;
+    -ms-animation: fadeIn ease 3s;
     list-style-type: square;
     display: block;
     margin-left: 500px;
@@ -343,7 +388,12 @@ img
     position: relative;
     display: flex;
     width: 100%;
-    top: 250px;
+    margin-top: 15%;
+    animation: fadeIn ease 2s;
+    -webkit-animation: fadeIn ease 2s;
+    -moz-animation: fadeIn ease 2s;
+    -o-animation: fadeIn ease 2s;
+    -ms-animation: fadeIn ease 2s;
     
 }
 
@@ -490,9 +540,30 @@ nav ul .deroulant a
 
 #para1, #para2, #para3, #para4 {
     text-align: justify;
-    padding: 10%;
+    animation: fadeIn ease 4s;
+    -webkit-animation: fadeIn ease 4s;
+    -moz-animation: fadeIn ease 4s;
+    -o-animation: fadeIn ease 4s;
+    -ms-animation: fadeIn ease 4s;
+    background-color:rgba(0, 0, 0, 0.08);
+    border-radius: 50px;
+    padding: 30px;
+    box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.384);
+    margin-left: 20%;
+    margin-right: 20%;
+    transition: all .5s;
 }
 
+#section2
+{
+    background-color:rgba(0, 0, 0, 0.08);
+    border-radius: 50px;
+    padding: 30px;
+    margin-left: 10%;
+    margin-right: 10%;
+    box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.384);
+    transition: all .5s;
+}
 .show_graph{
     padding: 14px 40px;
     border-radius: 10px;
