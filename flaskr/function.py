@@ -18,24 +18,24 @@ def get_infos(start_time, end_time, famille, graph, races, pourcentage):
     if graph == "moon": # si le graph choisi est le moon
         labels, data = send_moon(start_time, end_time, famille) # envoyer les infos à la fonction send_moon avec les paramètres entrés ici
         type_graph = "pie" # le type de graphe est un graphique circulaire
-        return  (labels, data, type_graph, None)
+        return  (labels, data, type_graph, None, None)
     
     if graph == "naissance": # si le graphe choisi est naissance 
-        labels, data, colors = send_naissance(start_time, end_time, famille) # envoyer les infos à la fonction send_naissance avec les paramètres entrés ici
+        labels, data, colors, colors_familly = send_naissance(start_time, end_time, famille) # envoyer les infos à la fonction send_naissance avec les paramètres entrés ici
         type_graph = "bar" # le type de graphe est un diagramme à barres
-        return (labels, data, type_graph, colors)
+        return (labels, data, type_graph, colors, colors_familly)
     
     if graph == "races": # si le graphe choisi est races
         labels, data = send_races(start_time, end_time, races, pourcentage) # envoyer les infos à la fonction send_race avec les paramètres entrés ici
         type_graph = "bar" # le type de graphe est un diagramme à barres
-        return (labels, data, type_graph, None)
+        return (labels, data, type_graph, None, None)
 
     if graph == "repartition":
         labels, data = send_population()
         type_graph = "polarArea"
-        return (labels, data, type_graph, None)
+        return (labels, data, type_graph, None, None)
 
-    return None, None, None # si aucun de ces 4 choix-là, ne rien return
+    return None, None, None, None, None # si aucun de ces 4 choix-là, ne rien return
 
 def send_races(start_time, end_time, races, pourcentage): 
     """
@@ -164,7 +164,7 @@ def send_naissance(start_time, end_time, famille):
         data.append(len(value))
     conn.close()
 
-    return labels, data, colors
+    return labels, data, colors, color_familly
 
 def send_population():
     """
