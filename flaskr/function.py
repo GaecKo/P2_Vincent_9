@@ -80,16 +80,27 @@ def send_moon(start_time, end_time, famille):
     conn = sql.connect('database.db')
     # Le curseur permettra l'envoi des commandes SQL
     cursor = conn.cursor()
-    for i in cursor.execute('''SELECT
-                                    id, date
-                                FROM
-                                    velages
-                                WHERE
-                                    date BETWEEN ? AND ? ''',(start_time, end_time)):
-        if is_full_moon(i[1]) : # si c'est un jour de pleine lune
-            data[0] += 1
-        else:
-            data[1] += 1 # si ça ne l'est pas 
+    id_date = []
+    for i in cursor.execute('''SELECT id, date FROM velages WHERE date BETWEEN ? AND ? ''', (start_time, end_time)):
+        id_date.append(i)
+
+    animal_id = []
+    for i in range(len(id_date)):
+        for a in cursor.execute(f'''SELECT animal_id, velage_id FROM animaux_velages WHERE (velage_id = {id_date[i][0]} )'''):
+            if i != 0:
+                if animal_id[-1][1] != a[1]:
+                    animal_id.append(a)
+            else:
+                animal_id.append(a)
+    
+    for a in range(len(animal_id)):
+        for f in cursor.execute(f'''SELECT famille_id, id FROM animaux WHERE (id = {animal_id[a][0]} )'''):
+            if famille == [] or str(f[0]) in famille:
+                if is_full_moon(id_date[a][1]) : # si c'est un jour de pleine lune
+                    data[0] += 1
+                else:
+                    data[1] += 1 # si ça ne l'est pas 
+        
     conn.close()
     return labels, data
 

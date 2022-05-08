@@ -1,3 +1,5 @@
+from crypt import methods
+from email.policy import default
 from flask import Flask, redirect, url_for, render_template, request
 from function import *
 
@@ -34,8 +36,8 @@ def graph():
 
     info_data["labels"], info_data["data"], info_data["graph"], info_data["background"] = get_infos(start_time, end_time, famille, graphe_to_show, races, pourcentage) # envoit des infos vers une fonction annexe qui s'en charge
 
-    if info_data["background"] in [[], ""]:
-        info_data["background"] == ['rgba(0, 240, 0, 1)']
+    if info_data["background"] in [[], "", None]:
+        info_data["background"] = "'rgba(0, 240, 0, 1)'"
 
     if len(info_data["data"]) > 0 :
         info_data["somme"] = sum(info_data["data"])
@@ -49,17 +51,16 @@ def graph():
         else:
             info_data["end_time"] = "31/12/2020"
 
-    if len(info_data["data"]) == 0:
-        return redirect(url_for("analytics", no_graph=True))
+    if len(info_data["data"]) == 0 or (info_data["data"][0] == 0 and info_data["data"][1] == 0):
+        return render_template('analytics.html', no_graph=True)
 
     if request.method == "POST":
         return render_template('graph.html', info_data=info_data) # page du graphe avec un dictionnaire ayant toutes les infos.
 
 
-@app.route("/analytics<no_graph>", methods=['GET', 'POST']) # page de form pour récupérer les infos
-def analytics(no_graph=None):
-    print(no_graph)
-    return render_template('analytics.html', no_graph=no_graph)
+@app.route("/analytics", methods=['GET', 'POST']) # page de form pour récupérer les infos
+def analytics():
+    return render_template('analytics.html', no_graph=False)
     
     
 
