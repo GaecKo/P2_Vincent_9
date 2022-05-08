@@ -1,5 +1,6 @@
 @import url(https://necolas.github.io/normalize.css/8.0.1/normalize.css);
 @import url(https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap);
+@import url(https://fonts.googleapis.com/css2?family=Cantarell:wght@700&display=swap);
 
 @keyframes fadeIn {
     0% {
@@ -146,14 +147,14 @@ a
 .titre
 {
     text-align: center;
-    text-decoration: underline;
     font-size: xx-large;
     animation: fadeIn ease 1.5s;
     -webkit-animation: fadeIn ease 1.5s;
     -moz-animation: fadeIn ease 1.5s;
     -o-animation: fadeIn ease 1.5s;
     -ms-animation: fadeIn ease 1.5s;
-    
+    font-family: 'Cantarell', sans-serif;
+    text-shadow: 2px 2px 10px black;
 }
 
 a:hover
@@ -211,13 +212,13 @@ a:hover
 
 .titre_analyse {
     text-align: center;
-    text-decoration: underline;
     font-size: x-large;
     animation: fadeIn ease 2s;
     -webkit-animation: fadeIn ease 2s;
     -moz-animation: fadeIn ease 2s;
     -o-animation: fadeIn ease 2s;
     -ms-animation: fadeIn ease 2s;
+    text-shadow: 2px 2px 10px black;
 }
 
 h4 .para_analyse {
@@ -243,6 +244,7 @@ h4 .para_analyse:hover {
     padding: 20px;
     margin-left: 20%;
     margin-right: 20%;
+    text-shadow: 2px 2px 10px black;
     box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.384);
     cursor: pointer;
     transition: all .7s;
@@ -538,7 +540,7 @@ nav ul .deroulant a
     left: auto;
 }
 
-#para1, #para2, #para3, #para4 {
+#para1, #para2, .texte, #para4, .colors {
     text-align: justify;
     animation: fadeIn ease 4s;
     -webkit-animation: fadeIn ease 4s;
@@ -549,19 +551,24 @@ nav ul .deroulant a
     border-radius: 50px;
     padding: 30px;
     box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.384);
-    margin-left: 20%;
-    margin-right: 20%;
+    margin-left: 150px;
+    margin-right: 150px;
     transition: all .5s;
 }
 
-#section2
+#section2, #section_graph
 {
     background-color:rgba(0, 0, 0, 0.08);
     border-radius: 50px;
     padding: 30px;
     margin-left: 10%;
     margin-right: 10%;
-    box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.384);
+    box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.3);
+    animation: fadeIn ease 2s;
+    -webkit-animation: fadeIn ease 2s;
+    -moz-animation: fadeIn ease 2s;
+    -o-animation: fadeIn ease 2s;
+    -ms-animation: fadeIn ease 2s;
     transition: all .5s;
 }
 .show_graph{
@@ -580,20 +587,8 @@ nav ul .deroulant a
     transition: all .7s;
 }
 
-#select2-familles-results {
+#select2-familles-results, #select2-graphe-results, #select2-races-results {
     color: black;
     cursor: pointer;
-    text-align: center;
-}
-
-#select2-graphe-results {
-    cursor: pointer;
-    color: black;
-    text-align: center;
-}
-
-#select2-races-results {
-    cursor: pointer;
-    color: black;
     text-align: center;
 }

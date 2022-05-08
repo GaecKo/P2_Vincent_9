@@ -6,44 +6,48 @@ Analytics Graph
 {% block content %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js" type="text/javascript" > </script> 
 
+<br>
+<section id="section_graph">
+    <div style="text-align: center;"> <!-- Premier Canvas: graphe en style line -->
+        <canvas id="line" width="800" height="400" style="display: none;"></canvas> 
+    </div>
 
-<div style="text-align: center;"> <!-- Premier Canvas: graphe en style line -->
-    <canvas id="line" width="800" height="400" style="display: none;"></canvas> 
-</div>
+    <div style="text-align: center;"> <!-- Deuxième Canvas: graphe en style bar -->
+        <canvas id="bar" width="800" height="400" style="display: none;"></canvas>
+    </div>
 
-<div style="text-align: center;"> <!-- Deuxième Canvas: graphe en style bar -->
-    <canvas id="bar" width="800" height="400" style="display: none;"></canvas>
-</div>
+    <div style = "text-align: center;"> <!-- Troisième Canvas: graphe en style pie -->
+        <canvas id ="pie" width="800" height="400" style="display: none;"></canvas>
+    </div>   
 
-<div style = "text-align: center;"> <!-- Troisième Canvas: graphe en style pie -->
-    <canvas id ="pie" width="800" height="400" style="display: none;"></canvas>
-</div>   
+    <div style = "text-align: center;"> <!-- Quatrième Canvas: graphe en style polarArea -->
+        <canvas id ="polarArea" width="800" height="400" style="display: none;"></canvas>
+    </div>  
+    <br><br><br>
+    <p id="para1" style="display: none;"> <!-- graphe montrant la pie -->
+        Ce graphe représente les vêlages occurents en pleine lune ou non. En effet, il peut être intéressant de savoir si la pleine lune influence les naissances. Certaines périodes peuvent n'avoir aucune pleine lune, il est donc possible que le graphe affiche à 100% des naissances en "Autres lunes". Dans ce cas, nous avons {{ info_data["data"][0] }} naissances en pleine lune et {{ info_data["data"][1] }} naissances en Autres Lunes. Vous pouvez vous référer au code couleur pour vous rendre compte des naissances.  
+    </p>
 
-<div style = "text-align: center;"> <!-- Quatrième Canvas: graphe en style polarArea -->
-    <canvas id ="polarArea" width="800" height="400" style="display: none;"></canvas>
-</div>  
+    <p id="para2" style="display: none;">
+        Nunc maximus placerat tellus, ut aliquam ligula semper a. Phasellus rhoncus augue odio, vel venenatis erat viverra nec. Vivamus lectus sapien, ultricies vitae vestibulum ac, accumsan id mauris. 
+    </p>
 
- <p id="para1" style="display: none;"> <!-- graphe montrant la pie -->
-    Ce graphe représente les vêlages occurents en pleine lune ou non. En effet, il peut être intéressant de savoir si la pleine lune influence les naissances. Certaines périodes peuvent n'avoir aucune pleine lune, il est donc possible que le graphe affiche à 100% des naissances en "Autres lunes". Dans ce cas, nous avons {{ info_data["data"][0] }} naissances en pleine lune et {{ info_data["data"][1] }} naissances en Autres Lunes. Vous pouvez vous référer au code couleur pour vous rendre compte des naissances.  
-</p>
+    <p id="para3" style="display: none;">
+        <p class="colors" style="line-height: 50px; text-align: center;">
+        {% for i in range(info_data["famille_name"]|count) %}
+            <span style="background-color: {{ info_data['color_familly'][i] }}; color: {{ info_data['color_familly'][i] }} ;">LEGEND</span> {{ info_data['famille_name'][i] }}  
+        {% endfor %}
+        </p>
+        <br><br>
+        <p class="texte" style="line-height: 20px;">
+        Ce graphe représente le nombre de naissances sur une certaine période de temps. Dans ce cas-ci, cela se passe entre le {{ info_data["start_time"] }} et le {{ info_data["end_time"] }}. Durant cette période, nous avons un total de {{ info_data["somme"] }} naissances. Il est intéressant de voir que certains jours ont un plus grand nombre de naissances que d'autres. En effet, certains jours ne sont même pas affichés alors que d'autres dans ce cas ci affichent jusqu'à {{ info_data["maximum"] }} naissances.  
+        </p>
+    </p>
 
-<p id="para2" style="display: none;">
-    Nunc maximus placerat tellus, ut aliquam ligula semper a. Phasellus rhoncus augue odio, vel venenatis erat viverra nec. Vivamus lectus sapien, ultricies vitae vestibulum ac, accumsan id mauris. 
-</p>
-
-<p id="para3" style="display: none;">
-    {% for i in range(info_data["famille_name"]|count) %}
-        <span style="background-color: {{ info_data['color_familly'][i] }}; color: {{ info_data['color_familly'][i] }} ;">LEGEND</span> {{ info_data['famille_name'][i] }}
-    {% endfor %}
-
-    Ce graphe représente le nombre de naissances sur une certaine période de temps. Dans ce cas-ci, cela se passe entre le {{ info_data["start_time"] }} et le {{ info_data["end_time"] }}. Durant cette période, nous avons un total de {{ info_data["somme"] }} naissances . Il est interessant de voir que certains jours ont un plus grand nombre de naissances que d'autres. En effet, certains jours ne sont mêmes pas affichés alors que d'autres dans ce cas ci affichent jusqu'à {{ info_data["maximum"] }} naissances.  
-
-</p>
-
-<p id="para4" style="display: none;">
-    Ce graphe représente le nombre de femelles et de mâles dans la ferme depuis la création de celle-ci. Ce simple graphe permet facilement de se faire une idée de la répartition des sexes qu'il y a / qu'il y a eu dans la ferme. Dans ce cas-ci, nous avons {{ info_data["somme"] }} animaux évalués, contenant {{ info_data["data"][0] }} femelles et {{ info_data["data"][1] }} mâles. 
-</p>
-
+    <p id="para4" style="display: none;">
+        Ce graphe représente le nombre de femelles et de mâles dans la ferme depuis la création de celle-ci. Ce simple graphe permet facilement de se faire une idée de la répartition des sexes qu'il y a / qu'il y a eu dans la ferme. Dans ce cas-ci, nous avons {{ info_data["somme"] }} animaux évalués, contenant {{ info_data["data"][0] }} femelles et {{ info_data["data"][1] }} mâles. 
+    </p>
+</section>
 
 <script>
     const ctx = document.getElementById('line').getContext('2d');
