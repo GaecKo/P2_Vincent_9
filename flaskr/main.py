@@ -1,5 +1,3 @@
-from crypt import methods
-from email.policy import default
 from flask import Flask, redirect, url_for, render_template, request
 from function import *
 
