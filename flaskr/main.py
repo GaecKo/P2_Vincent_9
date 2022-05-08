@@ -31,11 +31,17 @@ def graph():
 # autres informations / créations d'informations depuis SQL
 
     labels, data, graph, background = get_infos(start_time, end_time, famille, graphe_to_show, races, pourcentage) # envoit des infos vers des fonctions annexes qui s'en chargent
-    somme = sum(data)
-    maximum = max(data) # quelques stats des données récupérées pour afficher dans les paragraphes
-
-    start_time = start_time.split("-")[2] + "/" + start_time.split("-")[1] + "/" + start_time.split("-")[0]
-    end_time = end_time.split("-")[2] + "/" + end_time.split("-")[1] + "/" + end_time.split("-")[0]
+    if len(data) > 0 :
+        somme = sum(data)
+        maximum = max(data) # quelques stats des données récupérées pour afficher dans les paragraphes
+        if start_time != "":
+            start_time = start_time.split("-")[2] + "/" + start_time.split("-")[1] + "/" + start_time.split("-")[0]
+        else:
+            start_time = "01/01/1990"
+        if end_time != "":
+            end_time = end_time.split("-")[2] + "/" + end_time.split("-")[1] + "/" + end_time.split("-")[0]
+        else:
+            end_time = "31/12/2020"
 
     if request.method == "POST":
         return render_template('graph.html', type=graph, main_label=graphe_to_show, labels=labels, data=data, somme=somme, max=maximum, background=background, start_time=start_time, end_time=end_time) # page de graphe

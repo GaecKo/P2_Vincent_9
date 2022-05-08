@@ -26,7 +26,7 @@ def get_infos(start_time, end_time, famille, graph, races, pourcentage):
         return (labels, data, type_graph, colors)
     
     if graph == "races": # si le graphe choisi est races
-        labels, data = send_race(start_time, end_time, races, pourcentage) # envoyer les infos à la fonction send_race avec les paramètres entrés ici
+        labels, data = send_races(start_time, end_time, races, pourcentage) # envoyer les infos à la fonction send_race avec les paramètres entrés ici
         type_graph = "bar" # le type de graphe est un diagramme à barres
         return (labels, data, type_graph, None)
 
@@ -53,6 +53,7 @@ def send_races(start_time, end_time, races, pourcentage):
            colors = les couleurs au cas où ça pourrait être utile / judicieux d'en mettre pour chaque modalité.   
     """
     # return labels, data, colors # (colors je m'en charge)
+    return None, None, None
 
 def send_moon(start_time, end_time, famille):
     """
@@ -119,26 +120,34 @@ def send_naissance(start_time, end_time, famille):
     
 
     # code à utiliser pour quand les familles auront un intêret 
-    # color_familly = [color_gen() for _ in range(len(famille))]
+    color_familly = [color_gen() for _ in range(len(famille))]
     colors = []
 
-    
-    for i in cursor.execute('''SELECT
-                                    id, date
-                                FROM
-                                    velages
-                                WHERE
-                                    date BETWEEN ? AND ? ''',(start_time, end_time)):
+    id_date = []
+    for i in cursor.execute('''SELECT id, date FROM velages WHERE date BETWEEN ? AND ? ''', (start_time, end_time)):
+        id_date.append(i)
 
-        # colors.append(color_familly[color_familly.index(i[0])])
-        if i[1] not in dict: # ajoute une nouvelle date en cas de naissance à un nouveau jour
-            dict[i[1]] = 1
-        else: # sinon ajoute une nouvelle naissance à la date
-            dict[i[1]] += 1
+    animal_id = []
+    for i in range(len(id_date)):
+        for a in cursor.execute(f'''SELECT animal_id, velage_id FROM animaux_velages WHERE (velage_id = {id_date[i][0]} )'''):
+            if i != 0:
+                if animal_id[-1][1] != a[1]:
+                    animal_id.append(a)
+            else:
+                animal_id.append(a)
+    
+    for a in range(len(animal_id)):
+        for f in cursor.execute(f'''SELECT famille_id, id FROM animaux WHERE (id = {animal_id[a][0]} )'''):
+            if famille == [] or str(f[0]) in famille:
+                if id_date[a][1] not in dict: # ajoute une nouvelle date en cas de naissance à un nouveau jour
+                    dict[id_date[a][1]] = [[f[1]]]
+                else: # sinon ajoute une nouvelle naissance à la date
+                    dict[id_date[a][1]].append([f[1]])
+
 
     for key, value in dict.items(): # pour remettre tout dans la liste labels et data
         labels.append(key) 
-        data.append(value)
+        data.append(len(value))
     conn.close()
 
     return labels, data, colors
