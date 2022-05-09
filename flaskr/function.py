@@ -50,11 +50,17 @@ def send_races(races, pourcentage):
            data = valeurs de ces modalités 
 
     """
-    if race == "blanc_bleu_belge":
+    
+    # connexion
+    conn = sql.connect('database.db')
+    # Le curseur permettra l'envoi des commandes SQL
+    cursor = conn.cursor()
+    
+    if races == "blanc_bleu_belge":
         type_ = 2
-    if race == "holstein":
+    if races == "holstein":
         type_ = 1
-    if race == "jersey":
+    if races == "jersey":
         type_ = 3
     
     
@@ -80,6 +86,9 @@ def send_races(races, pourcentage):
             
 
     labels = ["Respectent les conditions", "Ne respectant pas les conditions"]
+        
+    conn.close()
+
     return labels, data, None, None
 
 
