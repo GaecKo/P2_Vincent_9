@@ -33,15 +33,10 @@ for f in cursor.execute('''SELECT
     leng.append(f)
 #print(len(leng))
 
-lol = '000'
+liste = [100,100]
 
-lol[1] = 1
-
-lol = str(lol)
-print(lol)
-lol[1] = 1
- 
- 
+for i in liste:
+    print(i)
 ''' 
 first_date = '01/01/2020'
 last_date = '31/12/2020'
