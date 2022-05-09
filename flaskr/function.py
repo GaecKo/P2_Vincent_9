@@ -26,7 +26,7 @@ def get_infos(start_time, end_time, famille, graph, races, pourcentage):
         return (labels, data, type_graph, colors, colors_familly)
     
     if graph == "races": # si le graphe choisi est races
-        labels, data = send_races(start_time, end_time, races, pourcentage) # envoyer les infos à la fonction send_race avec les paramètres entrés ici
+        labels, data = send_races(races, pourcentage) # envoyer les infos à la fonction send_race avec les paramètres entrés ici
         type_graph = "bar" # le type de graphe est un diagramme à barres
         return (labels, data, type_graph, None, None)
 
@@ -37,16 +37,14 @@ def get_infos(start_time, end_time, famille, graph, races, pourcentage):
 
     return None, None, None, None, None # si aucun de ces 4 choix-là, ne rien return
 
-def send_races(start_time, end_time, races, pourcentage): 
+def send_races(races, pourcentage): 
     """
     Afficher la distribution des races dans la base de données. On demande en entrée plusieurs races ainsi 
     que le pourcentage minimum de ces dernières et on affiche sur le graphe le nombre d’animaux respectant 
     ces critères par race.
 
-    :pre: start_time date de début (yyyy-mm-dd)
-        end_time date de fin (yyyy-mm-dd)
-        races: liste contenant les races choisies ([Holstein, ..., Blanc-bleu-belge) (3 possibilités de races donc liste de taille 3 max)
-        pourcentage: Le pourcentage minimum que le vache doit contenir de cette/ces races pour être affichés sur le graphe
+    :pre:  races: liste contenant les races choisies ([Holstein, ..., Blanc-bleu-belge) (3 possibilités de races donc liste de taille 3 max)
+           pourcentage: Le pourcentage minimum que le vache doit contenir de cette/ces races pour être affichés sur le graphe
         
     :post: labels = modalités (axe des x)
            data = valeurs de ces modalités 
