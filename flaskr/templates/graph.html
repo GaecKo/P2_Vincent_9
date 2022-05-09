@@ -24,12 +24,13 @@ Analytics Graph
         <canvas id ="polarArea" width="800" height="400" style="display: none;"></canvas>
     </div>  
     <br><br><br>
+
     <div id="para1" style="display: none;"> <!-- graphe montrant la pie -->
         Ce graphe représente les vêlages occurents en pleine lune ou non. En effet, il peut être intéressant de savoir si la pleine lune influence les naissances. Certaines périodes peuvent n'avoir aucune pleine lune, il est donc possible que le graphe affiche à 100% des naissances en "Autres lunes". Dans ce cas, nous avons {{ info_data["data"][0] }} naissances en pleine lune et {{ info_data["data"][1] }} naissances en Autres Lunes. Vous pouvez vous référer au code couleur pour vous rendre compte des naissances.  
     </div>
 
     <div id="para2" style="display: none;">
-        Ce grape représente le nombre d'animaux respectant un certains pourcentage de races. Dans ce cas, les vaches doivent appartenir à: {% for race in info_data["races"] %} {{ race }}, {{endfor}} avec un pourcentage d'au moins {{ info_data["porcentage"] }}. Nous voyons dans ce cas que nous avons {{ info_data["data"][0] }} respectant ces critères pour un total de {{ info_data["somme"] }} vaches. 
+        Ce grape représente le nombre d'animaux respectant un certains pourcentage de races. Dans ce cas, les vaches doivent appartenir à: {% for race in info_data["races"] %} {{ race }}, {{endfor}} avec un pourcentage d'au moins {{ info_data["pourcentage"] }}. Nous voyons dans ce cas que nous avons {{ info_data["data"][0] }} respectant ces critères pour un total de {{ info_data["somme"] }} vaches. 
     </div>
 
     <div id="para3" style="display: none;">
@@ -49,9 +50,9 @@ Analytics Graph
         </p>
     </div>
 
-    <p id="para4" style="display: none;">
+    <div id="para4" style="display: none;">
         Ce graphe représente le nombre de femelles et de mâles dans la ferme depuis la création de celle-ci. Ce simple graphe permet facilement de se faire une idée de la répartition des sexes qu'il y a / qu'il y a eu dans la ferme. Dans ce cas-ci, nous avons {{ info_data["somme"] }} animaux évalués, contenant {{ info_data["data"][0] }} femelles et {{ info_data["data"][1] }} mâles. 
-    </p>
+    </div>
 </section>
 
 <script>
@@ -61,9 +62,9 @@ Analytics Graph
         data: {        // les données
             labels: [],
             datasets: [{
-                        borderColor: 'rgba(160, 167, 167, 1)',
                         label: 'Pie_Race Graphics ',
-                        data: []
+                        data: [],
+                        backgroundColor: ['rgb(255, 99, 132)', 'rgb(54, 162, 235)'] 
                     }]
             },
         options: {
@@ -104,7 +105,7 @@ Analytics Graph
             datasets: [{
                         label: 'Votes ',
                         data: [],
-                        backgroundColor: ['rgb(255, 99, 132)', 'rgb(54, 162, 235)', 'rgb(255, 205, 86)', 'rgb(35, 46, 46)', 'rgb(114, 145, 190)', 'rgb(90, 189, 45)', 'rgb(240, 200, 133)'] 
+                        backgroundColor: ['rgb(255, 99, 132)', 'rgb(54, 162, 235)'] 
                     }]
             },
         options: {

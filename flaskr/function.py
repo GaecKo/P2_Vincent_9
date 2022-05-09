@@ -48,10 +48,11 @@ def send_races(races, pourcentage):
         
     :post: labels = modalités (axe des x)
            data = valeurs de ces modalités 
-           colors = les couleurs au cas où ça pourrait être utile / judicieux d'en mettre pour chaque modalité.   
+
     """
-    # return labels, data, colors # (colors je m'en charge)
-    return None, None, None
+    labels = ["Respectent les conditions", "Ne respectant pas les conditions"]
+    data = [0, 0]
+    return labels, data, None, None
 
 def send_moon(start_time, end_time, famille):
     """
