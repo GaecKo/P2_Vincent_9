@@ -13,10 +13,10 @@ def home():
 
 @app.route("/graph", methods=['POST'])
 def graph():
-    info_data = {}
+    info_data = {} # dico à utiliser et que sera donné dans le html
     start_time = request.form["start"] # récup des dates (start et end)
     end_time = request.form["end"]
-    graphe_to_show = request.form["graphe"]
+    graphe_to_show = request.form["graphe"] # type de graphe 
     
 
 # paramêtres facultatifs
@@ -38,7 +38,7 @@ def graph():
     info_data["labels"], info_data["data"], info_data["graph"], info_data["background"], info_data["color_familly"] = get_infos(start_time, end_time, famille, graphe_to_show, races, pourcentage) # envoit des infos vers une fonction annexe qui s'en charge
 
     if info_data["background"] in [[], "", None]:
-        info_data["background"] = "'rgba(0, 240, 0, 1)'"
+        info_data["background"] = "'rgba(175, 208, 214, 1)'"
 
     if len(info_data["data"]) > 0 :
         info_data["somme"] = sum(info_data["data"])

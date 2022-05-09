@@ -24,25 +24,30 @@ Analytics Graph
         <canvas id ="polarArea" width="800" height="400" style="display: none;"></canvas>
     </div>  
     <br><br><br>
-    <p id="para1" style="display: none;"> <!-- graphe montrant la pie -->
+    <div id="para1" style="display: none;"> <!-- graphe montrant la pie -->
         Ce graphe représente les vêlages occurents en pleine lune ou non. En effet, il peut être intéressant de savoir si la pleine lune influence les naissances. Certaines périodes peuvent n'avoir aucune pleine lune, il est donc possible que le graphe affiche à 100% des naissances en "Autres lunes". Dans ce cas, nous avons {{ info_data["data"][0] }} naissances en pleine lune et {{ info_data["data"][1] }} naissances en Autres Lunes. Vous pouvez vous référer au code couleur pour vous rendre compte des naissances.  
-    </p>
+    </div>
 
     <p id="para2" style="display: none;">
         Nunc maximus placerat tellus, ut aliquam ligula semper a. Phasellus rhoncus augue odio, vel venenatis erat viverra nec. Vivamus lectus sapien, ultricies vitae vestibulum ac, accumsan id mauris. 
     </p>
 
-    <p id="para3" style="display: none;">
+    <div id="para3" style="display: none;">
         <p class="colors" style="line-height: 50px; text-align: center;">
-        {% for i in range(info_data["famille_name"]|count) %}
-            <span style="background-color: {{ info_data['color_familly'][i] }}; color: {{ info_data['color_familly'][i] }} ;">LEGEND</span> {{ info_data['famille_name'][i] }}  
-        {% endfor %}
+        {% if info_data["famille_name"]|count != 0 %}
+            {% for i in range(info_data["famille_name"]|count) %}
+                <span style="background-color: {{ info_data['color_familly'][i] }}; color: {{ info_data['color_familly'][i] }} ;">LEGEND</span> {{ info_data['famille_name'][i] }}  
+            {% endfor %}
+        {% else %}
+        <span style="background-color: {{ info_data['background'][1:-1] }}; color: {{ info_data['background'][1:-1] }} ;">LEGEND</span> Toute familles confondues
+        {% endif %}
+
         </p>
         <br><br>
         <p class="texte" style="line-height: 20px;">
         Ce graphe représente le nombre de naissances sur une certaine période de temps. Dans ce cas-ci, cela se passe entre le {{ info_data["start_time"] }} et le {{ info_data["end_time"] }}. Durant cette période, nous avons un total de {{ info_data["somme"] }} naissances. Il est intéressant de voir que certains jours ont un plus grand nombre de naissances que d'autres. En effet, certains jours ne sont même pas affichés alors que d'autres dans ce cas ci affichent jusqu'à {{ info_data["maximum"] }} naissances.  
         </p>
-    </p>
+    </div>
 
     <p id="para4" style="display: none;">
         Ce graphe représente le nombre de femelles et de mâles dans la ferme depuis la création de celle-ci. Ce simple graphe permet facilement de se faire une idée de la répartition des sexes qu'il y a / qu'il y a eu dans la ferme. Dans ce cas-ci, nous avons {{ info_data["somme"] }} animaux évalués, contenant {{ info_data["data"][0] }} femelles et {{ info_data["data"][1] }} mâles. 
@@ -125,7 +130,7 @@ Analytics Graph
             }
         );
 
-    updateChart('{{ info_data["graph"] }}', '{{ info_data["main_label"] }}', {{ info_data["labels"] | safe }} , {{ info_data["data"] }});
+    updateChart('{{ info_data["graph"] }}', '{{ info_data["main_label"] }}', {{ info_data["labels"] | safe }} , {{ info_data["data"] }} );
 
 
     function updateChart(type_chart, main_label, labels, data){ // cette fonction permet d'afficher un des trois graphes et d'afficher le parapgraphe correspondant.

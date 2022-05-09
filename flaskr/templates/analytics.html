@@ -30,6 +30,7 @@ La ferme des 3 chênes: Analytics
                 <option value="races">Races</option> <!-- to do -->
                 <option value="repartition">Répartition</option> 
             </select>
+            
         </p>
         
         <br>
@@ -37,16 +38,18 @@ La ferme des 3 chênes: Analytics
         <p id="start_of_search" style="display: none;">
             <label for="start">Date de début de l'analyse:</label>
             <input type="date" id="start" name="start" max="2020-12-31" min="1980-01-31"/> 
+            <br><br>
         </p> 
         
-        <br>
+        
 
         <p id="end_of_search" style="display: none;">
             <label for="end">Date de fin de l'analyse:</label>
             <input type="date" id="end" name="end" max="2020-12-31" min="1980-01-31"/> 
+            <br><br>
         </p>
 
-        <br>
+        
 
         <p id="select_family" class="select2" style="display: none;">
             <label for="familles">Famille à choisir: </label> 
@@ -219,6 +222,7 @@ La ferme des 3 chênes: Analytics
                 <option value=89>Mélasse</option>
                 <option value=500>Unknown</option>
             </select>
+            <br><br>
         </p>
             
         <p id="select_race" style="display: none;">
@@ -229,8 +233,8 @@ La ferme des 3 chênes: Analytics
                 <option value="Jersey">Jersey</option>
             </select>
         </p>
-
         <br>
+        
 
         <p id="select_pourcentage" style="display: none;">
             <label for="pourcentage"> Pourcentage à choisir:</label>
@@ -239,9 +243,10 @@ La ferme des 3 chênes: Analytics
             <span id="percentage">%</span>
                 
             </select>
+            <br> <br>
         </p>
 
-        <br> <br>
+        
         <button type="submit" class="show_graph" title="Afficher le Graphe" id="show_graph" style="display: none;">
                 <h2><i class="fas fa-chart-line"></i>
                 Afficher le Graphe</h2>
@@ -250,9 +255,22 @@ La ferme des 3 chênes: Analytics
         <br><br>
     </form>
 </section>
+
 {% if no_graph == True %}
     <h5 style="color: red; text-align: center;" id="error_msg"><i>Il n'y a pas de résultat pour ce graphe, essayez avec d'autres paramêtres!</i></h5>
 {% endif %}
+
+<div class="para_explication">
+    <p> 
+        Chaque graphe a une utilité particulière. Afin de vous aider dans l'exploitation et la compréhension de ceux-ci, en voilà quelques explications.
+        - Le graphe "Pleine Lune" prend en compte une date de début, de fin et une / des famille(s) en compte afin de générer un graphe vous indiquant la répartition des naissances par rapport aux jours de pleine lune ou non. Les informations à sélectionner sont subjectives! 
+        - Le graphe "Vêlages" prend lui aussi en compte une date de début, de fin et une / des famille(s) en compte afin de générer un graphe vous montrant les naissances par période et par famille. Vous avez encore une fois le choix de ne pas restreindre les résultats en indiquant aucune information. 
+        - Le graphe "Races" prend en compte une / des race(s) ainsi qu'un pourcentage pour celles-ci. Ces paramètres sont obligatoires afin de pouvoir sélectionner les animaux respectant ces données. 
+        - Le graphe "Répartition" montre simplement la répartition mâles / femelles dans la ferme depuis sa création.  
+        
+    </p>
+
+</div>
 
 <script type="text/javascript">
     function nothingSelected() {
@@ -287,12 +305,12 @@ La ferme des 3 chênes: Analytics
         show("show_graph");
     }
     function racesSelected() {
+        hide("start_of_search");
+        hide("end_of_search");
         hide("select_family");
         show("select_race");
         document.getElementById("percentage").setAttribute("required", "");
         document.getElementById("races").setAttribute("required", "");
-        show("start_of_search");
-        show("end_of_search");
         show("select_pourcentage");
         show("show_graph");
     }
