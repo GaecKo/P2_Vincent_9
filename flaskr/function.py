@@ -50,9 +50,38 @@ def send_races(races, pourcentage):
            data = valeurs de ces modalités 
 
     """
+    if race == "blanc_bleu_belge":
+        type_ = 2
+    if race == "holstein":
+        type_ = 1
+    if race == "jersey":
+        type_ = 3
+    
+    
+    id_present = []
+    type_present = []
+    type_non_present = []
+    for row in cursor.execute('''SELECT id FROM animaux WHERE presence=1'''):
+        id_present.append(row[0])
+    for animal in id_present:
+        for row in cursor.execute('''SELECT DISTINCT animal_id
+                                     FROM animaux_types WHERE animal_id=?
+                                     AND type_id=? AND pourcentage=? ''',(animal,type_,pourcentage)):
+            type_present.append(row[0])
+
+    for row in cursor.execute('''SELECT type_id FROM animaux_types'''):
+        type_non_present.append(row)
+        
+    nombre_present_total = len(type_non_present) - len(type_present)
+
+
+    data = [0,0]   
+    data[0],data[1] = type_present, nombre_present_total        
+            
+
     labels = ["Respectent les conditions", "Ne respectant pas les conditions"]
-    data = [0, 0]
     return labels, data, None, None
+
 
 def send_moon(start_time, end_time, famille):
     """

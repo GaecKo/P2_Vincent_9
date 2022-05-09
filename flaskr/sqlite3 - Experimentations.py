@@ -21,37 +21,35 @@ leng = []
 #first_date = datetime.datetime.strptime(start_time, "%Y-%m-%d").strftime("%d/%m/%Y")
 #last_date = datetime.datetime.strptime(end_time, "%Y-%m-%d").strftime("%d/%m/%Y")
 
-#Query pour chercher les datas (Remplacer le * par les datas à extraire) entre 2 dates. 
-for f in cursor.execute('''SELECT
-                                    *
-                                FROM
-                                    velages
-                                WHERE
-                                    date BETWEEN ? AND ? ''',(start_time, end_time)):
 
- #   print(f)
-    leng.append(f)
-#print(len(leng))
 
-liste = [100,100]
 
-for i in liste:
-    print(i)
-''' 
-first_date = '01/01/2020'
-last_date = '31/12/2020'
-leng  = []
-for i in cursor.execute(SELECT
-                                    id, date
-                                FROM
-                                    velages
-                                WHERE
-                                    date BETWEEN ? AND ? ,(first_date, last_date)):
-    print(i[1])
-    leng.append(i)
+type_ = 1
+pourcentage = 10
+
+id_present = []
+type_present = []
+type_non_present = []
+for row in cursor.execute('''SELECT id FROM animaux WHERE presence=1'''):
+    id_present.append(row[0])
+for animal in id_present:
+    for row in cursor.execute('''SELECT DISTINCT animal_id
+                                 FROM animaux_types WHERE animal_id=?
+                                 AND type_id=? AND pourcentage=? ''',(animal,type_,pourcentage)):
+        type_present.append(row[0])
+
+for row in cursor.execute('''SELECT type_id FROM animaux_types'''):
+    type_non_present.append(row)
     
-print(len(i))
-'''
+nombre_present_total = len(type_non_present) - len(type_present)
+
+
+data = [0,0]   
+data[0],data[1] = type_present, nombre_present_total        
+        
+print(len(type_present))
+
+labels = ["Respectent les conditions", "Ne respectant pas les conditions"]
 
 
 
@@ -61,53 +59,8 @@ print(len(i))
 
 
 
-
-
-
-"""
-for i in range(1000):
-    
-    cursor.execute('''INSERT INTO CLASSE (MATRICULE, NOM, PRENOM, AGE, POINTS)
-                  VALUES (1, 'Durant', 'Emilie', '8', 73.5)''')
-
-"""
-#conn.commit()
-'''
-lenght = []
-for row in cursor.execute(SELECT
-                                animaux.id
-                            FROM
-                                animaux
-                            INNER JOIN
-                                animaux_types
-                            ON
-                                animaux_types.type_id = animaux_types.animal_id ):
-    
-    print(row)
-    lenght.append(row)
-print(len(lenght))
-
-'''   
 
 # Toujours fermer la connexion quand elle n'est plus utile
 conn.close()
 
 
-'''
-
-
-prendre id papa, id maman, from id of parents, take race of each parents,
-take 50% of each parent race for the child
-
-take all child 
-
-for row in cursor.execute("SELECT  id from animaux "):
-    
-    print(row)
-    lenght.append(row)
-print(len(lenght))
-
-
-
-
-'''

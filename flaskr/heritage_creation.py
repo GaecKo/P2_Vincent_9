@@ -67,7 +67,15 @@ for enfant in id_animaux:
                 cursor.execute('''INSERT INTO animaux_types VALUES (?,?,?)''',(enfant,pere_race, pere_pourcentage/2))
 
             
+            
+            
+
+            
+            
 #conn.commit()
+                
+for row in cursor.execute("SELECT * FROM animaux_types WHERE animal_id=4090"):
+    print(row)
 
 
 conn.close()
