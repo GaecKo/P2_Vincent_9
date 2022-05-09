@@ -18,8 +18,7 @@ def graph():
     end_time = request.form["end"]
     graphe_to_show = request.form["graphe"] # type de graphe 
     
-
-# paramêtres facultatifs
+# paramêtres facultatifs, en fonction de ce qui est demandé comme graphe
     try:
         famille = request.form.getlist("familles") # récupération des familles
         info_data["famille_id"] = famille
@@ -27,18 +26,18 @@ def graph():
     except:
         famille = []
     try:
-        races = request.form.getlist("races")
-        info_data["races"] = races
-        pourcentage = request.form["percentage"]
+        races = request.form.getlist("races") # récupération des races
+        info_data["races"] = request.form.getlist("races")
+        pourcentage = request.form["percentage"] # récupération du pourcentage
         info_data["pourcentage"] = pourcentage 
     except:
         races = []
 
 # autres informations / créations d'informations depuis SQL
+    
     info_data["main_label"] = graphe_to_show
     info_data["famille_name"] = id_famille_to_name(famille)
-    info_data["labels"], info_data["data"], info_data["graph"], info_data["background"], info_data["color_familly"] = get_infos(start_time, end_time, famille, graphe_to_show, races, pourcentage) # envoit des infos vers une fonction annexe qui s'en charge
-
+    info_data["labels"], info_data["data"], info_data["graph"], info_data["background"], info_data["color_familly"] = get_infos(start_time, end_time, famille, graphe_to_show, races, pourcentage) # envoit des infos vers une fonction annexe qui les traite et renvoit ensuite les informations
     if info_data["background"] in [[], "", None]:
         info_data["background"] = "'rgba(175, 208, 214, 1)'"
 
@@ -53,7 +52,7 @@ def graph():
             info_data["end_time"] = end_time.split("-")[2] + "/" + end_time.split("-")[1] + "/" + end_time.split("-")[0]
         else:
             info_data["end_time"] = "31/12/2020"
-
+    
     if len(info_data["data"]) == 0 or (info_data["data"][0] == 0 and info_data["data"][1] == 0):
         return render_template('analytics.html', no_graph=True)
 

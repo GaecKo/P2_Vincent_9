@@ -27,12 +27,12 @@ def get_infos(start_time, end_time, famille, graph, races, pourcentage):
     
     if graph == "races": # si le graphe choisi est races
         labels, data = send_races(races, pourcentage) # envoyer les infos à la fonction send_race avec les paramètres entrés ici
-        type_graph = "pie_race" # le type de graphe est un diagramme à barres
+        type_graph = "pie_race" # le type de graphe est un graphique circulaire
         return (labels, data, type_graph, None, None)
 
     if graph == "repartition":
         labels, data = send_population()
-        type_graph = "polarArea"
+        type_graph = "polarArea" # le type de graphe est un graphique 
         return (labels, data, type_graph, None, None)
 
     return None, None, None, None, None # si aucun de ces 4 choix-là, ne rien return
@@ -50,83 +50,42 @@ def send_races(races, pourcentage):
            data = valeurs de ces modalités 
 
     """
-    
+    labels = ["Respectant les conditions", "Ne respectant pas les conditions"]
+    if 100 / len(races) < int(pourcentage):
+        return labels, [0, 0], None, None
     # connexion
     conn = sql.connect('database.db')
     # Le curseur permettra l'envoi des commandes SQL
     cursor = conn.cursor()
+    for i in range(len(races)):
+        if races[i] == "holstein":
+            races[i] = 1
+        if races[i] == "blanc_bleu_belge":
+            races[i]= 2
+        if races[i] == "jersey":
+            races[i] = 3
     
-    if races[0] == "blanc_bleu_belge":
-        type_ = 2
-    if races[0] == "holstein":
-        type_ = 1
-    if races[0] == "jersey":
-        type_ = 3
-
     id_present = []
     type_present = []
     for row in cursor.execute('''SELECT id FROM animaux WHERE presence=1 '''):
         id_present.append(row[0])
-        
-    for animal in id_present:
-        for row in cursor.execute('''SELECT DISTINCT animal_id
+    
+    for i in range(len(races)):
+        for animal in id_present:
+            for row in cursor.execute('''SELECT DISTINCT animal_id
                                      FROM animaux_types WHERE animal_id=?
-                                     AND type_id=? AND pourcentage>=? ''',(animal,type_,pourcentage)):
-            type_present.append(row[0])
-            
-    if len(races) >1:
-        if races[1] == "blanc_bleu_belge":
-            type_ = 2
-        if races[1] == "holstein":
-            type_ = 1
-        if races[1] == "jersey":
-            type_ = 3
-
-
-        for animal in type_present:
-            for row in cursor.execute('''SELECT DISTINCT animal_id
-                                         FROM animaux_types WHERE animal_id=?
-                                         AND type_id=? AND pourcentage=? ''',(animal,type_,pourcentage)):
+                                     AND type_id=? AND pourcentage>=? ''',(animal,races[i],pourcentage)):
                 type_present.append(row[0])
-    if len(races) >2:
-            
-        if races[2] == "blanc_bleu_belge":
-            type_ = 2
-        if races[2] == "holstein":
-            type_ = 1
-        if races[2] == "jersey":
-            type_ = 3
-
-        
-
-        for animal in type_present:
-            for row in cursor.execute('''SELECT DISTINCT animal_id
-                                         FROM animaux_types WHERE animal_id=?
-                                         AND type_id=? AND pourcentage=? ''',(animal,type_,pourcentage)):
-                type_present.append(row[0])
-            
-            
-            
-            
-            
+    
     type_non_present = []
 
     for row in cursor.execute('''SELECT DISTINCT animal_id FROM animaux_types'''):
         type_non_present.append(row)
-        
-        
-    nombre_present_total = len(type_non_present) - len(type_present)
-
-    data = [0,0]   
-    data[0],data[1] = len(type_present), nombre_present_total        
-             
-
-    labels = ["Respectent les conditions", "Ne respectant pas les conditions"]
-        
     conn.close()
 
-    return labels, data, None, None
-
+    nombre_present_total = len(type_non_present) - len(type_present)
+    data = [len(type_present), nombre_present_total]   
+    return labels, data
 
 def send_moon(start_time, end_time, famille):
     """
