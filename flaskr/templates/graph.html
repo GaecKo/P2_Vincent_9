@@ -8,8 +8,8 @@ Analytics Graph
 
 <br>
 <section id="section_graph">
-    <div style="text-align: center;"> <!-- Premier Canvas: graphe en style line -->
-        <canvas id="line" width="800" height="400" style="display: none;"></canvas> 
+    <div style="text-align: center;"> <!-- Premier Canvas: graphe en style pie_race -->
+        <canvas id="pie_race" width="800" height="400" style="display: none;"></canvas> 
     </div>
 
     <div style="text-align: center;"> <!-- Deuxième Canvas: graphe en style bar -->
@@ -28,9 +28,9 @@ Analytics Graph
         Ce graphe représente les vêlages occurents en pleine lune ou non. En effet, il peut être intéressant de savoir si la pleine lune influence les naissances. Certaines périodes peuvent n'avoir aucune pleine lune, il est donc possible que le graphe affiche à 100% des naissances en "Autres lunes". Dans ce cas, nous avons {{ info_data["data"][0] }} naissances en pleine lune et {{ info_data["data"][1] }} naissances en Autres Lunes. Vous pouvez vous référer au code couleur pour vous rendre compte des naissances.  
     </div>
 
-    <p id="para2" style="display: none;">
-        Nunc maximus placerat tellus, ut aliquam ligula semper a. Phasellus rhoncus augue odio, vel venenatis erat viverra nec. Vivamus lectus sapien, ultricies vitae vestibulum ac, accumsan id mauris. 
-    </p>
+    <div id="para2" style="display: none;">
+        Ce grape représente le nombre d'animaux respectant un certains pourcentage de races. Dans ce cas, les vaches doivent appartenir à: {% for race in info_data["races"] %} {{ race }}, {{endfor}} avec un pourcentage d'au moins {{ info_data["porcentage"] }}. Nous voyons dans ce cas que nous avons {{ info_data["data"][0] }} respectant ces critères pour un total de {{ info_data["somme"] }} vaches. 
+    </div>
 
     <div id="para3" style="display: none;">
         <p class="colors" style="line-height: 50px; text-align: center;">
@@ -55,14 +55,14 @@ Analytics Graph
 </section>
 
 <script>
-    const ctx = document.getElementById('line').getContext('2d');
-    const line = new Chart(ctx, {
-        type: ['line'],   // le type du graphique
+    const ctx = document.getElementById('pie_race').getContext('2d');
+    const pie_race = new Chart(ctx, {
+        type: ['pie_race'],   // le type du graphique
         data: {        // les données
             labels: [],
             datasets: [{
                         borderColor: 'rgba(160, 167, 167, 1)',
-                        label: 'Line Graphics ',
+                        label: 'Pie_Race Graphics ',
                         data: []
                     }]
             },
@@ -134,17 +134,17 @@ Analytics Graph
 
 
     function updateChart(type_chart, main_label, labels, data){ // cette fonction permet d'afficher un des trois graphes et d'afficher le parapgraphe correspondant.
-        if (type_chart=='line') {
+        if (type_chart=='pie_race') {
             show_para('para2');
             hide_para('para1', 'para3', 'para4');
             hideChart("pie");
             hideChart("bar");
             hideChart("polarArea");
-            showChart("line");
-            line.data.labels = labels;
-            line.data.datasets[0].data = data; // met à jour les données des graphes
-            line.data.datasets[0].label = main_label;
-            line.update();
+            showChart("pie_race");
+            pie_race.data.labels = labels;
+            pie_race.data.datasets[0].data = data; // met à jour les données des graphes
+            pie_race.data.datasets[0].label = main_label;
+            pie_race.update();
         }
 
         if (type_chart=="polarArea") {
@@ -152,7 +152,7 @@ Analytics Graph
             hide_para('para1', 'para3', 'para2');
             hideChart("pie");
             hideChart("bar");
-            hideChart("line");
+            hideChart("pie_race");
             showChart("polarArea");
             polarArea.data.labels = labels;
             polarArea.data.datasets[0].data = data; // met à jour les données des graphes
@@ -163,7 +163,7 @@ Analytics Graph
         if (type_chart=="pie") {
             show_para('para1');
             hide_para('para2', 'para3', 'para4');
-            hideChart("line");
+            hideChart("pie_race");
             hideChart("bar");
             hideChart("polarArea");
             showChart("pie");
@@ -178,7 +178,7 @@ Analytics Graph
             hide_para('para2', 'para1', 'para4');
             hideChart("polarArea");
             hideChart("pie");
-            hideChart("line");
+            hideChart("pie_race");
             showChart("bar");
             bar.data.datasets.backgroundColor = {{ background }}
             bar.data.labels = labels;

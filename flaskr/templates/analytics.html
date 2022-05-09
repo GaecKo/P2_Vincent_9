@@ -3,7 +3,6 @@
 La ferme des 3 chênes: Analytics 
 {% endblock %}
 
-
 {% block content %} 
     <br>
 <section id="section2">
@@ -18,7 +17,6 @@ La ferme des 3 chênes: Analytics
         </p>
     </h4>
    
-
     <br><br>
     <form action="{{ url_for('graph') }}" method="POST" class="form" style="margin-left: 20%; margin-right: 20%; text-align: center;">
         <p>
@@ -40,16 +38,12 @@ La ferme des 3 chênes: Analytics
             <input type="date" id="start" name="start" max="2020-12-31" min="1980-01-31"/> 
             <br><br>
         </p> 
-        
-        
 
         <p id="end_of_search" style="display: none;">
             <label for="end">Date de fin de l'analyse:</label>
             <input type="date" id="end" name="end" max="2020-12-31" min="1980-01-31"/> 
             <br><br>
         </p>
-
-        
 
         <p id="select_family" class="select2" style="display: none;">
             <label for="familles">Famille à choisir: </label> 
@@ -229,12 +223,11 @@ La ferme des 3 chênes: Analytics
             <label for="race"> Race à choisir:</label>
             <select name="races" class="select2" id="races" style="width: 180px;"  multiple>
                 <option value="blanc_bleu_belge">Blanc Bleu Belge</option>
-                <option value="Holstein">Holstein</option>
-                <option value="Jersey">Jersey</option>
+                <option value="holstein">Holstein</option>
+                <option value="jersey">Jersey</option>
             </select>
         </p>
         <br>
-        
 
         <p id="select_pourcentage" style="display: none;">
             <label for="pourcentage"> Pourcentage à choisir:</label>
@@ -246,7 +239,6 @@ La ferme des 3 chênes: Analytics
             <br> <br>
         </p>
 
-        
         <button type="submit" class="show_graph" title="Afficher le Graphe" id="show_graph" style="display: none;">
                 <h2><i class="fas fa-chart-line"></i>
                 Afficher le Graphe</h2>

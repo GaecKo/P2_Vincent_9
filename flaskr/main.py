@@ -28,7 +28,9 @@ def graph():
         famille = []
     try:
         races = request.form.getlist("races")
+        info_data["races"] = races
         pourcentage = request.form["percentage"]
+        info_data["pourcentage"] = pourcentage 
     except:
         races = []
 

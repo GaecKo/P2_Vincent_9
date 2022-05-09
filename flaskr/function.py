@@ -27,7 +27,7 @@ def get_infos(start_time, end_time, famille, graph, races, pourcentage):
     
     if graph == "races": # si le graphe choisi est races
         labels, data = send_races(races, pourcentage) # envoyer les infos à la fonction send_race avec les paramètres entrés ici
-        type_graph = "bar" # le type de graphe est un diagramme à barres
+        type_graph = "pie_race" # le type de graphe est un diagramme à barres
         return (labels, data, type_graph, None, None)
 
     if graph == "repartition":
