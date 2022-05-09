@@ -1,7 +1,7 @@
 @import url(https://necolas.github.io/normalize.css/8.0.1/normalize.css);
 @import url(https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap);
 @import url(https://fonts.googleapis.com/css2?family=Cantarell:wght@700&display=swap);
-
+/* - Code repris de https://www.geeksforgeeks.org/how-to-create-fade-in-effect-on-page-load-using-css/ */
 @keyframes fadeIn {
     0% {
       opacity:0;
@@ -51,7 +51,7 @@
       opacity:1;
     }
 }
-
+/* - Jusqu'ici - */
 *
 {
     scroll-behavior: smooth;
@@ -186,7 +186,6 @@ a:hover
 
 .first_para:hover
 {
-    cursor: pointer;
     background-color:rgba(115, 255, 0, 0.219);
     border-radius: 25px;
     padding: 15px;
@@ -221,7 +220,8 @@ a:hover
     text-shadow: 2px 2px 10px black;
 }
 
-h4 .para_analyse {
+h4 .para_analyse, .explication {
+    text-shadow: 2px 2px 10px black;
     text-align: center;
     font-size: medium;   
     animation: fadeIn ease 3s;
@@ -238,20 +238,7 @@ h4 .para_analyse {
     transition: all .5s;
 }
 
-h4 .para_analyse:hover {
-    background-color:rgba(255, 0, 0, 0.08);
-    border-radius: 50px;
-    padding: 20px;
-    margin-left: 20%;
-    margin-right: 20%;
-    text-shadow: 2px 2px 10px black;
-    box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.384);
-    cursor: pointer;
-    transition: all .7s;
-}
-
-.form {
-    text-align: center;
+.form, article {
     animation: fadeIn ease 4s;
     -webkit-animation: fadeIn ease 4s;
     -moz-animation: fadeIn ease 4s;
@@ -261,11 +248,18 @@ h4 .para_analyse:hover {
     border-radius: 50px;
     padding: 20px;
     box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.384);
-    margin-left: 20%;
-    margin-right: 20%;
     transition: all .5s;
 }
 
+.para_explication {
+    transition: all .5s;
+}
+.para_explication:hover {
+    background-color:rgba(172, 172, 172, 0.08);
+    border-radius: 20px;
+    padding: 15px;
+    transition:all .7s;
+}
 section .square_point
 {
     position: relative;
@@ -294,7 +288,6 @@ section .square_point .p1
     -o-animation: fadeIn ease 3s;
     -ms-animation: fadeIn ease 3s;
     list-style: none;
-    cursor: pointer;
     transition: all .5s;
 }
 
@@ -315,7 +308,6 @@ section .square_point .p2
     -o-animation: fadeIn ease 4s;
     -ms-animation: fadeIn ease 4s;
     list-style: none;
-    cursor: pointer;
     transition: all .5s;
 }
 
@@ -336,7 +328,6 @@ section .square_point .p3
     -o-animation: fadeIn ease 5s;
     -ms-animation: fadeIn ease 5s;
     list-style: none;
-    cursor: pointer;
     transition: all .5s;
 }
 

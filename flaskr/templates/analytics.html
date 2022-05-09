@@ -5,7 +5,7 @@ La ferme des 3 chênes: Analytics
 
 
 {% block content %} 
-    <br><br><br><br><br><br>
+    <br>
 <section id="section2">
     <div class="titre_analyse">
         <h3><strong>Informations à remplir pour l'analyse</strong></h3>
@@ -20,7 +20,7 @@ La ferme des 3 chênes: Analytics
    
 
     <br><br>
-    <form action="{{ url_for('graph') }}" method="POST" class="form">
+    <form action="{{ url_for('graph') }}" method="POST" class="form" style="margin-left: 20%; margin-right: 20%; text-align: center;">
         <p>
             <label for="graphe">Graphe à afficher: </label>
             <select name="graphe" class="select2" id="graphe" onchange="changeFunc();" required>
@@ -254,23 +254,27 @@ La ferme des 3 chênes: Analytics
         </button>
         <br><br>
     </form>
+    <br><br>
+        <ul>
+            <li style="list-style: none;">
+                <p class="explication" style="text-align: center;"> <strong>Chaque graphe a une utilité particulière. Afin de vous aider dans l'exploitation et la compréhension de ceux-ci, en voilà quelques explications.</strong></p>
+            </li>
+        </ul>
+            <br><br>
+            <article>
+                <p class="para_explication" style="text-align: justify;"> Le graphe "Pleine Lune" prend en compte une date de début, une date de fin et une / des famille(s), afin de générer un graphe vous indiquant la répartition des naissances par rapport aux jours de pleine lune ou non. Les informations à sélectionner sont subjectives! </p>
+            <br>
+                <p class="para_explication" style="text-align: justify;"> Le graphe "Vêlages" prend lui aussi en compte une date de début, une date de fin et une / des famille(s), afin de générer un graphe vous montrant les naissances par période et par famille. Vous avez encore une fois le choix de ne pas restreindre les résultats en indiquant aucune information. </p>
+            <br>
+                <p class="para_explication" style="text-align: justify;"> Le graphe "Races" prend en compte une / des race(s) ainsi qu'un pourcentage pour celles-ci. Ces paramètres sont obligatoires afin de pouvoir sélectionner les animaux respectant ces données. </p>
+            <br>
+                <p class="para_explication" style="text-align: justify;"> Le graphe "Répartition" montre simplement la répartition mâles / femelles dans la ferme depuis sa création. </p>
+            </article>
 </section>
 
 {% if no_graph == True %}
     <h5 style="color: red; text-align: center;" id="error_msg"><i>Il n'y a pas de résultat pour ce graphe, essayez avec d'autres paramêtres!</i></h5>
 {% endif %}
-
-<div class="para_explication">
-    <p> 
-        Chaque graphe a une utilité particulière. Afin de vous aider dans l'exploitation et la compréhension de ceux-ci, en voilà quelques explications.
-        - Le graphe "Pleine Lune" prend en compte une date de début, de fin et une / des famille(s) en compte afin de générer un graphe vous indiquant la répartition des naissances par rapport aux jours de pleine lune ou non. Les informations à sélectionner sont subjectives! 
-        - Le graphe "Vêlages" prend lui aussi en compte une date de début, de fin et une / des famille(s) en compte afin de générer un graphe vous montrant les naissances par période et par famille. Vous avez encore une fois le choix de ne pas restreindre les résultats en indiquant aucune information. 
-        - Le graphe "Races" prend en compte une / des race(s) ainsi qu'un pourcentage pour celles-ci. Ces paramètres sont obligatoires afin de pouvoir sélectionner les animaux respectant ces données. 
-        - Le graphe "Répartition" montre simplement la répartition mâles / femelles dans la ferme depuis sa création.  
-        
-    </p>
-
-</div>
 
 <script type="text/javascript">
     function nothingSelected() {
