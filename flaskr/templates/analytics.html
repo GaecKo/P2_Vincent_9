@@ -245,7 +245,11 @@ La ferme des 3 chênes: Analytics
                 
         </button>
         <br><br>
+        {% if no_graph == True %}
+        <h5 style="color: red; text-align: center;" id="error_msg"><i>Il n'y a pas de résultat pour ce graphe, essayez avec d'autres paramêtres!</i></h5>
+        {% endif %}
     </form>
+    
     <br><br>
         <ul>
             <li style="list-style: none;">
@@ -264,9 +268,7 @@ La ferme des 3 chênes: Analytics
             </article>
 </section>
 
-{% if no_graph == True %}
-    <h5 style="color: red; text-align: center;" id="error_msg"><i>Il n'y a pas de résultat pour ce graphe, essayez avec d'autres paramêtres!</i></h5>
-{% endif %}
+
 
 <script type="text/javascript">
     function nothingSelected() {

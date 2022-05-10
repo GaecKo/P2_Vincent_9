@@ -52,7 +52,7 @@ def send_races(races, pourcentage):
     """
     labels = ["Respectant les conditions", "Ne respectant pas les conditions"]
     if 100 / len(races) < int(pourcentage):
-        return labels, [0, 0], None, None
+        return labels, [0, 0]
     # connexion
     conn = sql.connect('database.db')
     # Le curseur permettra l'envoi des commandes SQL
