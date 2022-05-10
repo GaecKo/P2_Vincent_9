@@ -23,83 +23,9 @@ leng = []
 
 
 
-races = ["jersey","holstein"]
-pourcentage = 100
-
-
-
-if races[0] == "blanc_bleu_belge":
-    type_ = 2
-if races[0] == "holstein":
-    type_ = 1
-if races[0] == "jersey":
-    type_ = 3
-
-id_present = []
-type_present = []
-for row in cursor.execute('''SELECT id FROM animaux WHERE presence=1 '''):
-    id_present.append(row[0])
+for row in cursor.execute("SELECT * FROM animaux_types"):
+    print(row)
     
-for animal in id_present:
-    for row in cursor.execute('''SELECT DISTINCT animal_id
-                                 FROM animaux_types WHERE animal_id=?
-                                 AND type_id=? AND pourcentage>=? ''',(animal,type_,pourcentage)):
-        type_present.append(row[0])
-        
-if len(races) >1:
-    if races[1] == "blanc_bleu_belge":
-        type_ = 2
-    if races[1] == "holstein":
-        type_ = 1
-    if races[1] == "jersey":
-        type_ = 3
-
-
-    for animal in type_present:
-        for row in cursor.execute('''SELECT DISTINCT animal_id
-                                     FROM animaux_types WHERE animal_id=?
-                                     AND type_id=? AND pourcentage=? ''',(animal,type_,pourcentage)):
-            type_present.append(row[0])
-if len(races) >2:
-        
-    if races[2] == "blanc_bleu_belge":
-        type_ = 2
-    if races[2] == "holstein":
-        type_ = 1
-    if races[2] == "jersey":
-        type_ = 3
-
-    
-
-    for animal in type_present:
-        for row in cursor.execute('''SELECT DISTINCT animal_id
-                                     FROM animaux_types WHERE animal_id=?
-                                     AND type_id=? AND pourcentage=? ''',(animal,type_,pourcentage)):
-            type_present.append(row[0])
-        
-        
-        
-        
-        
-type_non_present = []
-
-for row in cursor.execute('''SELECT DISTINCT animal_id FROM animaux_types'''):
-    type_non_present.append(row)
-    
-    
-nombre_present_total = len(type_non_present) - len(type_present)
-
-
-data = [0,0]   
-data[0],data[1] = len(type_present), nombre_present_total        
-        
-
-
-print(data)
-
-
-
-
 
 
 
