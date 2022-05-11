@@ -20,6 +20,7 @@ Pour lancer le site en cours de constructions:
 * [X] Lier la base de donnée à flask
 * [X] Créer les graphes
 * [X] Fonctions de récupération des données
-* [ ] Troisème Graphe
-* [ ] Influence des familles sur les données à récupérer  
+* [X] Troisème Graphe
+* [X] Influence des familles sur les données à récupérer  
+
 ****
